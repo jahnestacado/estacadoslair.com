@@ -22,13 +22,11 @@ app.get("/blog/:collectionName", function(request, response) {
 
 app.get("/blog/:collectionName/:id", function(request, response) {
     request.collection.findOne({_id: mongoskin.helper.toObjectID(request.params.id)}, function(error, results) {
-        console.log("GETTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",results)
         response.send(results);
     });
 });
 
 app.post("/blog/:collectionName", function(request, response) {
-    console.log(request.body);
     request.collection.insert(request.body, function(error, results) {
         if (results) {
             response.send("Added");
