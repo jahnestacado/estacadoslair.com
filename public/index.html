@@ -4,20 +4,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
 
     <body>
 
         <div class="container" id="mainContainer">
             <div class="row">
-                <div id="post-container" class="col-md-2 col-md-offset-2 "></div>
-                <div id="list-container" class="container col-md-2 col-md-offset-2 navbar-right "></div>
+                <div id="post-container" class="col-md-9"></div>
+                <div id="list-container" class="col-md-2 pull-right"></div>
 
             </div>
         </div>    
 
         <script type="text/template" id="list-view-template">
-            <h3>Available Posts</h3>
+            <div  class="panel panel-info read-only-panel">
+                 <div class="panel-heading">
+                     <h3 class="panel-title active">Available Posts</h3>
+                 </div>
             <div class="list-group">
           
                 <% _.each( posts, function( post){ %>
@@ -25,51 +29,63 @@
                 <% }); %>
             
            </div>
+            </div>
         </script>
-        
-         <script type="text/template" id="edit-list-view-template">
-            <h3>Available Posts</h3>
+
+        <script type="text/template" id="edit-list-view-template">
+   
+       <div  class="panel panel-info read-only-panel">
+                 <div class="panel-heading">
+                     <h3 class="panel-title active">Available Posts</h3>
+                 </div>
             <div class="list-group">
           
                 <% _.each( posts, function( post){ %>
-                    <div  class="list-group-item">
-                      <a href=<%= post.getHashPath()%> > <%= post.get("title") %> </a>
-                      <button class="delete-btn" data-id=<%= post.get("_id") %>  >delete</button>
-                    </div>
+                      <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> <button class="delete-btn btn-danger btn pull-right" data-id=<%= post.get("_id") %>>delete</button> </a>
                 <% }); %>
             
            </div>
+            </div>
+    
         </script>
 
         <script type="text/template" id="blog-post-template">
-           <h3>edw</h3>
-           <h2><%= title %></h2>
-           <p><%= body %></p>
+            
+            <div  class="panel panel-info read-only-panel">
+                 <div class="panel-heading">
+                     <h3 class="panel-title active"><%= title %></h3>
+                 </div>
+                 <div class="panel-body">
+                   <%= body %>
+                 </div>
            <p><%= date %></p>
+            
+            </div>
+            
         </script>
 
         <script type="text/template" id="edit-blog-post-template">
             <form class="form-horizontal ">
-                <div class="form-group">
-                    <label for="inputTitle" class="control-label col-xs-2">Title</label>
-                    <div class="col-xs-10">
-                        <input type="text" value=<%= title %> class="form-control" id="title" placeholder="title">
-                    </div>
-                </div>
-               <div class="form-group">
-                     <label for="body" class="col-sm-2 control-label">Message</label>
-                       <div class="col-sm-10">
-                      <textarea class="form-control" id="body" rows="10" name="body"><%= body %></textarea>
-                    </div>
-              </div>
+            <div class="form-group">
+            <label for="inputTitle" class="control-label col-xs-2">Title</label>
+            <div class="col-xs-10">
+            <input type="text" class="form-control" id="title" placeholder="title"  value=<%- title %> >
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="body" class="col-sm-2 control-label">Message</label>
+            <div class="col-sm-10">
+            <textarea class="form-control" id="body" rows="10" name="body"><%= body %></textarea>
+            </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <button type="submit" id="submit-btn" class="btn btn-primary"><%= buttonAction %></button>
-                    </div>
-                </div>
-          </form>
-                            		
+            <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" id="submit-btn" class="btn btn-primary"><%= buttonAction %></button>
+            </div>
+            </div>
+            </form>
+
         </script>
 
 
