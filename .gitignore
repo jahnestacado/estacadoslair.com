@@ -1,2 +1,5 @@
 #Bower dependencies
 public/bower_components/*
+
+#npm dependencies
+node_modules/*
