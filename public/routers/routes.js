@@ -14,36 +14,66 @@ var AppRouter = Backbone.Router.extend({
 
     },
     loadBlogPage: function() {
+        var router = this;
         $("#post-container").empty();
-        var blogPostListView = new BlogPostListView();
-        blogPostListView.render();
+        $("#list-container").empty();
+
+        if (!router.blogPostListView) {
+            router.blogPostListView = new BlogPostListView();
+        }
+        router.blogPostListView.render();
     },
     loadBlogPost: function(id) {
+        var router = this;
+        var blogPost = new BlogPost({"_id": id});
+
         $("#post-container").empty();
-        var blogPostListView = new BlogPostListView();
-        blogPostListView.render();
-        var blogPostView = new BlogPostView(id);
-        blogPostView.render();
+        $("#list-container").empty();
+        if (!router.blogPostListView) {
+            router.blogPostListView = new BlogPostListView();
+        }
+        router.blogPostListView.render();
+        if (!router.blogPostView) {
+            router.blogPostView = new BlogPostView();
+        }
+        router.blogPostView.render(blogPost);
     },
     loadCreatePostPage: function() {
+        var router = this;
+        var blogPost = new BlogPost();
+
         $("#post-container").empty();
         $("#list-container").empty();
-        var createBlogPostView = new CreateBlogPostView();
-        createBlogPostView.render();
+        if (!router.createBlogPostView) {
+            router.createBlogPostView = new CreateBlogPostView();
+        }
+        router.createBlogPostView.render(blogPost);
     },
     loadUpdatePage: function() {
+        var router = this;
+
+        if (!router.editBlogPostListView) {
+            router.editBlogPostListView = new EditBlogPostListView();
+        }
         $("#post-container").empty();
         $("#list-container").empty();
-        var editBlogPostListView = new EditBlogPostListView();
-        editBlogPostListView.render();
+        router.editBlogPostListView.render();
     },
     loadUpdatePostPage: function(id) {
+        var router = this;
+        var blogPost = new BlogPost({"_id": id});
+
         $("#post-container").empty();
         $("#list-container").empty();
-        var editBlogPostListView = new EditBlogPostListView();
-        editBlogPostListView.render();
-        var editBlogPostView = new EditBlogPostView(id);
-        editBlogPostView.render();
+        if (!router.editBlogPostListView) {
+            router.editBlogPostListView = new EditBlogPostListView();
+        }
+        router.editBlogPostListView.render();
+
+        if (!router.editBlogPostView) {
+            router.editBlogPostView = new EditBlogPostView();
+        }
+        router.editBlogPostView.render(blogPost);
     }
 });
 

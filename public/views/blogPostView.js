@@ -1,18 +1,16 @@
 var BlogPostView = Backbone.View.extend({
     el: "#post-container",
-    initialize: function(id) {
-        this.id = id;
-    },
     template: _.template($("#blog-post-template").html()),
-    render: function() {
+    render: function(blogPostModel) {
         var view = this;
-        var blogPost = new BlogPost({_id: view.id});
-
-        blogPost.fetch({
-            success: function(blogPost) {
-                view.$el.html(view.template(blogPost.attributes));
-            }
-        });
+        view.blogPostModel = blogPostModel;
+        
+        if (view.blogPostModel) {
+            view.blogPostModel.fetch({
+                success: function(blogPost) {
+                    view.$el.html(view.template(view.blogPostModel.attributes));
+                }
+            });
+        }
     },
-
 });
