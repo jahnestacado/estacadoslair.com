@@ -1,7 +1,8 @@
 var express = require("express");
 var mongoskin = require("mongoskin");
 var bodyParser = require("body-parser");
-var db = mongoskin.db("mongodb://localhost:27017/blog");
+var mongoUrl = process.env.MONGO || "localhost:27017";
+var db = mongoskin.db("mongodb://" + mongoUrl + "/blog");
 
 var app = express();
 app.use(bodyParser.urlencoded());
