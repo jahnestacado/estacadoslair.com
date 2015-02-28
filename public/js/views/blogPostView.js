@@ -7,7 +7,7 @@ var BlogPostView = Backbone.View.extend({
         
         if (view.blogPostModel) {
             view.blogPostModel.fetch({
-                success: function(blogPost) {
+                success: function() {
                     view.$el.html(view.template(view.blogPostModel.attributes));
                 }
             });

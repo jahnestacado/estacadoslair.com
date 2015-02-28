@@ -6,12 +6,24 @@
     margin-top: 60px;
 }
 
-#mainContainer{
-    /*background-image:url("images/a.jpg");*/
-    /*background-size: cover;*/
-    width:100%;
-
+body{
+    padding:0;
 }
+
+
+.mainContainer{
+    width:100%;
+    -webkit-transition: margin-left 1s;
+    -moz-transition: margin-left 1s;
+    -o-transition: margin-left 1s;
+    transition: margin-left 1s;
+}
+
+#page1{
+    background-image:url("../images/wall.jpg");
+    background-size: cover;
+}
+
 
 #list-container{
     margin-top: 60px;
@@ -31,7 +43,19 @@
 
 }
 
+.inside {
+    margin-left: 0;
+    -webkit-transition: margin-left 1s;
+    -moz-transition: margin-left 1s;
+    -o-transition: margin-left 1s;
+    transition: margin-left 1s;
+}
 
+
+
+.stop-scrolling {
+    overflow: hidden;
+}
 
 
 

@@ -9,59 +9,66 @@
 
     <body>
 
-        <div class="container" id="mainContainer">
+        <div class="container mainContainer stop-scrolling" id="page1">
+            <div class="row">
+                <a href="#blog">blog</a>
+                <a href="#update">update</a>
+                <a href="#new">new</a>
+            </div>
+        </div>
+        <div class="container mainContainer stop-scrolling" id="page2">
             <div class="row">
                 <div id="post-container" class="col-md-9"></div>
                 <div id="list-container" class="col-md-2 pull-right"></div>
-
             </div>
-        </div>    
+        </div>
+
 
         <script type="text/template" id="list-view-template">
             <div  class="panel panel-info read-only-panel">
-                 <div class="panel-heading">
-                     <h3 class="panel-title active">Available Posts</h3>
-                 </div>
+            <div class="panel-heading">
+            <h3 class="panel-title active">Available Posts</h3>
+            </div>
             <div class="list-group">
-          
-                <% _.each( posts, function( post){ %>
-                      <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> </a>
-                <% }); %>
-            
-           </div>
+
+            <% _.each( posts, function( post){ %>
+            <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> </a>
+            <% }); %>
+
+            </div>
             </div>
         </script>
 
         <script type="text/template" id="edit-list-view-template">
-   
-       <div  class="panel panel-info read-only-panel">
-                 <div class="panel-heading">
-                     <h3 class="panel-title active">Available Posts</h3>
-                 </div>
-            <div class="list-group">
-          
-                <% _.each( posts, function( post){ %>
-                      <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> <button class="delete-btn btn-danger btn pull-right" data-id=<%= post.get("_id") %>>delete</button> </a>
-                <% }); %>
-            
-           </div>
+
+            <div  class="panel panel-info read-only-panel">
+            <div class="panel-heading">
+            <h3 class="panel-title active">Available Posts</h3>
             </div>
-    
+            <div class="list-group">
+
+            <% _.each( posts, function( post){ %>
+            <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> <button class="delete-btn btn-danger btn pull-right" data-id=<%= post.get("_id") %>>delete</button> </a>
+            <% }); %>
+
+            </div>
+            </div>
+
         </script>
 
         <script type="text/template" id="blog-post-template">
-            
+
             <div  class="panel panel-info read-only-panel">
-                 <div class="panel-heading">
-                     <h3 class="panel-title active"><%= title %></h3>
-                 </div>
-                 <div class="panel-body">
-                   <%= body %>
-                 </div>
-           <p><%= date %></p>
-            
+            <div class="panel-heading">
+            <h3 class="panel-title active"><%= title %></h3>
             </div>
-            
+            <div class="panel-body">
+            <%= body %>
+            </div>
+            <p><%= date %></p>
+
+            </div>
+
         </script>
 
         <script type="text/template" id="edit-blog-post-template">
@@ -89,6 +96,7 @@
         </script>
 
 
+
         <script  src="bower_components/jquery/dist/jquery.min.js"></script>
         <script  src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
@@ -103,5 +111,10 @@
         <script type="text/javascript" src="js/views/editBlogPostView.js"></script>
         <script type="text/javascript" src="js/routers/routes.js"></script>
 
+        <script>
+            $(document).ready(function() {
+            $(".mainContainer").css("min-height", $(window).height());
+            });
+        </script>
     </body>
 </html>

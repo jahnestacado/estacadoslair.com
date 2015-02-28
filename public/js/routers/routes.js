@@ -3,20 +3,18 @@ Backbone.pubSub = _.extend({}, Backbone.Events);
 var AppRouter = Backbone.Router.extend({
     routes: {
         "": "home",
-        "blog": "loadBlogPage",
         "blog/:id": "loadBlogPost",
-        "newPost": "loadCreatePostPage",
-        "update": "loadUpdatePage",
-        "update/:id": "loadUpdatePostPage"
+        "blog": "loadBlogPage",
+        "new": "loadCreatePostPage",
+        "update/:id": "loadUpdatePostPage",
+        "update": "loadUpdatePage"
     },
     home: function() {
         console.log("loaded home");
-
     },
     loadBlogPage: function() {
         var router = this;
-        $("#post-container").empty();
-        $("#list-container").empty();
+        scrollTo($("#page2"));
 
         if (!router.blogPostListView) {
             router.blogPostListView = new BlogPostListView();
@@ -26,13 +24,11 @@ var AppRouter = Backbone.Router.extend({
     loadBlogPost: function(id) {
         var router = this;
         var blogPost = new BlogPost({"_id": id});
-
-        $("#post-container").empty();
-        $("#list-container").empty();
         if (!router.blogPostListView) {
             router.blogPostListView = new BlogPostListView();
+            router.blogPostListView.render();
         }
-        router.blogPostListView.render();
+
         if (!router.blogPostView) {
             router.blogPostView = new BlogPostView();
         }
@@ -41,34 +37,32 @@ var AppRouter = Backbone.Router.extend({
     loadCreatePostPage: function() {
         var router = this;
         var blogPost = new BlogPost();
-
-        $("#post-container").empty();
+        scrollTo($("#page2"));
         $("#list-container").empty();
+
         if (!router.createBlogPostView) {
             router.createBlogPostView = new CreateBlogPostView();
         }
         router.createBlogPostView.render(blogPost);
+
     },
     loadUpdatePage: function() {
         var router = this;
+        scrollTo($("#page2"));
 
         if (!router.editBlogPostListView) {
             router.editBlogPostListView = new EditBlogPostListView();
         }
-        $("#post-container").empty();
-        $("#list-container").empty();
         router.editBlogPostListView.render();
     },
     loadUpdatePostPage: function(id) {
         var router = this;
         var blogPost = new BlogPost({"_id": id});
 
-        $("#post-container").empty();
-        $("#list-container").empty();
         if (!router.editBlogPostListView) {
             router.editBlogPostListView = new EditBlogPostListView();
+            router.editBlogPostListView.render();
         }
-        router.editBlogPostListView.render();
 
         if (!router.editBlogPostView) {
             router.editBlogPostView = new EditBlogPostView();
@@ -76,6 +70,13 @@ var AppRouter = Backbone.Router.extend({
         router.editBlogPostView.render(blogPost);
     }
 });
+
+var scrollTo = function(el, ms) {
+    var speed = (ms) ? ms : 600;
+    $('html,body').animate({
+        scrollTop: $(el).offset().top
+    }, speed);
+}
 
 var appRouter = new AppRouter();
 
