@@ -13,6 +13,7 @@ var CreateBlogPostView = Backbone.View.extend({
             body: ""
         }
         view.$el.html(view.template(contents));
+        CKEDITOR.replace( "post-body");
     },
     events: {
         "click #submit-btn:contains('Save')": "savePost"
@@ -21,8 +22,8 @@ var CreateBlogPostView = Backbone.View.extend({
         var view = this;
         event.preventDefault();
 
-        view.blogPostModel.set("title", view.$el.find("#title").val());
-        view.blogPostModel.set("body", view.$el.find("#body").val());
+        view.blogPostModel.set("title", view.$el.find("#post-title").val());
+        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].getData());
         view.blogPostModel.set("date", new Date());
         view.blogPostModel.save(view.blogPostModel.attributes);
 

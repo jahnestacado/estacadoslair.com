@@ -18,6 +18,7 @@ var EditBlogPostView = Backbone.View.extend({
                     body: attributes.body
                 }
                 view.$el.html(view.template(contents));
+                CKEDITOR.replace( "post-body");
             }
         });
         
@@ -35,8 +36,8 @@ var EditBlogPostView = Backbone.View.extend({
             view.blogPostModel = new BlogPost({"_id": view.id});
         }
 
-        view.blogPostModel.set("title", view.$el.find("#title").val());
-        view.blogPostModel.set("body", view.$el.find("#body").val());
+        view.blogPostModel.set("title", view.$el.find("#post-title").val());
+        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].getData());
         view.blogPostModel.set("date", new Date());
         view.blogPostModel.save(view.blogPostModel.attributes);
 
