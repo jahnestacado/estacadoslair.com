@@ -23,6 +23,11 @@ body{
     background-size: cover;
 }
 
+#page2{
+    background-image:url("../images/wall.jpg");
+    background-size: cover;
+}
+
 #list-container{
     margin-top: 60px;
     width:230px;

@@ -1,8 +1,5 @@
 var CreateBlogPostView = Backbone.View.extend({
     el: "#post-container",
-    initialize: function(id) {
-        this.id = id;
-    },
     template: _.template($("#edit-blog-post-template").html()),
     render: function(blogPostModel) {
         var view = this;
@@ -13,7 +10,10 @@ var CreateBlogPostView = Backbone.View.extend({
             body: ""
         }
         view.$el.html(view.template(contents));
-        CKEDITOR.replace( "post-body");
+        CKEDITOR.replace("post-body", {
+            extraPlugins: "codesnippet",
+            codeSnippet_theme: "monokai_sublime"
+        });
     },
     events: {
         "click #submit-btn:contains('Save')": "savePost"
@@ -23,7 +23,7 @@ var CreateBlogPostView = Backbone.View.extend({
         event.preventDefault();
 
         view.blogPostModel.set("title", view.$el.find("#post-title").val());
-        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].getData());
+        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].document.getBody().getHtml());
         view.blogPostModel.set("date", new Date());
         view.blogPostModel.save(view.blogPostModel.attributes);
 

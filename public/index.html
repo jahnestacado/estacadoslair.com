@@ -5,19 +5,20 @@
         <meta name="viewport" content="width=device-width">
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link href="bower_components/highlightjs/styles/monokai_sublime.css" rel="stylesheet">
     </head>
 
     <body>
 
         <div class="container mainContainer stop-scrolling" id="page1">
             <div class="row">
-                <a href="#blog">blog</a>
-                <a href="#update">update</a>
-                <a href="#new">new</a>
             </div>
         </div>
         <div class="container mainContainer stop-scrolling" id="page2">
             <div class="row">
+                <a href="#blog">blog</a>
+                <a href="#update">update</a>
+                <a href="#new">new</a>
                 <div id="post-container" class="col-md-9"></div>
                 <div id="list-container" class="col-md-2 pull-right"></div>
             </div>
@@ -95,13 +96,13 @@
 
         </script>
 
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/ckeditor/ckeditor.js"></script>
+        <script src="bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 
-
-        <script  src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script  src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script  src="bower_components/ckeditor/ckeditor.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
-        <script  src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
 
         <script type="text/javascript" src="js/models/blogPost.js"></script>
         <script type="text/javascript" src="js/views/blogPostView.js"></script>

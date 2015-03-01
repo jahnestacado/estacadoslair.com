@@ -18,10 +18,13 @@ var EditBlogPostView = Backbone.View.extend({
                     body: attributes.body
                 }
                 view.$el.html(view.template(contents));
-                CKEDITOR.replace( "post-body");
+                CKEDITOR.replace("post-body", {
+                    extraPlugins: 'codesnippet',
+                    codeSnippet_theme: 'monokai_sublime'
+                });
             }
         });
-        
+
         view.$el.show();
     },
     events: {
@@ -29,15 +32,15 @@ var EditBlogPostView = Backbone.View.extend({
     },
     savePost: function(event) {
         event.preventDefault();
-        
+
         var view = this;
-        
+
         if (!view.blogPostModel) {
             view.blogPostModel = new BlogPost({"_id": view.id});
         }
 
         view.blogPostModel.set("title", view.$el.find("#post-title").val());
-        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].getData());
+        view.blogPostModel.set("body", CKEDITOR.instances["post-body"].document.getBody().getHtml());
         view.blogPostModel.set("date", new Date());
         view.blogPostModel.save(view.blogPostModel.attributes);
 
