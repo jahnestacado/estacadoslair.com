@@ -1,5 +1,5 @@
 var BlogPostListView = Backbone.View.extend({
-    el: "#list-container",
+    el: "#curtain-left",
     template: _.template($("#list-view-template").html()),
     render: function() {
         var view = this;
@@ -13,5 +13,13 @@ var BlogPostListView = Backbone.View.extend({
             
         });
 
+    },
+    events: {
+        "click #back-btn": "closeCurtain"
+    },
+    closeCurtain: function(event) {
+        var curtain = new Curtain();
+        curtain.close();
+        appRouter.navigate("/", {trigger: true});
     },
 });

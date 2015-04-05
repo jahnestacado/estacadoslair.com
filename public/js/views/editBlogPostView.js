@@ -1,5 +1,5 @@
 var EditBlogPostView = Backbone.View.extend({
-    el: "#post-container",
+    el: "#curtain-right",
     initialize: function() {
         Backbone.pubSub.on("hideEditBlogPostView", this.onChange, this);
     },

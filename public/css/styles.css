@@ -1,13 +1,69 @@
 
-.list-group-item{
-}
-
-#post-container{
-    margin-top: 60px;
-}
-
 body{
     padding:0;
+    font-family: 'Lucida Sans', Georgia, 'Tahoma', serif;
+}
+
+.panel{
+    position: relative;
+    margin:0;
+    min-height:100%;
+    width:100%;
+    border-radius: 0;
+    background-color: #f6f6f6;
+}
+
+.post-body{
+    margin:2em;
+}
+
+.post-title{
+    margin:1.2em 0 0.5em 1.2em;
+    font-family: OpenSans, sans-serif;
+}
+
+.panel.left-side{
+    background-color: #3F4158;
+    opacity:0.8;
+    color:white;
+}
+
+.panel-title{
+    margin-top:1em;
+    font-family: OpenSans, sans-serif;
+    font-weight: bold;
+}
+
+a.list-group-item{
+    color:white;
+    background-color: #3F4158;
+    font-family: OpenSans, sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+.date{
+    position: absolute;
+    bottom: 5px;
+}
+
+a.link-btn{
+    color:#FCE1AC;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+a.link-btn:hover,active, focus, visited{
+    color: #E8E8C2;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+#back-home{
+    position: relative;
+    top:0.2em;
+    margin:0.5em;
+    font-size: 24pt;
 }
 
 .mainContainer{
@@ -16,22 +72,17 @@ body{
     -moz-transition: margin-left 1s;
     -o-transition: margin-left 1s;
     transition: margin-left 1s;
+    min-height:100%;
+    height:100%;
+}
+
+#demo-canvas{
+    position: absolute;
 }
 
 #page1{
     background-image:url("../images/wall.jpg");
     background-size: cover;
-}
-
-#page2{
-    background-image:url("../images/wall.jpg");
-    background-size: cover;
-}
-
-#list-container{
-    margin-top: 60px;
-    width:230px;
-
 }
 
 .pull-right {
@@ -46,17 +97,34 @@ body{
 
 }
 
-.inside {
-    margin-left: 0;
-    -webkit-transition: margin-left 1s;
-    -moz-transition: margin-left 1s;
-    -o-transition: margin-left 1s;
-    transition: margin-left 1s;
-}
-
 .stop-scrolling {
     overflow: hidden;
 }
 
+.container{
+    display: table;
+    vertical-align: middle;
+}
+
+.vertical-center-row{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inline {
+    display: inline-block;
+    width:1.3em;
+    font-size:32pt;
+}
+
+#icon-bar{
+    position: relative;
+    top: 20%;
+}
+
+#icon-bar .wrapper{
+    display: table;
+    margin: 0 auto;
+}
 
 
