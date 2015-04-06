@@ -18,13 +18,15 @@ var LoginView = Backbone.View.extend({
         var password = view.$el.find("#inputPassword").val();
         var userAuth = new UserAuth({username: username, password: password});
         userAuth.save(userAuth.attributes, {
+            dataType: 'text',
             success: function() {
+                view.destroy();
                 appRouter.navigate("/update", {trigger: true});
             },
-            dataType: 'text',
         });
     },
     destroy: function() {
-        view.$el.remove();
+        var view = this;
+        view.$el.children().remove();
     }
 });
