@@ -1,8 +1,7 @@
 var express = require("express");
-var mongoskin = require("mongoskin");
-var mongoUrl = process.env.MONGO || "localhost:27017";
-var db = mongoskin.db("mongodb://" + mongoUrl + "/mywebsite");
 var router = express.Router();
+var mongoskin = require("mongoskin");
+var dbConnection = require("./server.js").dbConnection;
 
 var username = "jahn";
 var password = "jahn";
@@ -42,7 +41,7 @@ router.post('/login', function(request, response) {
 });
 
 router.param('collectionName', function(request, response, next) {
-    request.collection = db.collection(request.baseUrl.replace("/", ""));
+    request.collection = dbConnection.collection(request.baseUrl.replace("/", ""));
     return next();
 });
 
