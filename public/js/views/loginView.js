@@ -1,14 +1,13 @@
 var LoginView = Backbone.View.extend({
     el: "#icon-bar",
     template: _.template($("#login-template").html()),
-    render: function(blogPostModel) {
+    render: function() {
         var view = this;
-//        view.userModel = UserModel;
-
         view.$el.html(view.template());
     },
     events: {
-        "click #login-btn": "requestLogin"
+        "click #login-btn": "requestLogin",
+        "click #login-back-home": "destroy"
     },
     requestLogin: function(event) {
         var view = this;
@@ -20,9 +19,12 @@ var LoginView = Backbone.View.extend({
         var userAuth = new UserAuth({username: username, password: password});
         userAuth.save(userAuth.attributes, {
             success: function() {
-                console.log("OK");
                 appRouter.navigate("/update", {trigger: true});
             },
+            dataType: 'text',
         });
     },
+    destroy: function() {
+        view.$el.remove();
+    }
 });

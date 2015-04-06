@@ -16,30 +16,6 @@
         <div class="container mainContainer stop-scrolling" id="page1">
             <canvas id="demo-canvas"></canvas>
             <div id="icon-bar" class="row vertical-center-row">
-
-                <div class="wrapper">
-                    <a class="inline link-btn hvr-float-shadow" href="#blog">
-                        <!--From Metrize icon set-->
-                        <span class="icon-mail"></span>
-                    </a>
-
-                    <a class="inline link-btn hvr-float-shadow" href="https://github.com/jahnestacado" target="_blank">
-                        <!--From Icomoon icon set-->
-                        <span class="icon icon-github4"></span>
-                    </a>
-
-                    <a class="inline link-btn hvr-float-shadow " href="#blog">
-                        <!--From Metrize icon set-->
-                        <span class="icon-social-linkedin"></span>
-                    </a>
-
-                    <a class="inline link-btn hvr-float-shadow" href="#blog">
-                        <!--From Metrize icon set-->
-
-                        <span class="icon-social-blogger"></span>
-                    </a>
-                </div>
-
             </div>
         </div>
 
@@ -69,7 +45,35 @@
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
             <button id="login-btn" class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+            <a id="login-back-home" class="link-btn" href="#">
+            <span class="icon icon-home"></span>
+            </a>
             </form>
+        </script>
+
+        <script type="text/template" id="icon-bar-template">
+            <div class="wrapper">
+            <a class="inline link-btn hvr-float-shadow" href="#blog">
+            <!--From Metrize icon set-->
+            <span class="icon-mail"></span>
+            </a>
+
+            <a class="inline link-btn hvr-float-shadow" href="https://github.com/jahnestacado" target="_blank">
+            <!--From Icomoon icon set-->
+            <span class="icon icon-github4"></span>
+            </a>
+
+            <a class="inline link-btn hvr-float-shadow " href="#blog">
+            <!--From Metrize icon set-->
+            <span class="icon-social-linkedin"></span>
+            </a>
+
+            <a class="inline link-btn hvr-float-shadow" href="#blog">
+            <!--From Metrize icon set-->
+
+            <span class="icon-social-blogger"></span>
+            </a>
+            </div>
         </script>
 
         <script type="text/template" id="edit-list-view-template">
@@ -135,6 +139,7 @@
 
         <script type="text/javascript" src="js/models/blogPost.js"></script>
         <script type="text/javascript" src="js/models/userAuth.js"></script>
+
         <script type="text/javascript" src="js/views/blogPostView.js"></script>
         <script type="text/javascript" src="js/collections/blogPosts.js"></script>
         <script type="text/javascript" src="js/views/blogPostListView.js"></script>
@@ -142,10 +147,12 @@
         <script type="text/javascript" src="js/views/createBlogPostView.js"></script>
         <script type="text/javascript" src="js/views/editBlogPostView.js"></script>
         <script type="text/javascript" src="js/views/loginView.js"></script>
+        <script type="text/javascript" src="js/views/iconBarView.js"></script>
 
         <script type="text/javascript" src="js/curtain.js"></script>
-        <script type="text/javascript" src="js/routers/routes.js"></script>
         <script type="text/javascript" src="js/snow-flakes-anim.js"></script>
+
+        <script type="text/javascript" src="js/routers/routes.js"></script>
 
         <script>
             $(document).ready(function() {

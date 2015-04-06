@@ -66,6 +66,14 @@ a.link-btn:hover,active, focus, visited{
     font-size: 24pt;
 }
 
+#login-back-home{
+    position: relative;
+    top: -1.72em;
+    margin: 0.5em;
+    font-size: 16pt;
+    float:left;
+}
+
 .mainContainer{
     width:100%;
     -webkit-transition: margin-left 1s;

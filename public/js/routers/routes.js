@@ -2,14 +2,6 @@ Backbone.pubSub = _.extend({}, Backbone.Events);
 
 var curtain = new Curtain();
 
-function fadeOutLinks() {
-    $(".inline.link-btn").fadeOut(800);
-}
-
-function fadeInLinks() {
-    $(".inline.link-btn").fadeIn(1200);
-}
-
 $(window).on('resize', function() {
     appRouter.navigate("/", {trigger: true});
 });
@@ -25,13 +17,20 @@ var AppRouter = Backbone.Router.extend({
         "login": "loadLoginPage",
     },
     home: function() {
+        console.log("home");
+        var router = this;
         curtain.close();
-        fadeInLinks();
+
+        if (!router.iconBarView) {
+            router.iconBarView = new IconBarView();
+        }
+        router.iconBarView.render();
     },
     loadLoginPage: function() {
         var router = this;
         curtain.close();
-        fadeOutLinks();
+        Backbone.pubSub.trigger("fadeOutIcons");
+
         if (!router.loginView) {
             router.loginView = new LoginView();
         }
@@ -48,7 +47,8 @@ var AppRouter = Backbone.Router.extend({
     },
     loadBlogPost: function(id) {
         curtain.open();
-        fadeOutLinks();
+        Backbone.pubSub.trigger("fadeOutIcons");
+
         var router = this;
         var blogPost = new BlogPost({"_id": id});
         if (!router.blogPostListView) {
