@@ -168,7 +168,7 @@ html {
     border-color: #FCE1AC;
 }
 
-.form-control{
+.form-signin .form-control{
     background-color: #01002A;
     border: 1px solid #FCE1AC;
     border-radius: 0;
