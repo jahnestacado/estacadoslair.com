@@ -30,7 +30,6 @@
 
                     <a class="inline link-btn hvr-float-shadow " href="#blog">
                         <!--From Metrize icon set-->
-
                         <span class="icon-social-linkedin"></span>
                     </a>
 
@@ -60,6 +59,17 @@
 
             </div>
             </div>
+        </script>
+
+        <script type="text/template" id="login-template">
+            <form class="form-signin">
+            <h2 class="form-signin-heading">login</h2>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="string" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <button id="login-btn" class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+            </form>
         </script>
 
         <script type="text/template" id="edit-list-view-template">
@@ -124,20 +134,22 @@
         <script src="bower_components/backbone/backbone.js"></script>
 
         <script type="text/javascript" src="js/models/blogPost.js"></script>
+        <script type="text/javascript" src="js/models/userAuth.js"></script>
         <script type="text/javascript" src="js/views/blogPostView.js"></script>
         <script type="text/javascript" src="js/collections/blogPosts.js"></script>
         <script type="text/javascript" src="js/views/blogPostListView.js"></script>
         <script type="text/javascript" src="js/views/editBlogPostListView.js"></script>
         <script type="text/javascript" src="js/views/createBlogPostView.js"></script>
         <script type="text/javascript" src="js/views/editBlogPostView.js"></script>
+        <script type="text/javascript" src="js/views/loginView.js"></script>
+
         <script type="text/javascript" src="js/curtain.js"></script>
         <script type="text/javascript" src="js/routers/routes.js"></script>
         <script type="text/javascript" src="js/snow-flakes-anim.js"></script>
 
         <script>
             $(document).ready(function() {
-            $(".mainContainer").css("min-height", $(window).height());
-            });
+            $(".mainContainer").css("min-height", $(window).height())});
         </script>
     </body>
 </html>

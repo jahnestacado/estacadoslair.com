@@ -21,12 +21,21 @@ var AppRouter = Backbone.Router.extend({
         "blog": "loadBlogPage",
         "new": "loadCreatePostPage",
         "update/:id": "loadUpdatePostPage",
-        "update": "loadUpdatePage"
+        "update": "loadUpdatePage",
+        "login": "loadLoginPage",
     },
     home: function() {
-        console.log("loaded home");
         curtain.close();
         fadeInLinks();
+    },
+    loadLoginPage: function() {
+        var router = this;
+        curtain.close();
+        fadeOutLinks();
+        if (!router.loginView) {
+            router.loginView = new LoginView();
+        }
+        router.loginView.render();
     },
     loadBlogPage: function() {
         var router = this;

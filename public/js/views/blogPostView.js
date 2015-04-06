@@ -9,7 +9,7 @@ var BlogPostView = Backbone.View.extend({
             view.blogPostModel.fetch({
                 success: function() {
                     view.$el.html(view.template(view.blogPostModel.attributes));
-                }
+                },
             });
         }
     },

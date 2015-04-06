@@ -89,6 +89,17 @@ a.link-btn:hover,active, focus, visited{
     float: right !important;
 }
 
+html {
+    width:100%;
+    height:100%;
+}
+
+.form-signin{
+    width:300px;
+    height:300px;
+    margin:0 auto;
+}
+
 .delete-btn{
     font-size: 10px;
     font-weight: bold;
@@ -125,6 +136,50 @@ a.link-btn:hover,active, focus, visited{
 #icon-bar .wrapper{
     display: table;
     margin: 0 auto;
+}
+
+.form-signin{
+    position: relative;
+    bottom: 15em;
+    border-radius: 30px;
+    background-color: #01002A;
+    text-align: center;
+    height:185px;
+    opacity:0.8;
+    box-shadow:1px 1px 50px 1px #FCE1AC;
+    width: 250px;
+}
+
+.btn-block{
+    width: 43%;
+    margin: 0 auto;
+    bottom: 0;
+    margin-top: 15px;
+    font-size: 12px;
+    background-color: #3F4158;
+    border-color: #FCE1AC;
+}
+
+.form-control{
+    background-color: #01002A;
+    border: 1px solid #FCE1AC;
+    border-radius: 0;
+    text-align: center;
+    border-left-style: none;
+    border-right-style: none;
+    margin-top: 10px;
+}
+
+h2.form-signin-heading{
+    color:#FCE1AC;
+    font-size: 31px;
+    font-family:"UnPilgi", Georgia, "GFS Artemisia", serif;
+    font-weight: bold;
+    margin-bottom: 5;
+}
+
+.form-control:focus {
+    border-color: #FCE1AC; 
 }
 
 
