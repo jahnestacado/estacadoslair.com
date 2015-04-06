@@ -11,7 +11,7 @@ var AppRouter = Backbone.Router.extend({
         "": "home",
         "blog/:id": "loadBlogPost",
         "blog": "loadBlogPage",
-        "new": "loadCreatePostPage",
+        "create": "loadCreatePostPage",
         "update/:id": "loadUpdatePostPage",
         "update": "loadUpdatePage",
         "login": "loadLoginPage",
