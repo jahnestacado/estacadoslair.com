@@ -17,4 +17,6 @@ app.use(express.static(__dirname + "/../public"));
 
 app.listen(process.env.PORT || 5000);
 
-app.use("/blog", require("./api.js"));
+app.use("/blog", require("./routes/blog.js"));
+app.use("/login", require("./routes/login.js"));
+

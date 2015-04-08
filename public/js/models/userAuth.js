@@ -12,7 +12,7 @@ var UserAuth = Backbone.Model.extend({
         }
     },
     url: function() {
-        return "/blog/login";
+        return "/login";
     },
 });
 
