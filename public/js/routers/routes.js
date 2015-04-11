@@ -1,6 +1,6 @@
 (function() {
 
-    Backbone.pubSub = _.extend({}, Backbone.Events);
+    Backbone.bus = _.extend({}, Backbone.Events);
     window.curtain = new Curtain();
 
     $(window).on('resize', function() {

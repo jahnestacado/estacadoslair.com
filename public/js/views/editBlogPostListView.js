@@ -1,6 +1,6 @@
 var EditBlogPostListView = BlogPostListView.extend({
     initialize: function() {
-        Backbone.pubSub.on("updateListView", this.onChange, this);
+        Backbone.bus.on("updateListView", this.onChange, this);
     },
     template: _.template($("#edit-list-view-template").html()),
     events: {
@@ -13,7 +13,7 @@ var EditBlogPostListView = BlogPostListView.extend({
         view.render();
         var blogPost = new BlogPost({_id: id});
         blogPost.destroy();
-        Backbone.pubSub.trigger("hideEditBlogPostView");
+        Backbone.bus.trigger("hideEditBlogPostView");
         view.render();
     },
     onChange: function() {

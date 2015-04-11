@@ -1,7 +1,7 @@
 var EditBlogPostView = Backbone.View.extend({
     el: "#curtain-right",
     initialize: function() {
-        Backbone.pubSub.on("hideEditBlogPostView", this.onChange, this);
+        Backbone.bus.on("hideEditBlogPostView", this.onChange, this);
     },
     template: _.template($("#edit-blog-post-template").html()),
     render: function(blogPostModel) {
@@ -46,7 +46,7 @@ var EditBlogPostView = Backbone.View.extend({
         view.blogPostModel.set("date", new Date());
         view.blogPostModel.save(view.blogPostModel.attributes);
 
-        Backbone.pubSub.trigger("updateListView");
+        Backbone.bus.trigger("updateListView");
     },
     onChange: function(a) {
         var view = this;

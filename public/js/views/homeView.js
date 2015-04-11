@@ -2,7 +2,7 @@ var HomeView = Backbone.View.extend({
     el: "#icon-bar",
     initialize: function() {
         var view = this;
-        Backbone.pubSub.on("fadeOutHomeView", view.fadeOutHome, view);
+        Backbone.bus.on("fadeOutHomeView", view.fadeOutHome, view);
     },
     template: _.template($("#home-template").html()),
     render: function() {
