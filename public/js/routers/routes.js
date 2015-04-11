@@ -21,10 +21,10 @@ var AppRouter = Backbone.Router.extend({
         var router = this;
         window.curtain.close();
 
-        if (!router.iconBarView) {
-            router.iconBarView = new IconBarView();
+        if (!router.homeView) {
+            router.homeView = new HomeView();
         }
-        router.iconBarView.render();
+        router.homeView.render();
     },
     loadLoginPage: function() {
         var router = this;

@@ -5,7 +5,7 @@ var BlogPostListView = Backbone.View.extend({
         var view = this;
         var blogPosts = new BlogPosts();
 
-        Backbone.pubSub.trigger("fadeOutIcons");
+        Backbone.pubSub.trigger("fadeOutHome");
 
         blogPosts.fetch({
             success: function(blogPosts) {
