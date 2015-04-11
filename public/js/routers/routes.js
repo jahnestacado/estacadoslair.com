@@ -1,6 +1,6 @@
 Backbone.pubSub = _.extend({}, Backbone.Events);
 
-var curtain = new Curtain();
+window.curtain = new Curtain();
 
 $(window).on('resize', function() {
     appRouter.navigate("/", {trigger: true});
@@ -19,7 +19,7 @@ var AppRouter = Backbone.Router.extend({
     home: function() {
         console.log("home");
         var router = this;
-        curtain.close();
+        window.curtain.close();
 
         if (!router.iconBarView) {
             router.iconBarView = new IconBarView();
@@ -28,8 +28,7 @@ var AppRouter = Backbone.Router.extend({
     },
     loadLoginPage: function() {
         var router = this;
-        curtain.close();
-        Backbone.pubSub.trigger("fadeOutIcons");
+        window.curtain.close();
 
         if (!router.loginView) {
             router.loginView = new LoginView();
@@ -38,7 +37,7 @@ var AppRouter = Backbone.Router.extend({
     },
     loadBlogPage: function() {
         var router = this;
-        curtain.open();
+        window.curtain.open();
 
         if (!router.blogPostListView) {
             router.blogPostListView = new BlogPostListView();
@@ -46,8 +45,7 @@ var AppRouter = Backbone.Router.extend({
         router.blogPostListView.render();
     },
     loadBlogPost: function(id) {
-        curtain.open();
-        Backbone.pubSub.trigger("fadeOutIcons");
+        window.curtain.open();
 
         var router = this;
         var blogPost = new BlogPost({"_id": id});
@@ -62,7 +60,7 @@ var AppRouter = Backbone.Router.extend({
         router.blogPostView.render(blogPost);
     },
     loadCreatePostPage: function() {
-        curtain.open();
+        window.curtain.open();
         var router = this;
         var blogPost = new BlogPost();
 
@@ -78,7 +76,7 @@ var AppRouter = Backbone.Router.extend({
 
     },
     loadUpdatePage: function() {
-        curtain.open();
+        window.curtain.open();
         var router = this;
 
         if (!router.editBlogPostListView) {
@@ -87,7 +85,7 @@ var AppRouter = Backbone.Router.extend({
         router.editBlogPostListView.render();
     },
     loadUpdatePostPage: function(id) {
-        curtain.open();
+        window.curtain.open();
         var router = this;
         var blogPost = new BlogPost({"_id": id});
 
@@ -102,13 +100,6 @@ var AppRouter = Backbone.Router.extend({
         router.editBlogPostView.render(blogPost);
     }
 });
-
-var scrollTo = function(el, ms) {
-    var speed = (ms) ? ms : 600;
-    $('html,body').animate({
-        scrollTop: $(el).offset().top
-    }, speed);
-}
 
 var appRouter = new AppRouter();
 
