@@ -5,6 +5,8 @@ var EditBlogPostView = Backbone.View.extend({
     },
     template: _.template($("#edit-blog-post-template").html()),
     render: function(blogPostModel) {
+        window.curtain.open();
+
         var view = this;
         view.blogPostModel = blogPostModel;
 

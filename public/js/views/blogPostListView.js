@@ -10,7 +10,7 @@ var BlogPostListView = Backbone.View.extend({
         blogPosts.fetch({
             success: function(blogPosts) {
                 view.$el.html(view.template({posts: blogPosts.models}));
-                appRouter.navigate(document.URL.split("/#")[1].split("/")[0]+"/"+blogPosts.models[0].attributes._id, { trigger : true } );
+                window.appRouter.navigate(document.URL.split("/#")[1].split("/")[0]+"/"+blogPosts.models[0].attributes._id, { trigger : true });
             }
         });
 
@@ -20,6 +20,6 @@ var BlogPostListView = Backbone.View.extend({
     },
     closeCurtain: function() {
         window.curtain.close();
-        appRouter.navigate("/", {trigger: true});
+        window.appRouter.navigate("/", {trigger: true});
     },
 });

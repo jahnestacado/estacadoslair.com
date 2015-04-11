@@ -2,6 +2,8 @@ var LoginView = Backbone.View.extend({
     el: "#icon-bar",
     template: _.template($("#login-template").html()),
     render: function() {
+        window.curtain.close();
+
         var view = this;
         view.$el.html(view.template());
     },
@@ -21,7 +23,7 @@ var LoginView = Backbone.View.extend({
             dataType: 'text',
             success: function() {
                 view.destroy();
-                appRouter.navigate("/update", {trigger: true});
+                window.appRouter.navigate("/update", {trigger: true});
             },
         });
     },

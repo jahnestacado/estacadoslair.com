@@ -2,6 +2,8 @@ var BlogPostView = Backbone.View.extend({
     el: "#curtain-right",
     template: _.template($("#blog-post-template").html()),
     render: function(blogPostModel) {
+        window.curtain.open();
+
         var view = this;
         view.blogPostModel = blogPostModel;
 
