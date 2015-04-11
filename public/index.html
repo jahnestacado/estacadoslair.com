@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link href="http://fonts.googleapis.com/css?family=Denk+One|Londrina+Outline|Audiowide" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="css/fonts/metrize-fonts/style.css">
         <link rel="stylesheet" type="text/css" href="css/fonts/icomoon-fonts/demo-files/demo.css">
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,6 +54,10 @@
 
         <script type="text/template" id="icon-bar-template">
             <div class="wrapper">
+            <h1 id="home-logo"><=></h1>
+            <h3  id="home-label">Ioannis Tzanellis. Software Pilot</h3>
+            </div>
+            <div class="wrapper">
             <a class="inline link-btn hvr-float-shadow" href="#blog">
             <!--From Metrize icon set-->
             <span class="icon-mail"></span>
@@ -70,7 +75,6 @@
 
             <a class="inline link-btn hvr-float-shadow" href="#blog">
             <!--From Metrize icon set-->
-
             <span class="icon-social-blogger"></span>
             </a>
             </div>
@@ -109,13 +113,13 @@
         <script type="text/template" id="edit-blog-post-template">
             <form class="form-horizontal ">
             <div class="form-group">
-            <label for="inputTitle" class="control-label col-xs-2">Title</label>
+            <label for="inputTitle" class="control-label col-xs-1">Title</label>
             <div class="col-xs-10">
             <input type="text" class="form-control" id="post-title" placeholder="title"  value="<%= title %>" >
             </div>
             </div>
             <div class="form-group">
-            <label for="body" class="col-sm-2 control-label">Message</label>
+            <label for="body" class="col-sm-1 control-label">Message</label>
             <div class="col-sm-10">
             <textarea class="form-control" id="post-body" rows="10" name="body"><%= body %></textarea>
             </div>

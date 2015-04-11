@@ -48,9 +48,11 @@ a.list-group-item{
 }
 
 a.link-btn{
-    color:#FCE1AC;
+    /*color:#FCE1AC;*/
+    color:#FAFBEE;
     text-decoration: none;
     box-shadow: none;
+    text-shadow: 0 0 5px #3E487D, 0 0 10px #070732, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
 }
 
 a.link-btn:hover,active, focus, visited{
@@ -133,12 +135,12 @@ html {
 .inline {
     display: inline-block;
     width:1.3em;
-    font-size:32pt;
+    font-size:36pt;
 }
 
 #icon-bar{
     position: relative;
-    top: 20%;
+    bottom:5%;
 }
 
 #icon-bar .wrapper{
@@ -148,7 +150,6 @@ html {
 
 .form-signin{
     position: relative;
-    bottom: 15em;
     border-radius: 30px;
     background-color: #01002A;
     text-align: center;
@@ -165,12 +166,12 @@ html {
     margin-top: 15px;
     font-size: 12px;
     background-color: #3F4158;
-    border-color: #FCE1AC;
+    border-color: #FAFBEE;
 }
 
 .form-signin .form-control{
     background-color: #01002A;
-    border: 1px solid #FCE1AC;
+    border: 1px solid #FAFBEE;
     border-radius: 0;
     text-align: center;
     border-left-style: none;
@@ -179,7 +180,7 @@ html {
 }
 
 h2.form-signin-heading{
-    color:#FCE1AC;
+    color:#FAFBEE;
     font-size: 31px;
     font-family:"UnPilgi", Georgia, "GFS Artemisia", serif;
     font-weight: bold;
@@ -190,4 +191,36 @@ h2.form-signin-heading{
     border-color: #FCE1AC; 
 }
 
+#home-logo{
+    font-family: "Londrina Outline";
+    color: rgba(241, 242, 233, 1);
+    text-shadow: 0px 6px 20px #101851, 0px 8px 13px rgba(81, 97, 120, 1), 0px 18px 23px rgba(235, 206, 165, 1);
+    font-size: 14em;
+    opacity: 0.8;
+    margin-bottom: -15px;
+    text-align: center;
+    letter-spacing: 2px;
+}
 
+#home-label{
+    font-family: "Audiowide";
+    color: rgba(241, 242, 233, 1); 
+    font-size: 1.3em;
+    margin-bottom: 10%;
+    font-weight: bolder;
+    text-shadow: 0 0 5px #3E487D, 0 0 10px #041C5C, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
+}
+
+.form-horizontal{
+    background-color: rgb(97, 99, 117);
+    height: 100%;
+    color:whitesmoke;
+}
+
+.form-group label, input{
+    margin-top: 1em;
+}
+
+#cke_1_contents{
+    height:70% !important;
+}
