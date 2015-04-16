@@ -4,6 +4,7 @@ require([
     "underscore",
     "backbone",
     "curtain",
+    "fontLoader",
     "snowFlakes",
 ], function(AppRouter, $, _, Backbone, Curtain) {
 

@@ -9,7 +9,7 @@ require.config({
         "highlightjs": "bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
         "underscore": "bower_components/underscore/underscore",
         "backbone": "bower_components/backbone/backbone",
-        "text":"bower_components/text/text.js",
+        "text": "bower_components/text/text.js",
         "blogPost": "js/models/blogPost",
         "userAuth": "js/models/userAuth",
         "blogPostView": "js/views/blogPostView",
@@ -22,6 +22,7 @@ require.config({
         "homeView": "js/views/homeView",
         "curtain": "js/curtain",
         "snowFlakes": "js/snow-flakes-anim",
+        "fontLoader": "js/fontLoader",
         "routes": "js/routers/routes"
     },
     shim: {
