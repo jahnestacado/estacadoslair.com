@@ -2,12 +2,13 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "userAuth"
-], function($, _, Backbone, UserAuth) {
+    "userAuth",
+    "text!loginTemplate"
+], function($, _, Backbone, UserAuth, viewTemplate) {
 
     var LoginView = Backbone.View.extend({
         el: "#icon-bar",
-        template: _.template($("#login-template").html()),
+        template: _.template(viewTemplate),
         render: function() {
             window.curtain.close();
 

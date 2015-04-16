@@ -79,7 +79,5 @@ define([
         }
     }
    
- console.log("returing router")
     return AppRouter;
-
 });

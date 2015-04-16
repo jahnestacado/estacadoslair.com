@@ -1,12 +1,13 @@
 define([
     "jquery",
     "backbone",
-    "blogPosts"
-], function($, Backbone, BlogPosts) {
+    "blogPosts",
+    "text!listViewTemplate"
+], function($, Backbone, BlogPosts, viewTemplate) {
 
     var BlogPostListView = Backbone.View.extend({
         el: "#curtain-left",
-        template: _.template($("#list-view-template").html()),
+        template: _.template(viewTemplate),
         render: function() {
             var view = this;
             var blogPosts = new BlogPosts();

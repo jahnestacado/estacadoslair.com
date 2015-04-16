@@ -1,8 +1,9 @@
 define([
     "jquery",
     "underscore",
-    "backbone"
-], function($, _, Backbone) {
+    "backbone",
+    "text!homeTemplate"
+], function($, _, Backbone, template) {
 
     var HomeView = Backbone.View.extend({
         el: "#icon-bar",
@@ -12,7 +13,7 @@ define([
             // Attach fadeOutHomeView function on the bus in order to be accessible from other views
             Backbone.bus.on("fadeOutHomeView", view.fadeOutHome, view);
         },
-        template: _.template($("#home-template").html()),
+        template: _.template(template),
         render: function() {
             window.curtain.close();
 

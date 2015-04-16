@@ -1,12 +1,13 @@
 define([
     "jquery",
     "underscore",
-    "backbone"
-], function($, _, Backbone) {
+    "backbone",
+    "text!blogPostTemplate"
+], function($, _, Backbone, viewTemplate) {
 
     var BlogPostView = Backbone.View.extend({
         el: "#curtain-right",
-        template: _.template($("#blog-post-template").html()),
+        template: _.template(viewTemplate),
         render: function(blogPostModel) {
             window.curtain.open();
 

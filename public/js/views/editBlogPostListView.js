@@ -3,14 +3,15 @@ define([
     "underscore",
     "backbone",
     "blogPostListView",
-    "blogPost"
-], function($, _, Backbone, BlogPostListView, BlogPost) {
+    "blogPost",
+    "text!editListViewTemplate"
+], function($, _, Backbone, BlogPostListView, BlogPost, viewTemplate) {
 
     var EditBlogPostListView = BlogPostListView.extend({
         initialize: function() {
             Backbone.bus.on("updateListView", this.onChange, this);
         },
-        template: _.template($("#edit-list-view-template").html()),
+        template: _.template(viewTemplate),
         events: {
             "click .delete-btn": "deletePost"
         },
