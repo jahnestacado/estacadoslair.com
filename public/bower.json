@@ -18,6 +18,8 @@
     "bootstrap": "~3.3.2",
     "underscore": "~1.8.2",
     "ckeditor": "~4.4.7",
-    "highlightjs": "~8.4.0"
+    "highlightjs": "~8.4.0",
+    "requirejs": "~2.1.17",
+    "text": "~2.0.14"
   }
 }

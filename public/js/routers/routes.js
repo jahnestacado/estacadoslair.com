@@ -1,11 +1,14 @@
-(function() {
-
-    Backbone.bus = _.extend({}, Backbone.Events);
-    window.curtain = new Curtain();
-
-    $(window).on('resize', function() {
-        appRouter.navigate("/", {trigger: true});
-    });
+define([
+    "backbone",
+    "blogPostListView",
+    "blogPost",
+    "editBlogPostView",
+    "homeView",
+    "loginView",
+    "blogPostView",
+    "createBlogPostView",
+    "editBlogPostListView",
+], function(Backbone, BlogPostListView, BlogPost, EditBlogPostView, HomeView, LoginView, BlogPostView, CreateBlogPostView, EditBlogPostListView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -75,9 +78,8 @@
             router[viewName].render();
         }
     }
+   
+ console.log("returing router")
+    return AppRouter;
 
-    window.appRouter = new AppRouter();
-
-    Backbone.history.start();
-
-})(jQuery);
+});

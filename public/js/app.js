@@ -1,0 +1,22 @@
+require([
+    "routes",
+    "jquery",
+    "underscore",
+    "backbone",
+    "curtain",
+    "snowFlakes",
+], function(AppRouter, $, _, Backbone, Curtain) {
+
+    $(document).ready(function() {
+        $(".mainContainer").css("min-height", $(window).height())
+
+        $(window).on('resize', function() {
+            window.appRouter.navigate("/", {trigger: true});
+        });
+
+        window.curtain = new Curtain();
+        window.appRouter = new AppRouter();
+        Backbone.bus = _.extend({}, Backbone.Events);
+        Backbone.history.start();
+    });
+});

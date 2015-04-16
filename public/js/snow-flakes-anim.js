@@ -1,4 +1,4 @@
-(function() {
+require([],function() {
 
     var width, height, largeHeader, canvas, ctx, circles, target, animateHeader = true;
 
@@ -53,7 +53,9 @@
                 circles[i].draw();
             }
         }
+             //setTimeout(function(){
         requestAnimationFrame(animate);
+         //},10);
     }
 
     // Canvas manipulation
@@ -88,4 +90,4 @@
         };
     }
 
-})();
+});

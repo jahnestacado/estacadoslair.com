@@ -1,18 +1,28 @@
-var BlogPostView = Backbone.View.extend({
-    el: "#curtain-right",
-    template: _.template($("#blog-post-template").html()),
-    render: function(blogPostModel) {
-        window.curtain.open();
+define([
+    "jquery",
+    "underscore",
+    "backbone"
+], function($, _, Backbone) {
 
-        var view = this;
-        view.blogPostModel = blogPostModel;
+    var BlogPostView = Backbone.View.extend({
+        el: "#curtain-right",
+        template: _.template($("#blog-post-template").html()),
+        render: function(blogPostModel) {
+            window.curtain.open();
 
-        if (view.blogPostModel) {
-            view.blogPostModel.fetch({
-                success: function() {
-                    view.$el.html(view.template(view.blogPostModel.attributes));
-                },
-            });
-        }
-    },
+            var view = this;
+            view.blogPostModel = blogPostModel;
+
+            if (view.blogPostModel) {
+                view.blogPostModel.fetch({
+                    success: function() {
+                        view.$el.html(view.template(view.blogPostModel.attributes));
+                    },
+                });
+            }
+        },
+    });
+
+    return BlogPostView;
+
 });
