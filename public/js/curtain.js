@@ -1,11 +1,11 @@
 define(["jquery"], function($) {
-
+    
     var Curtain = function() {
         var BORDER_SIZE = 1;
         var CURTAIN_LEFT_WIDTH = 250;
         var CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
-        var CURTAIN_HEIGHT = $(window).height(); // subtract border pixels
-
+        var CURTAIN_HEIGHT = $(window).height();
+        
         (function main() {
             initializeLeftCurtain();
             initializeRightCurtain();
@@ -58,6 +58,12 @@ define(["jquery"], function($) {
 
         $(window).on('resize', function() {
             utils.close();
+            var leftCurtainElQ = $("#curtain-left");
+            var rightCurtainElQ = $("#curtain-right");
+            CURTAIN_HEIGHT = $(window).height();
+
+            leftCurtainElQ.height(CURTAIN_HEIGHT)
+            rightCurtainElQ.height(CURTAIN_HEIGHT)
         });
 
         var utils = {
@@ -65,8 +71,15 @@ define(["jquery"], function($) {
                 var leftCurtainElQ = $("#curtain-left");
                 var rightCurtainElQ = $("#curtain-right");
 
-                leftCurtainElQ.removeClass("curtain-left-opened").addClass("curtain-left-closed").css("left", "-" + (CURTAIN_LEFT_WIDTH + BORDER_SIZE * 2) + "px");
-                rightCurtainElQ.removeClass("curtain-right-opened").addClass("curtain-right-closed").css("right", "-" + (CURTAIN_RIGHT_WIDTH + BORDER_SIZE * 2) + "px");
+                leftCurtainElQ
+                        .removeClass("curtain-left-opened")
+                        .addClass("curtain-left-closed")
+                        .css("left", "-" + (CURTAIN_LEFT_WIDTH + BORDER_SIZE * 2) + "px");
+
+                rightCurtainElQ
+                        .removeClass("curtain-right-opened")
+                        .addClass("curtain-right-closed")
+                        .css("right", "-" + (CURTAIN_RIGHT_WIDTH + BORDER_SIZE * 2) + "px");
 
             },
             open: function open() {
@@ -74,11 +87,20 @@ define(["jquery"], function($) {
                 var rightCurtainElQ = $("#curtain-right");
 
                 CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
-                CURTAIN_HEIGHT = $(window).height(); // subtract border pixels
 
-                leftCurtainElQ.removeClass("curtain-left-closed").css("display", "").addClass("curtain-left-opened").width(CURTAIN_LEFT_WIDTH).css("left", "0");
-                rightCurtainElQ.removeClass("curtain-right-closed").css("display", "").addClass("curtain-right-opened").width(CURTAIN_RIGHT_WIDTH).css("right", "0");
+                leftCurtainElQ
+                        .removeClass("curtain-left-closed")
+                        .css("display", "")
+                        .addClass("curtain-left-opened")
+                        .width(CURTAIN_LEFT_WIDTH)
+                        .css("left", "0");
 
+                rightCurtainElQ
+                        .removeClass("curtain-right-closed")
+                        .css("display", "")
+                        .addClass("curtain-right-opened")
+                        .width(CURTAIN_RIGHT_WIDTH)
+                        .css("right", "0");
             }
         };
 
