@@ -9,8 +9,6 @@ require([
 ], function(AppRouter, $, _, Backbone, Curtain) {
 
     $(document).ready(function() {
-        $(".mainContainer").css("min-height", $(window).height())
-
         $(window).on('resize', function() {
             window.appRouter.navigate("/", {trigger: true});
         });
