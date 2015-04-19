@@ -41,6 +41,15 @@ a.list-group-item{
     font-size: 8pt;
 }
 
+a.list-group-item:hover,
+a.list-group-item:focus {
+    box-shadow: none;
+}
+
+#curtain-left .list-group{
+    margin-top:20px;
+}
+
 .date{
     position: absolute;
     bottom: 5px;
@@ -53,7 +62,8 @@ a.link-btn{
     text-shadow: 0 0 5px #3E487D, 0 0 10px #070732, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
 }
 
-a.link-btn:hover,active, focus, visited{
+a.link-btn:hover,
+a.link-btn:focus{
     color: #E8E8C2;
     text-decoration: none;
     box-shadow: none;
