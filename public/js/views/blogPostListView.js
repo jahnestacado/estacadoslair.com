@@ -2,8 +2,9 @@ define([
     "jquery",
     "backbone",
     "blogPosts",
-    "text!listViewTemplate"
-], function($, Backbone, BlogPosts, viewTemplate) {
+    "text!listViewTemplate",
+    "curtain"
+], function($, Backbone, BlogPosts, viewTemplate, CURTAIN) {
 
     var BlogPostListView = Backbone.View.extend({
         el: "#curtain-left",
@@ -26,7 +27,7 @@ define([
             "click #back-btn": "closeCurtain"
         },
         closeCurtain: function() {
-            window.curtain.close();
+            CURTAIN.close();
             window.appRouter.navigate("/", {trigger: true});
         },
     });

@@ -2,8 +2,9 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "text!homeTemplate"
-], function($, _, Backbone, template) {
+    "text!homeTemplate",
+    "curtain"
+], function($, _, Backbone, template, CURTAIN) {
 
     var HomeView = Backbone.View.extend({
         el: "#icon-bar",
@@ -15,7 +16,7 @@ define([
         },
         template: _.template(template),
         render: function() {
-            window.curtain.close();
+            CURTAIN.close();
 
             var view = this;
             view.$el.html(view.template());

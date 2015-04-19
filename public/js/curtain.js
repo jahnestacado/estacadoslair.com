@@ -1,112 +1,102 @@
 define(["jquery"], function($) {
+
+    var BORDER_SIZE = 1;
+    var CURTAIN_LEFT_WIDTH = 250;
+    var CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
+    var CURTAIN_HEIGHT = $(window).height();
     
-    var Curtain = function() {
-        var BORDER_SIZE = 1;
-        var CURTAIN_LEFT_WIDTH = 250;
-        var CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
-        var CURTAIN_HEIGHT = $(window).height();
-        
-        (function main() {
-            initializeLeftCurtain();
-            initializeRightCurtain();
+    initialize();
 
-            $("#open-btn").click(function() {
-                open();
-            });
+    function initialize(){
+         initializeLeftCurtain();
+         initializeRightCurtain();
+         $("#open-btn").click(function() { open(); });
+         $("#back-btn").click(function() { close(); });
+    }
+   
+    function initializeLeftCurtain() {
+        $("<div/>").appendTo("#page1")
+                .attr("id", "curtain-left")
+                .addClass("curtain-left-closed")
+                .height(CURTAIN_HEIGHT)
+                .css({
+                    left: "-" + (CURTAIN_LEFT_WIDTH + 4) + "px",
+                    border: BORDER_SIZE + "px solid black"});
 
-            $("#back-btn").click(function() {
-                close();
-            });
-        })();
+        $("#curtain-left").on('transitionend webkitTransitionEnd', function(e) {
+            var leftCurtain = $(e.target);
 
-        function initializeLeftCurtain() {
-            $("<div/>").appendTo("#page1")
-                    .attr("id", "curtain-left")
-                    .addClass("curtain-left-closed")
-                    .height(CURTAIN_HEIGHT)
-                    .css({
-                        left: "-" + (CURTAIN_LEFT_WIDTH + 4) + "px",
-                        border: BORDER_SIZE + "px solid black"});
+            if (leftCurtain.hasClass("curtain-left-closed")) {
+                $(e.target).css("display", "none");
+            }
+        });
+    }
+    
+    function initializeRightCurtain() {
+        $("<div/>").appendTo("#page1")
+                .attr("id", "curtain-right")
+                .addClass("curtain-right-closed")
+                .height(CURTAIN_HEIGHT)
+                .css({
+                    right: "-" + (CURTAIN_RIGHT_WIDTH + 4) + "px",
+                    border: BORDER_SIZE + "px solid black"});
 
-            $("#curtain-left").on('transitionend webkitTransitionEnd', function(e) {
-                var leftCurtain = $(e.target);
+        $("#curtain-right").on('transitionend webkitTransitionEnd', function(e) {
+            var rightCurtain = $(e.target);
 
-                if (leftCurtain.hasClass("curtain-left-closed")) {
-                    $(e.target).css("display", "none");
-                }
-            });
+            if (rightCurtain.hasClass("curtain-right-closed")) {
+                $(e.target).css("display", "none");
+            }
+        });
+    }
 
-        }
+    $(window).on('resize', function() {
+        controls.close();
+        var leftCurtainElQ = $("#curtain-left");
+        var rightCurtainElQ = $("#curtain-right");
+        CURTAIN_HEIGHT = $(window).height();
 
-        function initializeRightCurtain() {
-            $("<div/>").appendTo("#page1")
-                    .attr("id", "curtain-right")
-                    .addClass("curtain-right-closed")
-                    .height(CURTAIN_HEIGHT)
-                    .css({
-                        right: "-" + (CURTAIN_RIGHT_WIDTH + 4) + "px",
-                        border: BORDER_SIZE + "px solid black"});
+        leftCurtainElQ.height(CURTAIN_HEIGHT)
+        rightCurtainElQ.height(CURTAIN_HEIGHT)
+    });
 
-            $("#curtain-right").on('transitionend webkitTransitionEnd', function(e) {
-                var rightCurtain = $(e.target);
 
-                if (rightCurtain.hasClass("curtain-right-closed")) {
-                    $(e.target).css("display", "none");
-                }
-            });
-        }
-
-        $(window).on('resize', function() {
-            utils.close();
+    var controls = {
+        close: function close() {
             var leftCurtainElQ = $("#curtain-left");
             var rightCurtainElQ = $("#curtain-right");
-            CURTAIN_HEIGHT = $(window).height();
 
-            leftCurtainElQ.height(CURTAIN_HEIGHT)
-            rightCurtainElQ.height(CURTAIN_HEIGHT)
-        });
+            leftCurtainElQ
+                    .removeClass("curtain-left-opened")
+                    .addClass("curtain-left-closed")
+                    .css("left", "-" + (CURTAIN_LEFT_WIDTH + BORDER_SIZE * 2) + "px");
 
-        var utils = {
-            close: function close() {
-                var leftCurtainElQ = $("#curtain-left");
-                var rightCurtainElQ = $("#curtain-right");
+            rightCurtainElQ
+                    .removeClass("curtain-right-opened")
+                    .addClass("curtain-right-closed")
+                    .css("right", "-" + (CURTAIN_RIGHT_WIDTH + BORDER_SIZE * 2) + "px");
+        },
+        open: function open() {
+            var leftCurtainElQ = $("#curtain-left");
+            var rightCurtainElQ = $("#curtain-right");
 
-                leftCurtainElQ
-                        .removeClass("curtain-left-opened")
-                        .addClass("curtain-left-closed")
-                        .css("left", "-" + (CURTAIN_LEFT_WIDTH + BORDER_SIZE * 2) + "px");
+            CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
 
-                rightCurtainElQ
-                        .removeClass("curtain-right-opened")
-                        .addClass("curtain-right-closed")
-                        .css("right", "-" + (CURTAIN_RIGHT_WIDTH + BORDER_SIZE * 2) + "px");
+            leftCurtainElQ
+                    .removeClass("curtain-left-closed")
+                    .css("display", "")
+                    .addClass("curtain-left-opened")
+                    .width(CURTAIN_LEFT_WIDTH)
+                    .css("left", "0");
 
-            },
-            open: function open() {
-                var leftCurtainElQ = $("#curtain-left");
-                var rightCurtainElQ = $("#curtain-right");
-
-                CURTAIN_RIGHT_WIDTH = $(window).width() - CURTAIN_LEFT_WIDTH - BORDER_SIZE * 4;
-
-                leftCurtainElQ
-                        .removeClass("curtain-left-closed")
-                        .css("display", "")
-                        .addClass("curtain-left-opened")
-                        .width(CURTAIN_LEFT_WIDTH)
-                        .css("left", "0");
-
-                rightCurtainElQ
-                        .removeClass("curtain-right-closed")
-                        .css("display", "")
-                        .addClass("curtain-right-opened")
-                        .width(CURTAIN_RIGHT_WIDTH)
-                        .css("right", "0");
-            }
-        };
-
-        return utils;
+            rightCurtainElQ
+                    .removeClass("curtain-right-closed")
+                    .css("display", "")
+                    .addClass("curtain-right-opened")
+                    .width(CURTAIN_RIGHT_WIDTH)
+                    .css("right", "0");
+        }
     };
 
-    return Curtain;
-
+    return controls;
 });

@@ -3,8 +3,9 @@ define([
     "underscore",
     "backbone",
     "ckeditor",
-    "text!editBlogPostTemplate"
-], function($, _, Backbone, ckeditor, viewTemplate) {
+    "text!editBlogPostTemplate",
+    "curtain"
+], function($, _, Backbone, ckeditor, viewTemplate, CURTAIN) {
 
     var EditBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
@@ -13,7 +14,7 @@ define([
         },
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
-            window.curtain.open();
+            CURTAIN.open();
 
             var view = this;
             view.blogPostModel = blogPostModel;
