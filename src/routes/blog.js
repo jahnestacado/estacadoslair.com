@@ -1,7 +1,7 @@
 var express = require("express");
 var blogRouter = express.Router();
 var mongoskin = require("mongoskin");
-var dbConnection = require("./../server.js").dbConnection;
+var dbConnection = require("./../db/init.js").dbConnection;
 var auth = require("./../middleware/auth.js");
 
 blogRouter.param('collectionName', function(request, response, next) {
