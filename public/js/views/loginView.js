@@ -32,7 +32,7 @@ define([
                 dataType: 'text',
                 success: function() {
                     view.destroy();
-                    window.appRouter.navigate("/update", {trigger: true});
+                    require("routes").navigate("/update", {trigger: true});
                 },
             });
         },

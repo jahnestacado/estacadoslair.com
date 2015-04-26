@@ -3,7 +3,8 @@ define([
     "backbone",
     "blogPosts",
     "text!listViewTemplate",
-    "curtain"
+    "curtain",
+/*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
 ], function($, Backbone, BlogPosts, viewTemplate, CURTAIN) {
 
     var BlogPostListView = Backbone.View.extend({
@@ -24,7 +25,8 @@ define([
                     } else {
                         blogPath = "none";
                     }
-                    window.appRouter.navigate(document.URL.split("/#")[1].split("/")[0] + "/" + blogPath, {trigger: true});
+
+                    require("routes").navigate(document.URL.split("/#")[1].split("/")[0] + "/" + blogPath, {trigger: true});
                 }
             });
 
@@ -34,7 +36,7 @@ define([
         },
         closeCurtain: function() {
             CURTAIN.close();
-            window.appRouter.navigate("/", {trigger: true});
+            require("routes").navigate("/", {trigger: true});
         },
     });
 

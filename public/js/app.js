@@ -1,18 +1,17 @@
 require([
-    "routes",
     "jquery",
     "underscore",
     "backbone",
+    "routes",
     "fontLoader",
     "snowFlakes",
-], function(AppRouter, $, _, Backbone) {
+], function($, _, Backbone, ROUTER) {
 
     $(document).ready(function() {
         $(window).on('resize', function() {
-            window.appRouter.navigate("/", {trigger: true});
+            ROUTER.navigate("/", {trigger: true});
         });
 
-        window.appRouter = new AppRouter();
         Backbone.bus = _.extend({}, Backbone.Events);
         Backbone.history.start();
     });
