@@ -13,12 +13,18 @@ define([
             var view = this;
             var blogPosts = new BlogPosts();
 
-            Backbone.bus.trigger("fadeOutHomeView");
-
             blogPosts.fetch({
                 success: function(blogPosts) {
+                    Backbone.bus.trigger("fadeOutHomeView");
                     view.$el.html(view.template({posts: blogPosts.models}));
-                    window.appRouter.navigate(document.URL.split("/#")[1].split("/")[0] + "/" + blogPosts.models[0].attributes._id, {trigger: true});
+
+                    var blogPath;
+                    if (blogPosts.models.length) {
+                        blogPath = blogPosts.models[0].attributes._id;
+                    } else {
+                        blogPath = "none";
+                    }
+                    window.appRouter.navigate(document.URL.split("/#")[1].split("/")[0] + "/" + blogPath, {trigger: true});
                 }
             });
 
