@@ -2,7 +2,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session  = require("express-session");
-var dbConnection = require("./db/init.js");
 
 var app = express();
 app.use(cookieParser("secret"));

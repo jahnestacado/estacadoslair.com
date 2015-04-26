@@ -1,5 +1,5 @@
 var express = require("express");
-var dbConnection = require("./../db/init.js").dbConnection;
+var dbConnection = require("./../db/config.js").dbConnection;
 var loginRouter = express.Router();
 
 function generateSessionId() {
