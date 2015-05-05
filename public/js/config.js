@@ -34,6 +34,7 @@ require.config({
         "curtain": "js/curtain",
         "snowFlakes": "js/snow-flakes-anim",
         "fontLoader": "js/fontLoader",
+        "backboneExtended": "js/backboneExtend",
         
         //Underscore templates
         "homeTemplate": "templates/home.tpl",
@@ -47,15 +48,15 @@ require.config({
         "app": "js/app",
     },
     shim: {
-        'underscore': {
-            'exports': '_'
+        "underscore": {
+            "exports": "_"
         },
-        'backbone': {
-            'deps': ['jquery', 'underscore'],
-            'exports': 'Backbone'
+        "backbone": {
+            "deps": ["jquery", "underscore"],
+            "exports": "Backbone"
         },
         "ckeditor": {
-            'exports': 'CKEDITOR'
+            "exports": "CKEDITOR"
         },
     }
 });
