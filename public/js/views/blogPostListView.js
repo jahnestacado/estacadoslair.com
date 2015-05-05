@@ -4,7 +4,7 @@ define([
     "blogPosts",
     "text!listViewTemplate",
     "curtain",
-/*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
+            /*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
 ], function($, Backbone, BlogPosts, viewTemplate, CURTAIN) {
 
     var BlogPostListView = Backbone.View.extend({
@@ -18,18 +18,23 @@ define([
                 success: function(blogPosts) {
                     Backbone.bus.trigger("fadeOutHomeView");
                     view.$el.html(view.template({posts: blogPosts.models}));
-
-                    var blogPath;
-                    if (blogPosts.models.length) {
-                        blogPath = blogPosts.models[0].attributes._id;
-                    } else {
-                        blogPath = "none";
-                    }
-
-                    require("routes").navigate(document.URL.split("/#")[1].split("/")[0] + "/" + blogPath, {trigger: true});
+                    view.onLoad(blogPosts);
                 }
             });
+        },
+        onLoad: function(blogPosts) {
+            var page = document.URL.split("/#")[1].split("/")[0];
+            
+            if (page !== "create") {
+                var blogPath;
+                if (blogPosts.models.length) {
+                    blogPath = blogPosts.models[0].attributes._id;
+                } else {
+                    blogPath = "none";
+                }
 
+                require("routes").navigate(page + "/" + blogPath, {trigger: true});
+            }
         },
         events: {
             "click #back-btn": "closeCurtain"

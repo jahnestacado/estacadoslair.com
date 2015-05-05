@@ -23,7 +23,6 @@ define([
         home: function() {
             var router = this;
             renderAndCacheView(router, {homeView: HomeView});
-            console.log("home")
         },
         loadLoginPage: function() {
             var router = this;
@@ -79,6 +78,6 @@ define([
             router[viewName].render();
         }
     }
-   
+
     return new AppRouter();
 });

@@ -11,19 +11,21 @@ define([
         el: "#curtain-right",
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
-            CURTAIN.open();
-
             var view = this;
-            view.blogPostModel = blogPostModel;
-            var contents = {
-                buttonAction: "Save",
-                title: "", //messes up title input field
-                body: ""
-            }
-            view.$el.html(view.template(contents));
-            ckeditor.replace("post-body", {
-                extraPlugins: "codesnippet",
-                codeSnippet_theme: "monokai_sublime"
+            Backbone.View.onAccessGranted(function() {
+                CURTAIN.open();
+
+                view.blogPostModel = blogPostModel;
+                var contents = {
+                    buttonAction: "Save",
+                    title: "", //messes up title input field
+                    body: ""
+                }
+                view.$el.html(view.template(contents));
+                ckeditor.replace("post-body", {
+                    extraPlugins: "codesnippet",
+                    codeSnippet_theme: "monokai_sublime"
+                });
             });
         },
         events: {

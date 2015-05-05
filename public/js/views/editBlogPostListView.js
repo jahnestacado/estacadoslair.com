@@ -9,7 +9,14 @@ define([
 
     var EditBlogPostListView = BlogPostListView.extend({
         initialize: function() {
+            var view = this;
             Backbone.bus.on("updateListView", this.onChange, this);
+        },
+        render: function() {
+            var view = this;
+            Backbone.View.onAccessGranted(function() {
+                BlogPostListView.prototype.render.apply(view);
+            });
         },
         template: _.template(viewTemplate),
         events: {
