@@ -44,10 +44,9 @@ define([
         },
         loadCreatePostPage: function() {
             var router = this;
-            var blogPost = new BlogPost();
 
             renderAndCacheView(router, {blogPostListView: BlogPostListView});
-            renderAndCacheView(router, {createBlogPostView: CreateBlogPostView}, blogPost);
+            renderAndCacheView(router, {createBlogPostView: CreateBlogPostView});
         },
         loadUpdatePage: function() {
             var router = this;

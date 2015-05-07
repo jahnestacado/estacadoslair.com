@@ -4,18 +4,18 @@ define([
     "backbone",
     "ckeditor",
     "text!editBlogPostTemplate",
+    "blogPost",
     "curtain"
-], function($, _, Backbone, ckeditor, viewTemplate, CURTAIN) {
+], function($, _, Backbone, ckeditor, viewTemplate, BlogPost, CURTAIN) {
 
     var CreateBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         template: _.template(viewTemplate),
-        render: function(blogPostModel) {
+        render: function() {
             var view = this;
             Backbone.View.onAccessGranted(function() {
                 CURTAIN.open();
 
-                view.blogPostModel = blogPostModel;
                 var contents = {
                     buttonAction: "Save",
                     title: "", //messes up title input field
@@ -34,12 +34,12 @@ define([
         savePost: function(event) {
             var view = this;
             event.preventDefault();
+            var blogPostModel = new BlogPost();
 
-            view.blogPostModel.set("title", view.$el.find("#post-title").val());
-            view.blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
-            view.blogPostModel.set("date", new Date());
-            view.blogPostModel.save(view.blogPostModel.attributes);
-
+            blogPostModel.set("title", view.$el.find("#post-title").val());
+            blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
+            blogPostModel.set("date", new Date());
+            blogPostModel.save(blogPostModel.attributes);
         }
     });
 
