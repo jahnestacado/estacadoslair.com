@@ -11,14 +11,12 @@ define([
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
             CURTAIN.open();
-
             var view = this;
-            view.blogPostModel = blogPostModel;
 
-            if (view.blogPostModel) {
-                view.blogPostModel.fetch({
+            if (blogPostModel) {
+                blogPostModel.fetch({
                     success: function() {
-                        view.$el.html(view.template(view.blogPostModel.attributes));
+                        view.$el.html(view.template(blogPostModel.attributes));
                     },
                 });
             }
