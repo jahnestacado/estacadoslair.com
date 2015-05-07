@@ -83,6 +83,12 @@ a.link-btn:focus{
     box-shadow: none;
 }
 
+/*Override hoverjs class so link can return in it's initial state after being pressed*/
+.hvr-float-shadow:focus{
+    -webkit-transform: translateY(0px) !important;
+    transform: translateY(0px) !important;
+}
+
 #back-home{
     position: relative;
     top:0.2em;
