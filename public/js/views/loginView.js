@@ -27,14 +27,20 @@ define([
 
             var username = view.$el.find("#inputEmail").val();
             var password = view.$el.find("#inputPassword").val();
-            var userAuth = new UserAuth({username: username, password: password});
-            userAuth.save(userAuth.attributes, {
-                dataType: 'text',
-                success: function() {
-                    view.destroy();
-                    require("routes").navigate("/update", {trigger: true});
-                },
-            });
+
+            if (username !== "" && password !== "") {
+                var userAuth = new UserAuth({username: username, password: password});
+                userAuth.save(userAuth.attributes, {
+                    dataType: 'text',
+                    success: function() {
+                        view.destroy();
+                        require("routes").navigate("/update", {trigger: true});
+                    },
+                });
+            } else{
+                //TODO: Display notification in UI
+                console.log("Invalid input in authentication request!!!");
+            }
         },
         destroy: function() {
             var view = this;
