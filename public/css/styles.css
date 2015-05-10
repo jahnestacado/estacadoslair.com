@@ -15,7 +15,11 @@ body{
 .post-body{
     margin:2em;
     line-height: 1.7;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+}
+
+code.hljs{
+    font-size: 1.2rem;
 }
 
 .post-body p:first-child:first-letter{
@@ -26,6 +30,11 @@ body{
     text-transform: capitalize;
     margin: 0 10px -10px 0;
     color: #606666;
+}
+
+/*Hides the drag icon in code snippets*/
+img.cke_reset.cke_widget_drag_handler{
+    display: none;
 }
 
 .post-title{
