@@ -12,15 +12,15 @@ define([
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            "": "home",
+            "": "loadHomePage",
             "blog/:id": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
-            "update/:id": "loadUpdatePostPage",
-            "update": "loadUpdatePage",
+            "update/:id": "loadEditPost",
+            "update": "loadEditBlogPage",
             "login": "loadLoginPage",
         },
-        home: function() {
+        loadHomePage: function() {
             var router = this;
             renderAndCacheView(router, {homeView: HomeView});
         },
@@ -37,7 +37,7 @@ define([
             var blogPost = new BlogPost({"_id": id});
 
             if (!router.blogPostListView) {
-                router.navigate("blog", {trigger: true});
+                router.loadBlogPage();
             } else {
                 renderAndCacheView(router, {blogPostView: BlogPostView}, blogPost);
             }
@@ -48,16 +48,16 @@ define([
             renderAndCacheView(router, {blogPostListView: BlogPostListView});
             renderAndCacheView(router, {createBlogPostView: CreateBlogPostView});
         },
-        loadUpdatePage: function() {
+        loadEditBlogPage: function() {
             var router = this;
             renderAndCacheView(router, {editBlogPostListView: EditBlogPostListView});
         },
-        loadUpdatePostPage: function(id) {
+        loadEditPost: function(id) {
             var router = this;
             var blogPost = new BlogPost({"_id": id});
 
             if (!router.editBlogPostListView) {
-                router.navigate("update", {trigger: true});
+                router.loadEditBlogPage();
             } else {
                 renderAndCacheView(router, {editBlogPostView: EditBlogPostView}, blogPost);
             }
