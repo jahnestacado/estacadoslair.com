@@ -26,6 +26,7 @@ require.config({
         "editBlogPostView": "js/views/editBlogPostView",
         "loginView": "js/views/loginView",
         "homeView": "js/views/homeView",
+        "notificationView": "js/views/notificationView",
         
         //Backbone routes
         "routes": "js/routers/routes",
@@ -43,6 +44,8 @@ require.config({
         "editListViewTemplate": "templates/editListView.tpl",
         "blogPostTemplate": "templates/blogPost.tpl",
         "editBlogPostTemplate": "templates/editBlogPost.tpl",
+        "notificationTemplate": "templates/notificationView.tpl",
+
         
         //Boot file
         "app": "js/app",

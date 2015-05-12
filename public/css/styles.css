@@ -254,3 +254,20 @@ h2.form-signin-heading{
 #cke_1_contents{
     height:60% !important;
 }
+
+.alert{
+    width: 300px;
+    float:right;
+    margin: 5px 20px 0 0;
+    overflow: auto;
+    clear:both;
+    border-radius: 8px;
+}
+
+.alert .notification-msg{
+    display: inline-block;
+}
+
+.uppercase{
+        text-transform: uppercase;
+}

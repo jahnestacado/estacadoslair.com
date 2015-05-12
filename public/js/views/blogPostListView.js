@@ -24,8 +24,10 @@ define([
         },
         onLoad: function(blogPosts) {
             var page = document.URL.split("/#")[1].split("/")[0];
-            
-            if (page !== "create") {
+
+            if (page === "update" || page === "blog") {
+                Backbone.bus.trigger("fadeOutHomeView");
+
                 var blogPath;
                 if (blogPosts.models.length) {
                     blogPath = blogPosts.models[0].attributes._id;

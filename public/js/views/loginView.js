@@ -35,11 +35,23 @@ define([
                     success: function() {
                         view.destroy();
                         require("routes").navigate("/update", {trigger: true});
+                        Backbone.bus.trigger("notification", {
+                            message: "Welcome " + username + "!", status: "success"
+                        });
                     },
+                    error: function() {
+                        Backbone.bus.trigger("notification", {
+                            message: "Incorrect username or password!",
+                            status: "error"
+                        });
+                    }
                 });
-            } else{
-                //TODO: Display notification in UI
-                console.log("Invalid input in authentication request!!!");
+            } else {
+                var emptyField = username ? "password" : "username";
+                Backbone.bus.trigger("notification", {
+                    message: "You need to fill in a " + emptyField + "!",
+                    status: "error"
+                });
             }
         },
         destroy: function() {

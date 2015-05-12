@@ -39,7 +39,21 @@ define([
             blogPostModel.set("title", view.$el.find("#post-title").val());
             blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
             blogPostModel.set("date", new Date());
-            blogPostModel.save(blogPostModel.attributes);
+            blogPostModel.save(blogPostModel.attributes, {
+                dataType: "text",
+                success: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Created post!",
+                        status: "success"
+                    });
+                },
+                error: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Couldn't create post!",
+                        status: "error"
+                    });
+                }
+            });
         }
     });
 

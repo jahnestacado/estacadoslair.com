@@ -10,7 +10,7 @@ define([
     var EditBlogPostListView = BlogPostListView.extend({
         initialize: function() {
             var view = this;
-            Backbone.bus.on("updateListView", this.onChange, this);
+            Backbone.bus.on("updateListView", view.onChange, view);
         },
         render: function() {
             var view = this;
@@ -28,7 +28,21 @@ define([
 
             view.render();
             var blogPost = new BlogPost({_id: id});
-            blogPost.destroy();
+            blogPost.destroy( {
+                dataType: "text",
+                success: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Deleted post!",
+                        status: "success"
+                    });
+                },
+                error: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Couldn't delete post!",
+                        status: "error"
+                    });
+                }
+            });
             Backbone.bus.trigger("hideEditBlogPostView");
             view.render();
         },

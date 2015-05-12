@@ -10,7 +10,8 @@ define([
     var EditBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         initialize: function() {
-            Backbone.bus.on("hideEditBlogPostView", this.onChange, this);
+            var view = this;
+            Backbone.bus.on("hideEditBlogPostView", view.onChange, view);
         },
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
@@ -53,7 +54,21 @@ define([
             view.blogPostModel.set("title", view.$el.find("#post-title").val());
             view.blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
             view.blogPostModel.set("date", new Date());
-            view.blogPostModel.save(view.blogPostModel.attributes);
+            view.blogPostModel.save(view.blogPostModel.attributes, {
+                dataType: "text",
+                success: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Updated post!",
+                        status: "success"
+                    });
+                },
+                error: function() {
+                    Backbone.bus.trigger("notification", {
+                        message: "Couldn't update post!",
+                        status: "error"
+                    });
+                }
+            });
 
             Backbone.bus.trigger("updateListView");
         },
