@@ -45,7 +45,6 @@ define([
         loadCreatePostPage: function() {
             var router = this;
 
-            renderAndCacheView(router, {blogPostListView: BlogPostListView});
             renderAndCacheView(router, {createBlogPostView: CreateBlogPostView});
         },
         loadEditBlogPage: function() {

@@ -16,7 +16,6 @@ define([
 
             blogPosts.fetch({
                 success: function(blogPosts) {
-                    Backbone.bus.trigger("fadeOutHomeView");
                     view.$el.html(view.template({posts: blogPosts.models}));
                     view.onLoad(blogPosts);
                 }
