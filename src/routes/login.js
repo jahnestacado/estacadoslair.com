@@ -14,9 +14,11 @@ function initUserSession(request, response) {
 
 loginRouter.post('/', function(request, response) {
     dbConnection.collection("users").findOne({username: request.body.username}, function(error, result) {
+        console.log(error, request.body)
         var status = 400; //Bad request
+
         // Intentional loose comparison for numbers as a String
-        if (result.password == request.body.password) {
+        if (result && result.password == request.body.password) {
             initUserSession(request, response);
             status = 200; //OK
         }
