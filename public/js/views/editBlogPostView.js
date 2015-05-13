@@ -70,12 +70,11 @@ define([
                 }
             });
 
-            Backbone.bus.trigger("updateListView");
+            Backbone.bus.trigger("refreshEditListView");
         },
-        onChange: function(a) {
+        hideEditBlogPostView: function() {
             var view = this;
             view.$el.hide();
-
         }
     });
 

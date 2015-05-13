@@ -10,7 +10,7 @@ define([
     var EditBlogPostListView = BlogPostListView.extend({
         initialize: function() {
             var view = this;
-            Backbone.bus.on("updateListView", view.onChange, view);
+            Backbone.bus.on("refreshEditListView", view.refresh, view);
         },
         render: function() {
             var view = this;
@@ -46,7 +46,7 @@ define([
             Backbone.bus.trigger("hideEditBlogPostView");
             view.render();
         },
-        onChange: function() {
+        refresh: function() {
             var view = this;
             view.render();
         }
