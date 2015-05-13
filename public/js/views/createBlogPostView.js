@@ -15,7 +15,6 @@ define([
             var view = this;
             Backbone.View.onAccessGranted(function() {
                 CURTAIN.open();
-                $("#curtain-left").children().remove();    
                  
                 var contents = {
                     buttonAction: "Save",

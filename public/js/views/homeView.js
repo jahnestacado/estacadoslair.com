@@ -25,11 +25,11 @@ define([
         },
         fadeOutHome: function() {
             var view = this;
-            view.$el.fadeOut(800);
+            view.$el.children().fadeOut(800);
         },
         fadeInHome: function() {
             var view = this;
-            view.$el.fadeOut(0).fadeIn(1800)
+            view.$el.children().fadeOut(0).fadeIn(1800)
         },
         logoChangeOnHover: function() {
             var view = this;

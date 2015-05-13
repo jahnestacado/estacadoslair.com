@@ -44,7 +44,7 @@ define([
         },
         loadCreatePostPage: function() {
             var router = this;
-
+            renderAndCacheView(router, {blogPostListView: BlogPostListView});
             renderAndCacheView(router, {createBlogPostView: CreateBlogPostView});
         },
         loadEditBlogPage: function() {
@@ -60,8 +60,7 @@ define([
             } else {
                 renderAndCacheView(router, {editBlogPostView: EditBlogPostView}, blogPost);
             }
-
-        }
+        },
     });
 
     function renderAndCacheView(router, View, renderedObj) {
