@@ -4,37 +4,42 @@ define([
     "blogPosts",
     "text!listViewTemplate",
     "curtain",
+    "blogPostView",
+    "blogPost"
             /*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
-], function($, Backbone, BlogPosts, viewTemplate, CURTAIN) {
+], function($, Backbone, BlogPosts, viewTemplate, CURTAIN, BlogPostView, BlogPost) {
 
     var BlogPostListView = Backbone.View.extend({
         el: "#curtain-left",
         template: _.template(viewTemplate),
-        render: function() {
+        initialize: function() {
+            var view = this;
+            view.blogPostView = new BlogPostView();
+        },
+        render: function(blogId) {
+            Backbone.bus.trigger("fadeOutHomeView");
             var view = this;
             var blogPosts = new BlogPosts();
 
             blogPosts.fetch({
                 success: function(blogPosts) {
                     view.$el.html(view.template({posts: blogPosts.models}));
-                    view.onLoad(blogPosts);
+
+                    if (!blogId) {
+                        //If blogId is not specified pick first blog post
+                        blogId = blogPosts.models[0].attributes._id;
+                    }
+
+                    view.loadBlogPost(blogId);
                 }
             });
         },
-        onLoad: function(blogPosts) {
-            var page = document.URL.split("/#")[1].split("/")[0];
-
-            if (page === "update" || page === "blog") {
-                Backbone.bus.trigger("fadeOutHomeView");
-
-                var blogPath;
-                if (blogPosts.models.length) {
-                    blogPath = blogPosts.models[0].attributes._id;
-                } else {
-                    blogPath = "none";
-                }
-
-                require("routes").navigate(page + "/" + blogPath, {trigger: true});
+        loadBlogPost: function(id) {
+            var view = this;
+            
+            if (id) {
+                var blogPost = new BlogPost({"_id": id});
+                view.blogPostView.render(blogPost);
             }
         },
         events: {

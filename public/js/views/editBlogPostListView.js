@@ -4,18 +4,20 @@ define([
     "backbone",
     "blogPostListView",
     "blogPost",
-    "text!editListViewTemplate"
-], function($, _, Backbone, BlogPostListView, BlogPost, viewTemplate) {
+    "text!editListViewTemplate",
+    "editBlogPostView"
+], function($, _, Backbone, BlogPostListView, BlogPost, viewTemplate, EditBlogPostView) {
 
     var EditBlogPostListView = BlogPostListView.extend({
         initialize: function() {
             var view = this;
             Backbone.bus.on("refreshEditListView", view.refresh, view);
+            view.blogPostView = new EditBlogPostView();
         },
-        render: function() {
+        render: function(blogId) {
             var view = this;
             Backbone.View.onAccessGranted(function() {
-                BlogPostListView.prototype.render.apply(view);
+                BlogPostListView.prototype.render.apply(view, [blogId]);
             });
         },
         template: _.template(viewTemplate),
@@ -53,5 +55,4 @@ define([
     });
 
     return EditBlogPostListView;
-
 });

@@ -17,7 +17,6 @@ define([
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
             CURTAIN.open();
-MM = moment;
             var view = this;
             view.blogPostModel = blogPostModel;
 
@@ -80,5 +79,4 @@ MM = moment;
     });
 
     return EditBlogPostView;
-
 });
