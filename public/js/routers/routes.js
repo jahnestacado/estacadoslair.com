@@ -43,7 +43,6 @@ define([
         },
         loadCreatePostPage: function() {
             var router = this;
-            router.blogPostListView.render();
             router.createBlogPostView.render();
         },
         loadEditBlogPage: function() {
