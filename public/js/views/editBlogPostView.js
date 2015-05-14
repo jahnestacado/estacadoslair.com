@@ -4,8 +4,9 @@ define([
     "backbone",
     "ckeditor",
     "text!editBlogPostTemplate",
-    "curtain"
-], function($, _, Backbone, ckeditor, viewTemplate, CURTAIN) {
+    "curtain",
+    "moment"
+], function($, _, Backbone, ckeditor, viewTemplate, CURTAIN, moment) {
 
     var EditBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
@@ -16,7 +17,7 @@ define([
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
             CURTAIN.open();
-
+MM = moment;
             var view = this;
             view.blogPostModel = blogPostModel;
 
@@ -53,7 +54,7 @@ define([
 
             view.blogPostModel.set("title", view.$el.find("#post-title").val());
             view.blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
-            view.blogPostModel.set("date", new Date());
+            view.blogPostModel.set("date", moment().format("MMM DD, YYYY / hh:mm A"));
             view.blogPostModel.save(view.blogPostModel.attributes, {
                 dataType: "text",
                 success: function() {

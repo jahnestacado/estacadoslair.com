@@ -20,6 +20,7 @@
     "ckeditor": "~4.4.7",
     "highlightjs": "~8.4.0",
     "requirejs": "~2.1.17",
-    "text": "~2.0.14"
+    "text": "~2.0.14",
+    "moment": "~2.10.3"
   }
 }

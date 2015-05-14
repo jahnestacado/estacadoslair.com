@@ -10,6 +10,7 @@ require.config({
         "underscore": "bower_components/underscore/underscore",
         "backbone": "bower_components/backbone/backbone",
         "text": "bower_components/text/text",
+        "moment": "bower_components/moment/min/moment.min",
         
         //Backbone models
         "blogPost": "js/models/blogPost",
