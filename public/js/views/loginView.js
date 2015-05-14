@@ -12,9 +12,12 @@ define([
         template: _.template(viewTemplate),
         render: function() {
             CURTAIN.close();
-
             var view = this;
-            view.$el.html(view.template());
+            
+            view.$el
+                .html(view.template())
+                .hide()
+                .fadeIn(800);
         },
         events: {
             "click #login-btn": "requestLogin",
