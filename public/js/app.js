@@ -7,6 +7,7 @@ require([
 ], function($, Backbone, ROUTER) {
 
     Backbone.history.start();
+    require(["notificationView"]);
 
     $(document).ready(function() {
         $(window).on('resize', function() {

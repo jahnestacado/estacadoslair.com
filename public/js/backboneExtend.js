@@ -1,6 +1,5 @@
 define(["backbone"], function(Backbone) {
     Backbone.bus = $.extend({}, Backbone.Events);
-    require(["notificationView"]);
 
     Backbone.View = $.extend(Backbone.View, {
         onAccessGranted: function(callback) {
