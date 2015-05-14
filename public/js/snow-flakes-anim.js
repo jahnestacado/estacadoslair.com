@@ -1,6 +1,15 @@
-require([],function() {
+require([], function() {
+    /*
+     * Initial code was taken from:
+     * http://tympanus.net/codrops/2014/09/23/animated-background-headers/
+     * and further optimized and refactored
+     */
 
-    var width, height, largeHeader, canvas, ctx, circles, target, animateHeader = true;
+    var width;
+    var height;
+    var ctx;
+    var animationIntervalRef;
+    var PI_TIMES2 = 2 * Math.PI;
 
     // Main
     initHeader();
@@ -9,53 +18,28 @@ require([],function() {
     function initHeader() {
         width = window.innerWidth;
         height = window.innerHeight;
-        target = {x: 0, y: height};
-        largeHeader = document.getElementById('page1');
-        largeHeader.style.height = height+'px';
+        var largeHeader = document.getElementById("page1");
+        largeHeader.style.height = height + "px";
 
-        canvas = document.getElementById('demo-canvas');
+        var canvas = document.getElementById("demo-canvas");
         canvas.width = width;
         canvas.height = height;
-        ctx = canvas.getContext('2d');
+        ctx = canvas.getContext("2d");
 
         // create particles
-        circles = [];
-        for(var x = 0; x < width*0.5; x++) {
-            var c = new Circle();
-            circles.push(c);
+        var circles = [];
+        for (var x = 0; x < width; x += 1.5) {
+            circles.push(new Circle());
         }
-        animate();
-    }
 
-    // Event handling
-    function addListeners() {
-        window.addEventListener('scroll', scrollCheck);
-        window.addEventListener('resize', resize);
-    }
-
-    function scrollCheck() {
-        if(document.body.scrollTop > height) animateHeader = false;
-        else animateHeader = true;
-    }
-
-    function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        largeHeader.style.height = height+'px';
-        canvas.width = width;
-        canvas.height = height;
-    }
-
-    function animate() {
-        if(animateHeader) {
-            ctx.clearRect(0,0,width,height);
-            for(var i in circles) {
+        var drawCircles = function drawCircles() {
+            ctx.clearRect(0, 0, width, height);
+            for (var i = 0, length = circles.length - 1; i <= length; i++) {
                 circles[i].draw();
             }
         }
-             //setTimeout(function(){
-        requestAnimationFrame(animate);
-         //},10);
+
+        animationIntervalRef = setInterval(drawCircles, 50);
     }
 
     // Canvas manipulation
@@ -64,30 +48,42 @@ require([],function() {
 
         // constructor
         (function() {
-            _this.pos = {};
             init();
-           // console.log(_this);
         })();
 
         function init() {
-            _this.pos.x = Math.random()*width;
-            _this.pos.y = height+Math.random()*100;
-            _this.alpha = 0.1+Math.random()*0.3;
-            _this.scale = 0.1+Math.random()*0.3;
-            _this.velocity = Math.random();
+            _this.x = roundTo1Decimals(Math.random() * width, 1);
+            _this.y = roundTo1Decimals(height + Math.random() * 100, 1);
+            _this.alpha = 0.2 + Math.random() * 0.3;
+            _this.scale = roundTo1Decimals(0.1 + Math.random() * 0.3, 1) * 10;
+            _this.velocity = roundTo1Decimals(Math.random(), 1);
         }
 
         this.draw = function() {
-            if(_this.alpha <= 0) {
+            //Re-initialize circles when they reach the middle of the screen
+            if (_this.y < height / 2) {
                 init();
             }
-            _this.pos.y -= _this.velocity;
-            _this.alpha -= 0.0005;
+            _this.y -= _this.velocity;
             ctx.beginPath();
-            ctx.arc(_this.pos.x, _this.pos.y, _this.scale*10, 0, 2 * Math.PI, false);
-            ctx.fillStyle = 'rgba(255,255,255,'+ _this.alpha+')';
+            ctx.arc(_this.x, _this.y, _this.scale, 0, PI_TIMES2, false);
+            ctx.fillStyle = "rgba(255,255,255," + _this.alpha + ")";
             ctx.fill();
         };
+    }
+
+    // Event handling
+    function addListeners() {
+        window.addEventListener("resize", resize);
+    }
+
+    function resize() {
+        initHeader();
+        clearInterval(animationIntervalRef);
+    }
+
+    function roundTo1Decimals(number) {
+        return Math.round(number * 10) / 10;
     }
 
 });
