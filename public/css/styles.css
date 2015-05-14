@@ -73,9 +73,12 @@ a.list-group-item:focus {
     margin-top:20px;
 }
 
-.date{
-    position: absolute;
+p.date{
+    position:absolute;
+    font-family: sans-serif;
+    font-size: 12px;
     bottom: 5px;
+    right: 25px;
 }
 
 a.link-btn{
