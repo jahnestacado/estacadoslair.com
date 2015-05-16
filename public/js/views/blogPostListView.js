@@ -17,26 +17,30 @@ define([
             view.blogPostView = new BlogPostView();
         },
         render: function(blogId) {
-            Backbone.bus.trigger("fadeOutHomeView");
             var view = this;
             var blogPosts = new BlogPosts();
 
             blogPosts.fetch({
                 success: function(blogPosts) {
+                    Backbone.bus.trigger("fadeOutHomeView");
+                    CURTAIN.open();
                     view.$el.html(view.template({posts: blogPosts.models}));
 
-                    if (!blogId) {
-                        //If blogId is not specified pick first blog post
-                        blogId = blogPosts.models[0].attributes._id;
-                    }
+                    if (blogPosts.models.length) {
 
-                    view.loadBlogPost(blogId);
+                        if (!blogId) {
+                            //If blogId is not specified pick first blog post
+                            blogId = blogPosts.models[0].attributes._id;
+                        }
+
+                        view.loadBlogPost(blogId);
+                    }
                 }
             });
         },
         loadBlogPost: function(id) {
             var view = this;
-            
+
             if (id) {
                 var blogPost = new BlogPost({"_id": id});
                 view.blogPostView.render(blogPost);

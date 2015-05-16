@@ -3,14 +3,12 @@ define([
     "underscore",
     "backbone",
     "text!blogPostTemplate",
-    "curtain"
-], function($, _, Backbone, viewTemplate, CURTAIN) {
+], function($, _, Backbone, viewTemplate) {
 
     var BlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
-            CURTAIN.open();
             var view = this;
 
             if (blogPostModel) {
