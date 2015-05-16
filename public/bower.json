@@ -21,6 +21,7 @@
     "highlightjs": "~8.4.0",
     "requirejs": "~2.1.17",
     "text": "~2.0.14",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "Hover": "~2.0.2"
   }
 }
