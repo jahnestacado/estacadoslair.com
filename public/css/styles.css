@@ -257,12 +257,13 @@ h2.form-signin-heading{
 }
 
 .alert{
-    width: 300px;
+    min-width: 300px;
     float:right;
     margin: 5px 20px 0 0;
     overflow: auto;
     clear:both;
-    border-radius: 8px;
+    border-radius: 4px;
+    font-family:"Merriweather";
 }
 
 .alert .notification-msg{
