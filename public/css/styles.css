@@ -93,6 +93,7 @@ a.link-btn:focus{
     color: #E8E8C2;
     text-decoration: none;
     box-shadow: none;
+    outline : none ;
 }
 
 /*Override hoverjs class so link can return in it's initial state after being pressed*/
