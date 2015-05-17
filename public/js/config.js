@@ -28,6 +28,7 @@ require.config({
         "loginView": "js/views/loginView",
         "homeView": "js/views/homeView",
         "notificationView": "js/views/notificationView",
+        "notFoundView": "js/views/pageNotFoundView",
         
         //Backbone routes
         "routes": "js/routers/routes",
@@ -46,7 +47,7 @@ require.config({
         "blogPostTemplate": "templates/blogPost.tpl",
         "editBlogPostTemplate": "templates/editBlogPost.tpl",
         "notificationTemplate": "templates/notificationView.tpl",
-
+        "notFoundTemplate": "templates/pageNotFoundView.tpl",
         
         //Boot file
         "app": "js/app",

@@ -5,7 +5,10 @@ define([
     "loginView",
     "createBlogPostView",
     "editBlogPostListView",
-], function(Backbone, BlogPostListView, HomeView, LoginView, CreateBlogPostView, EditBlogPostListView) {
+    "notFoundView",
+    "notificationView"
+
+], function(Backbone, BlogPostListView, HomeView, LoginView, CreateBlogPostView, EditBlogPostListView, NotFoundView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -16,14 +19,24 @@ define([
             "update/:id": "loadEditPost",
             "update": "loadEditBlogPage",
             "login": "loadLoginPage",
+            ":notFound": "loadNotFoundPage"
         },
         initialize: function() {
             var router = this;
+            router.notFoundView = new NotFoundView();
             router.blogPostListView = new BlogPostListView();
             router.homeView = new HomeView();
             router.loginView = new LoginView();
             router.createBlogPostView = new CreateBlogPostView();
             router.editBlogPostListView = new EditBlogPostListView();
+        },
+        loadNotFoundPage: function() {
+            var router = this;
+            router.notFoundView.render();
+            Backbone.bus.trigger("notification", {
+                message: "You are far away from Home son!",
+                status: "error"
+            });
         },
         loadHomePage: function() {
             var router = this;

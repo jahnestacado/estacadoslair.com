@@ -272,3 +272,18 @@ h2.form-signin-heading{
 .uppercase{
     text-transform: uppercase;
 }
+
+#not-found-view{
+    font-family:"Denk One";
+    text-align:center;
+    color: rgba(241, 242, 233, 1);
+    text-shadow: 0 0 5px #3E487D, 0 0 10px #041C5C, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
+}
+
+#not-found-view .not-found-status{
+    font-size: 8em;
+}
+
+#not-found-view .not-found-message{
+    font-size: 3em;
+}

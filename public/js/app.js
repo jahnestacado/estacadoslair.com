@@ -6,7 +6,7 @@ require([
     "snowFlakes",
 ], function($, Backbone) {
     
-    require(["routes","notificationView"], function(ROUTER) {
+    require(["routes"], function(ROUTER) {
         $(document).ready(function() {
             Backbone.history.start();
             $(window).on('resize', function() {
