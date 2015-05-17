@@ -4,14 +4,15 @@ require([
     "routes",
     "fontLoader",
     "snowFlakes",
-], function($, Backbone, ROUTER) {
-
-    Backbone.history.start();
-    require(["notificationView"]);
-
-    $(document).ready(function() {
-        $(window).on('resize', function() {
-            ROUTER.navigate("/", {trigger: true});
+], function($, Backbone) {
+    
+    require(["routes","notificationView"], function(ROUTER) {
+        $(document).ready(function() {
+            Backbone.history.start();
+            $(window).on('resize', function() {
+                ROUTER.navigate("/", {trigger: true});
+            });
         });
     });
+
 });
