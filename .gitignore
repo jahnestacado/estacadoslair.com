@@ -3,3 +3,7 @@ public/bower_components/*
 
 #npm dependencies
 node_modules/*
+
+#minified files
+public/js/main.js
+public/css/styles.min.css
