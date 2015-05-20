@@ -1,7 +1,6 @@
 require([
     "jquery",
     "backboneExtended",
-    "routes",
     "fontLoader",
     "snowFlakes",
 ], function($, Backbone) {

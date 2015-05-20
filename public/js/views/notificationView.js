@@ -1,7 +1,7 @@
 require([
     "jquery",
     "underscore",
-    "backbone",
+    "backboneExtended",
     "text!notificationTemplate",
 ], function($, _, Backbone, viewTemplate) {
 

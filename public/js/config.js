@@ -3,14 +3,14 @@ require.config({
     deps: ["app"],
     paths: {
         //3rd Party libs
-        "jquery": "bower_components/jquery/dist/jquery.min",
-        "boostrap": "bower_components/bootstrap/dist/js/bootstrap.min",
+        "jquery": "bower_components/jquery/dist/jquery",
+        "boostrap": "bower_components/bootstrap/dist/js/bootstrap",
         "ckeditor": "bower_components/ckeditor/ckeditor",
         "highlightjs": "bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
         "underscore": "bower_components/underscore/underscore",
         "backbone": "bower_components/backbone/backbone",
         "text": "bower_components/text/text",
-        "moment": "bower_components/moment/min/moment.min",
+        "moment": "bower_components/moment/moment",
         
         //Backbone models
         "blogPost": "js/models/blogPost",
@@ -57,7 +57,7 @@ require.config({
             "exports": "_"
         },
         "backbone": {
-            "deps": ["jquery", "underscore"],
+            "deps": ["underscore"],
             "exports": "Backbone"
         },
         "ckeditor": {
