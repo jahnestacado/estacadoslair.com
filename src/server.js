@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/../public"));
 
 //Start HTTPS server
-//https.createServer(sslConfig, app).listen(process.env.HTTPS_PORT || 5000);
+https.createServer(sslConfig, app).listen(process.env.HTTPS_PORT || 5000);
 
 //Start HTTP server which redirects everything to HTTPS through httpsRedirect middleware
 app.listen(process.env.PORT || 5050);
