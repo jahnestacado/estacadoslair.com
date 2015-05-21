@@ -2,12 +2,11 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "ckeditor",
     "text!editBlogPostTemplate",
     "blogPost",
     "curtain",
     "moment"
-], function($, _, Backbone, ckeditor, viewTemplate, BlogPost, CURTAIN, moment) {
+], function($, _, Backbone, viewTemplate, BlogPost, CURTAIN, moment) {
 
     var CreateBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
@@ -21,9 +20,9 @@ define([
                     buttonAction: "Save",
                     title: "", //messes up title input field
                     body: ""
-                }
+                };
                 view.$el.html(view.template(contents));
-                ckeditor.replace("post-body", {
+                CKEDITOR.replace("post-body", {
                     extraPlugins: "codesnippet",
                     codeSnippet_theme: "monokai_sublime"
                 });
@@ -38,7 +37,7 @@ define([
             var blogPostModel = new BlogPost();
 
             blogPostModel.set("title", view.$el.find("#post-title").val());
-            blogPostModel.set("body", ckeditor.instances["post-body"].document.getBody().getHtml());
+            blogPostModel.set("body", CKEDITOR.instances["post-body"].document.getBody().getHtml());
             blogPostModel.set("date", moment().format("MMM DD, YYYY / hh:mm A"));
             blogPostModel.save(blogPostModel.attributes, {
                 dataType: "text",
