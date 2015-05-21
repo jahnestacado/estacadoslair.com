@@ -148,12 +148,14 @@ a.link-btn:focus{
     margin:0 auto;
 }
 
-.delete-btn{
-    font-size: 10px;
-    font-weight: bold;
-    line-height: 16px;
-    padding:4px;
+.delete-btn:hover{
+    color:red;
+}
 
+#curtain-left a.list-group-item {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .stop-scrolling {
