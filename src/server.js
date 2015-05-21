@@ -8,7 +8,7 @@ var session = require("express-session");
 
 var app = express();
 
-//app.use(httpsRedirect);
+app.use(httpsRedirect);
 app.use(cookieParser("secret"));
 app.use(session());
 app.use(bodyParser.urlencoded());
