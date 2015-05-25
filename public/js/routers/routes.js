@@ -16,8 +16,8 @@ define([
             "blog/:id": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
-            "update/:id": "loadEditPost",
-            "update": "loadEditBlogPage",
+            "edit/:id": "loadEditPost",
+            "edit": "loadEditBlogPage",
             "login": "loadLoginPage",
             ":notFound": "loadNotFoundPage"
         },

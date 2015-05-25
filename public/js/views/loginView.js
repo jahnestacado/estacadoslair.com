@@ -37,7 +37,7 @@ define([
                     dataType: 'text',
                     success: function() {
                         view.destroy();
-                        require("routes").navigate("/update", {trigger: true});
+                        require("routes").navigate("/edit", {trigger: true});
                         Backbone.bus.trigger("notification", {
                             message: "Welcome " + username + "!", status: "success"
                         });
