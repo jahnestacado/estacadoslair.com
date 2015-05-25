@@ -5,9 +5,10 @@ var sslConfig = require("./ssl/config.js");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
-
+var compress = require("compression");
 var app = express();
 
+app.use(compress());
 app.use(httpsRedirect);
 app.use(cookieParser("secret"));
 app.use(session());
