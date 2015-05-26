@@ -9,6 +9,7 @@ define([
         el: "#curtain-right",
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
+            $("#curtain-right").scrollTop(0);
             var view = this;
 
             if (blogPostModel) {
