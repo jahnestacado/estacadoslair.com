@@ -95,12 +95,16 @@ a.link-btn{
     text-shadow: 0 0 5px #3E487D, 0 0 10px #070732, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
 }
 
-a.link-btn:hover,
-a.link-btn:focus{
-    color: #E8E8C2;
-    text-decoration: none;
+a:hover,
+a:focus{
     box-shadow: none;
     outline : none ;
+}
+
+a.link-btn:hover,
+a.link-btn:focus{
+    text-decoration: none;
+    color: #E8E8C2;
 }
 
 /*Override hoverjs class so link can return in it's initial state after being pressed*/
