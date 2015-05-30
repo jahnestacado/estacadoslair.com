@@ -26,4 +26,5 @@ app.use("/auth", require("./routes/authCheck.js"));
 app.use("/login", require("./routes/login.js"));
 app.use("/blog", require("./routes/blog.js"));
 
-
+//This router should be used always in the end
+app.use("*", require("./routes/hashbangRedirect.js"));
