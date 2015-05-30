@@ -1,5 +1,5 @@
 <div  class="panel  left-side">
-    <a id="back-home" class="link-btn" href="#">
+    <a id="back-home" class="link-btn">
         <span class="icon icon-home"></span>
     </a>
     <div class="panel-heading">
@@ -8,7 +8,7 @@
     <div class="list-group">
 
         <% _.each( posts, function( post){ %>
-        <a href=<%= post.getHashPath()%>  class="list-group-item" > <%= post.get("title") %> </a>
+        <a id=<%= post.get("_id")%>  class="list-group-item" > <%= post.get("title") %> </a>
         <% }); %>
 
     </div>

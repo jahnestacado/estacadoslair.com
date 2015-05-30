@@ -7,21 +7,21 @@ define([
     "blogPostView",
     "blogPost"
             /*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
-], function($, Backbone, BlogPosts, viewTemplate, CURTAIN, BlogPostView, BlogPost) {
+], function ($, Backbone, BlogPosts, viewTemplate, CURTAIN, BlogPostView, BlogPost) {
 
     var BlogPostListView = Backbone.View.extend({
         el: "#curtain-left",
         template: _.template(viewTemplate),
-        initialize: function() {
+        initialize: function () {
             var view = this;
             view.blogPostView = new BlogPostView();
         },
-        render: function(blogId) {
+        render: function (blogId) {
             var view = this;
             var blogPosts = new BlogPosts();
 
             blogPosts.fetch({
-                success: function(blogPosts) {
+                success: function (blogPosts) {
                     Backbone.bus.trigger("fadeOutHomeView");
                     CURTAIN.open();
                     view.$el.html(view.template({posts: blogPosts.models}));
@@ -31,14 +31,21 @@ define([
                         if (!blogId) {
                             //If blogId is not specified pick first blog post
                             blogId = blogPosts.models[0].attributes._id;
+                            require("routes").navigate("/" + view.getPathDomain() + "/" + blogId);
                         }
 
-                        view.loadBlogPost(blogId);
+                        view.renderBlogPost(blogId);
                     }
+                },
+                error: function () {
+                    Backbone.bus.trigger("notification", {
+                        message: "Failed to fetch blogPost collection!",
+                        status: "error"
+                    });
                 }
             });
         },
-        loadBlogPost: function(id) {
+        renderBlogPost: function (id) {
             var view = this;
 
             if (id) {
@@ -47,12 +54,24 @@ define([
             }
         },
         events: {
-            "click #back-btn": "closeCurtain"
+            "click #back-home": "loadHomePage",
+            "click .list-group a": "selectBlogPost"
         },
-        closeCurtain: function() {
+        loadHomePage: function () {
             CURTAIN.close();
             require("routes").navigate("/", {trigger: true});
         },
+        selectBlogPost: function (event) {
+            var targetElQ = $(event.target);
+            var id = targetElQ.attr("id");
+            var view = this;
+
+            require("routes").navigate("#" + view.getPathDomain() + "/" + id, {trigger: true});
+        },
+        getPathDomain: function () {
+            var pathDomain = document.URL.split("/")[3];
+            return pathDomain;
+        }
     });
 
     return BlogPostListView;

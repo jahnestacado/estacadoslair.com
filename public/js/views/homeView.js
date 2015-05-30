@@ -3,8 +3,8 @@ define([
     "underscore",
     "backbone",
     "text!homeTemplate",
-    "curtain"
-], function($, _, Backbone, template, CURTAIN) {
+    "curtain",
+], function($, _, Backbone, template, CURTAIN, ROUTER) {
 
     var HomeView = Backbone.View.extend({
         el: "#icon-bar",
@@ -60,6 +60,12 @@ define([
             setTimeout(function() {
                 elQ.find("#font-loader").remove();
             }, 500);
+        },
+        events: {
+            "click #blog-icon": "openBlogPage"
+        },
+        openBlogPage: function() {
+            require("routes").navigate("/blog", {trigger: true});
         }
     });
 

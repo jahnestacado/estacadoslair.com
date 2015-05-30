@@ -18,7 +18,7 @@
         <span class="icon-social-linkedin"></span>
     </a>
 
-    <a class="inline link-btn hvr-float-shadow" href="#blog">
+    <a id="blog-icon" class="inline link-btn hvr-float-shadow">
         <!--From Metrize icon set-->
         <span class="icon-social-blogger"></span>
     </a>

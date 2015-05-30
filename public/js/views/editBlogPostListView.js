@@ -6,17 +6,17 @@ define([
     "blogPost",
     "text!editListViewTemplate",
     "editBlogPostView"
-], function($, _, Backbone, BlogPostListView, BlogPost, viewTemplate, EditBlogPostView) {
+], function ($, _, Backbone, BlogPostListView, BlogPost, viewTemplate, EditBlogPostView) {
 
     var EditBlogPostListView = BlogPostListView.extend({
-        initialize: function() {
+        initialize: function () {
             var view = this;
             Backbone.bus.on("refreshEditListView", view.refresh, view);
             view.blogPostView = new EditBlogPostView();
         },
-        render: function(blogId) {
+        render: function (blogId) {
             var view = this;
-            Backbone.View.onAccessGranted(function() {
+            Backbone.View.onAccessGranted(function () {
                 BlogPostListView.prototype.render.apply(view, [blogId]);
             });
         },
@@ -24,38 +24,36 @@ define([
         events: {
             "click .icon.icon-bin2": "deletePost"
         },
-        deletePost: function(event) {
+        deletePost: function (event) {
+            event.stopPropagation();
+
             var targetElQ = $(event.target);
             var id = targetElQ.data("id");
-            var isDeletionConfirmed = confirm("Do you really want to delete post: '"+ targetElQ.parent().text()+"'");
+            var isDeletionConfirmed = confirm("Do you really want to delete post: '" + targetElQ.parent().text() + "'");
 
             if (isDeletionConfirmed) {
                 var view = this;
-                
-                view.render();
                 var blogPost = new BlogPost({_id: id});
+
                 blogPost.destroy({
                     dataType: "text",
-                    success: function() {
+                    success: function () {
                         Backbone.bus.trigger("notification", {
                             message: "Deleted post!",
                             status: "success"
                         });
+
+                        view.render();
                     },
-                    error: function() {
+                    error: function () {
                         Backbone.bus.trigger("notification", {
                             message: "Couldn't delete post!",
                             status: "error"
                         });
                     }
                 });
-                Backbone.bus.trigger("hideEditBlogPostView");
-                view.render();
+
             }
-        },
-        refresh: function() {
-            var view = this;
-            view.render();
         }
     });
 

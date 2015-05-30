@@ -11,7 +11,6 @@ define([
         el: "#curtain-right",
         initialize: function() {
             var view = this;
-            Backbone.bus.on("hideEditBlogPostView", view.onChange, view);
         },
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
@@ -35,8 +34,6 @@ define([
                     });
                 }
             });
-
-            view.$el.show();
         },
         events: {
             "click #submit-btn:contains('Update')": "savePost"
@@ -70,10 +67,6 @@ define([
             });
 
             Backbone.bus.trigger("refreshEditListView");
-        },
-        hideEditBlogPostView: function() {
-            var view = this;
-            view.$el.hide();
         }
     });
 

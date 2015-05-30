@@ -16,10 +16,10 @@ define([
             "blog/:id": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
+            "login": "loadLoginPage",
             "edit/:id": "loadEditPost",
             "edit": "loadEditBlogPage",
-            "login": "loadLoginPage",
-            ":notFound": "loadNotFoundPage"
+            ":notFound": "loadNotFoundPage",
         },
         initialize: function() {
             var router = this;

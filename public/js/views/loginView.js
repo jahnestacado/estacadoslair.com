@@ -13,11 +13,11 @@ define([
         render: function() {
             CURTAIN.close();
             var view = this;
-            
+
             view.$el
-                .html(view.template())
-                .hide()
-                .fadeIn(800);
+                    .html(view.template())
+                    .hide()
+                    .fadeIn(800);
         },
         events: {
             "click #login-btn": "requestLogin",
@@ -60,6 +60,7 @@ define([
         destroy: function() {
             var view = this;
             view.$el.children().remove();
+            require("routes").navigate("/", {trigger: true});
         }
     });
 

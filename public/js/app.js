@@ -7,7 +7,7 @@ require([
     
     require(["routes"], function(ROUTER) {
         $(document).ready(function() {
-            Backbone.history.start();
+            Backbone.history.start({ pushState: true});
             $(window).on('resize', function() {
                 ROUTER.navigate("/", {trigger: true});
             });
