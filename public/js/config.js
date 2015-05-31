@@ -59,8 +59,5 @@ require.config({
             "deps": ["underscore"],
             "exports": "Backbone"
         },
-        "ckeditor": {
-            "exports": "CKEDITOR"
-        },
     }
 });
