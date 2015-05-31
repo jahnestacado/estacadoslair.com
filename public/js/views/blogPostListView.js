@@ -71,6 +71,10 @@ define([
         getPathDomain: function () {
             var pathDomain = document.URL.split("/")[3];
             return pathDomain;
+        },
+        refresh: function(id){
+            var view = this;
+            view.render(id);
         }
     });
 

@@ -5,21 +5,18 @@ define([
     "text!editBlogPostTemplate",
     "curtain",
     "moment"
-], function($, _, Backbone, viewTemplate, CURTAIN, moment) {
+], function ($, _, Backbone, viewTemplate, CURTAIN, moment) {
 
     var EditBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
-        initialize: function() {
-            var view = this;
-        },
         template: _.template(viewTemplate),
-        render: function(blogPostModel) {
+        render: function (blogPostModel) {
             CURTAIN.open();
             var view = this;
             view.blogPostModel = blogPostModel;
 
             view.blogPostModel.fetch({
-                success: function(blogPostModel) {
+                success: function (blogPostModel) {
                     view.blogPostModel = blogPostModel;
                     var attributes = blogPostModel.attributes;
                     var contents = {
@@ -37,7 +34,7 @@ define([
         events: {
             "click #submit-btn:contains('Update')": "savePost"
         },
-        savePost: function(event) {
+        savePost: function (event) {
             event.preventDefault();
 
             var view = this;
@@ -52,13 +49,15 @@ define([
             view.blogPostModel.set("date", moment().format("MMM DD, YYYY / hh:mm A"));
             view.blogPostModel.save(view.blogPostModel.attributes, {
                 dataType: "text",
-                success: function() {
+                success: function () {
                     Backbone.bus.trigger("notification", {
                         message: "Updated post!",
                         status: "success"
                     });
+
+                    Backbone.bus.trigger("refreshEditListView", view.blogPostModel.id);
                 },
-                error: function() {
+                error: function () {
                     Backbone.bus.trigger("notification", {
                         message: "Couldn't update post!",
                         status: "error"
@@ -66,12 +65,16 @@ define([
                 }
             });
 
-            Backbone.bus.trigger("refreshEditListView");
         },
-        filterContent: function(){
-            //Workaround to remove handler icon which was servred over http and caused warnings + was ugly and of no use
+        //Duplicate code(see createBlogPostView). Will be DRYed when introduce concept of PageView
+        filterContent: function () {
+            //Workaround to remove handler icons which was servred over http and caused warnings + was ugly and of no use
             var contentElQ = CKEDITOR.instances["post-body"].document.getBody();
-            contentElQ.find("img.cke_reset.cke_widget_drag_handler").getItem(0).remove();
+            var iconElQs = contentElQ.find("img.cke_reset.cke_widget_drag_handler");
+            var numOfIcons = iconElQs.$.length;
+            for (var i = 0; i <= numOfIcons - 1; i++) {
+                iconElQs.getItem(i).remove();
+            }
 
             return contentElQ.getHtml();
         }
