@@ -29,8 +29,7 @@ define([
                     }
                     view.$el.html(view.template(contents));
                     CKEDITOR.replace("post-body", {
-                        extraPlugins: 'codesnippet',
-                        codeSnippet_theme: 'monokai_sublime'
+                        extraPlugins: "codesnippet",
                     });
                 }
             });
@@ -48,7 +47,8 @@ define([
             }
 
             view.blogPostModel.set("title", view.$el.find("#post-title").val());
-            view.blogPostModel.set("body", CKEDITOR.instances["post-body"].document.getBody().getHtml());
+            var editorContent = view.filterContent();
+            view.blogPostModel.set("body", editorContent);
             view.blogPostModel.set("date", moment().format("MMM DD, YYYY / hh:mm A"));
             view.blogPostModel.save(view.blogPostModel.attributes, {
                 dataType: "text",
@@ -67,6 +67,13 @@ define([
             });
 
             Backbone.bus.trigger("refreshEditListView");
+        },
+        filterContent: function(){
+            //Workaround to remove handler icon which was servred over http and caused warnings + was ugly and of no use
+            var contentElQ = CKEDITOR.instances["post-body"].document.getBody();
+            contentElQ.find("img.cke_reset.cke_widget_drag_handler").getItem(0).remove();
+
+            return contentElQ.getHtml();
         }
     });
 

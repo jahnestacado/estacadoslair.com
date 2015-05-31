@@ -39,11 +39,6 @@ code.hljs{
     color: #606666;
 }
 
-/*Hides the drag icon in code snippets*/
-img.cke_reset.cke_widget_drag_handler{
-    display: none;
-}
-
 .post-title{
     margin:1.2em 0 0.5em 1.6em;
     font-family: Lora, OpenSans, sans-serif;
