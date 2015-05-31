@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     grunt.initConfig({
         requirejs: {
@@ -33,16 +33,29 @@ module.exports = function(grunt) {
                         {
                             pattern: "css/styles.css",
                             replacement: "css/styles.min.css"
-                        }]
+                        }
+                    ]
                 }
             },
+            updateFaviconUrl: {
+                files: {
+                    'public/index.html': "public/index.html"
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: "images/favicon.ico",
+                            replacement: "//:estacadoslair.com/images/favicon.ico"
+                        }
+                    ]
+                }
+            }
         }
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks("grunt-contrib-requirejs");
+    grunt.loadNpmTasks("grunt-string-replace");
 
     grunt.registerTask("deploy", ["requirejs", "string-replace"]);
-
 };
