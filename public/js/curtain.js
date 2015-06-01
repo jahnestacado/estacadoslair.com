@@ -15,7 +15,7 @@ define(["jquery"], function($) {
     }
    
     function initializeLeftCurtain() {
-        $("<div/>").appendTo("#page1")
+        $("<div/>").appendTo("#home-page")
                 .attr("id", "curtain-left")
                 .addClass("curtain-left-closed")
                 .height(CURTAIN_HEIGHT)
@@ -33,7 +33,7 @@ define(["jquery"], function($) {
     }
     
     function initializeRightCurtain() {
-        $("<div/>").appendTo("#page1")
+        $("<div/>").appendTo("#home-page")
                 .attr("id", "curtain-right")
                 .addClass("curtain-right-closed")
                 .height(CURTAIN_HEIGHT)

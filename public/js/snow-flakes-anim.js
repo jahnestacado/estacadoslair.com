@@ -18,7 +18,7 @@ require(["jquery"], function ($) {
         function initHeader() {
             width = window.innerWidth;
             height = window.innerHeight;
-        var largeHeader = document.getElementById("page1");
+            var largeHeader = document.getElementById("home-page");
             largeHeader.style.height = height + "px";
 
             var canvas = document.getElementById("demo-canvas");

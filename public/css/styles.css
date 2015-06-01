@@ -127,7 +127,7 @@ a.link-btn:focus{
     position: absolute;
 }
 
-#page1{
+#home-page{
     background-image:url("../images/wall.jpg");
     background-size: cover;
     width:100%;
