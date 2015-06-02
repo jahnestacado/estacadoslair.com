@@ -296,3 +296,7 @@ h2.form-signin-heading{
 #not-found-view .not-found-message{
     font-size: 3em;
 }
+
+pre.cke_widget_element{
+    padding: 0;
+}
