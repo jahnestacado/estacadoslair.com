@@ -2,13 +2,13 @@ define([
     "jquery",
     "underscore",
     "backbone",
+    "createBlogPostView",
     "text!editBlogPostTemplate",
     "curtain",
     "moment"
-], function ($, _, Backbone, viewTemplate, CURTAIN, moment) {
+], function ($, _, Backbone, CreateBlogPostView, viewTemplate, CURTAIN, moment) {
 
-    var EditBlogPostView = Backbone.View.extend({
-        el: "#curtain-right",
+    var EditBlogPostView = CreateBlogPostView.extend({
         template: _.template(viewTemplate),
         render: function (blogPostModel) {
             CURTAIN.open();
@@ -19,20 +19,19 @@ define([
                 success: function (blogPostModel) {
                     view.blogPostModel = blogPostModel;
                     var attributes = blogPostModel.attributes;
+
                     var contents = {
-                        buttonAction: "Update",
                         title: attributes.title,
                         body: attributes.body
                     }
+
                     view.$el.html(view.template(contents));
-                    CKEDITOR.replace("post-body", {
-                        extraPlugins: "codesnippet",
-                    });
+                    view.initCKEditor();
                 }
             });
         },
         events: {
-            "click #submit-btn:contains('Update')": "savePost"
+            "click #update-post-btn": "savePost"
         },
         savePost: function (event) {
             event.preventDefault();
@@ -66,18 +65,6 @@ define([
             });
 
         },
-        //Duplicate code(see createBlogPostView). Will be DRYed when introduce concept of PageView
-        filterContent: function () {
-            //Workaround to remove handler icons which was servred over http and caused warnings + was ugly and of no use
-            var contentElQ = CKEDITOR.instances["post-body"].document.getBody();
-            var iconElQs = contentElQ.find("img.cke_reset.cke_widget_drag_handler");
-            var numOfIcons = iconElQs.$.length;
-            for (var i = 0; i <= numOfIcons - 1; i++) {
-                iconElQs.getItem(i).remove();
-            }
-
-            return contentElQ.getHtml();
-        }
     });
 
     return EditBlogPostView;

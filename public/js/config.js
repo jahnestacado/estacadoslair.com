@@ -47,6 +47,7 @@ require.config({
         "editBlogPostTemplate": "templates/editBlogPost.tpl",
         "notificationTemplate": "templates/notificationView.tpl",
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
+        "createBlogPost": "templates/createBlogPost.tpl",
         
         //Boot file
         "app": "js/app",

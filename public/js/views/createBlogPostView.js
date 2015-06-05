@@ -2,7 +2,7 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "text!editBlogPostTemplate",
+    "text!createBlogPost",
     "blogPost",
     "curtain",
     "moment"
@@ -16,20 +16,12 @@ define([
             Backbone.View.onAccessGranted(function () {
                 CURTAIN.open();
 
-                var contents = {
-                    buttonAction: "Save",
-                    title: "", //messes up title input field
-                    body: ""
-                };
-                view.$el.html(view.template(contents));
-                CKEDITOR.replace("post-body", {
-                    extraPlugins: "codesnippet",
-                    codeSnippet_theme: "monokai_sublime"
-                });
+                view.$el.html(view.template());
+                view.initCKEditor();
             });
         },
         events: {
-            "click #submit-btn:contains('Save')": "savePost"
+            "click #save-post-btn": "savePost"
         },
         savePost: function (event) {
             var view = this;
@@ -54,6 +46,12 @@ define([
                         status: "error"
                     });
                 }
+            });
+        },
+        initCKEditor: function () {
+            CKEDITOR.replace("post-body", {
+                extraPlugins: "codesnippet",
+                codeSnippet_theme: "ir_black"
             });
         },
         //Duplicate code(see editBlogPostView). Will be DRYed when introduce concept of PageView
