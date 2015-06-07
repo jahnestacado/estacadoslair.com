@@ -3,12 +3,12 @@ define([
     "blogPostListView",
     "homeView",
     "loginView",
-    "createBlogPostView",
+    "createBlogPostListView",
     "editBlogPostListView",
     "notFoundView",
     "notificationView"
 
-], function(Backbone, BlogPostListView, HomeView, LoginView, CreateBlogPostView, EditBlogPostListView, NotFoundView) {
+], function(Backbone, BlogPostListView, HomeView, LoginView, createBlogPostListView, EditBlogPostListView, NotFoundView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -27,7 +27,7 @@ define([
             router.blogPostListView = new BlogPostListView();
             router.homeView = new HomeView();
             router.loginView = new LoginView();
-            router.createBlogPostView = new CreateBlogPostView();
+            router.createBlogPostListView = new createBlogPostListView();
             router.editBlogPostListView = new EditBlogPostListView();
         },
         loadNotFoundPage: function() {
@@ -56,7 +56,7 @@ define([
         },
         loadCreatePostPage: function() {
             var router = this;
-            router.createBlogPostView.render();
+            router.createBlogPostListView.render();
         },
         loadEditBlogPage: function() {
             var router = this;

@@ -9,10 +9,10 @@ define([
 ], function ($, _, Backbone, BlogPostListView, BlogPost, viewTemplate, EditBlogPostView) {
 
     var EditBlogPostListView = BlogPostListView.extend({
+        template: _.template(viewTemplate),
         initialize: function () {
             var view = this;
-            Backbone.bus.on("refreshEditListView", view.refresh, view);
-            view.blogPostView = new EditBlogPostView();
+            view.blogPostView = new EditBlogPostView({listView: view});
         },
         render: function (blogId) {
             var view = this;
@@ -20,7 +20,6 @@ define([
                 BlogPostListView.prototype.render.apply(view, [blogId]);
             });
         },
-        template: _.template(viewTemplate),
         events: {
             "click .icon.icon-bin2": "deletePost"
         },
@@ -42,8 +41,7 @@ define([
                             message: "Deleted post!",
                             status: "success"
                         });
-
-                        view.render();
+                        view.refresh();
                     },
                     error: function () {
                         Backbone.bus.trigger("notification", {

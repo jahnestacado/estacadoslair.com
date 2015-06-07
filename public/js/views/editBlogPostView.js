@@ -53,8 +53,7 @@ define([
                         message: "Updated post!",
                         status: "success"
                     });
-
-                    Backbone.bus.trigger("refreshEditListView", view.blogPostModel.id);
+                    view.listView.refresh(view.blogPostModel.id);
                 },
                 error: function () {
                     Backbone.bus.trigger("notification", {

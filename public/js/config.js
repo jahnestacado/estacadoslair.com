@@ -23,6 +23,7 @@ require.config({
         "blogPostListView": "js/views/blogPostListView",
         "editBlogPostListView": "js/views/editBlogPostListView",
         "createBlogPostView": "js/views/createBlogPostView",
+        "createBlogPostListView": "js/views/createBlogPostListView",
         "editBlogPostView": "js/views/editBlogPostView",
         "loginView": "js/views/loginView",
         "homeView": "js/views/homeView",

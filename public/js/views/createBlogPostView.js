@@ -11,6 +11,10 @@ define([
     var CreateBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         template: _.template(viewTemplate),
+        initialize: function(options){
+          var view = this;
+          $.extend(view, options);
+        },
         render: function () {
             var view = this;
             Backbone.View.onAccessGranted(function () {
@@ -39,6 +43,7 @@ define([
                         message: "Created post!",
                         status: "success"
                     });
+                    view.listView.refresh();
                 },
                 error: function () {
                     Backbone.bus.trigger("notification", {

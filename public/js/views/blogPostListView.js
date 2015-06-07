@@ -31,7 +31,6 @@ define([
                         if (!blogId) {
                             //If blogId is not specified pick first blog post
                             blogId = blogPosts.models[0].attributes._id;
-                            require("routes").navigate("/" + view.getPathDomain() + "/" + blogId);
                         }
 
                         view.renderBlogPost(blogId);
