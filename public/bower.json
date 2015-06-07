@@ -14,7 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "backbone": "~1.1.2",
+    "backbone": "~1.2.1",
     "bootstrap": "~3.3.2",
     "underscore": "~1.8.2",
     "ckeditor": "~4.4.7",
