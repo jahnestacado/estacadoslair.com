@@ -71,6 +71,12 @@ a.list-group-item:focus {
     box-shadow: none;
 }
 
+a.list-group-item.active{
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
 #curtain-left .list-group{
     margin-top:20px;
 }

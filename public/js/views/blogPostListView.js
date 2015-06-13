@@ -32,7 +32,7 @@ define([
                             //If blogId is not specified pick first blog post
                             blogId = blogPosts.models[0].attributes._id;
                         }
-
+                        
                         view.renderBlogPost(blogId);
                     }
                 },
@@ -46,8 +46,8 @@ define([
         },
         renderBlogPost: function (id) {
             var view = this;
-
             if (id) {
+                $("#" + id).addClass("active");
                 var blogPost = new BlogPost({"_id": id});
                 view.blogPostView.render(blogPost);
             }
