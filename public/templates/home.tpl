@@ -1,6 +1,9 @@
 <div class="wrapper">
     <h1 id="home-logo"><=></h1>
-    <h3  id="home-label">Ioannis Tzanellis. Software Alchemy</h3>
+    <div id="home-label">
+        <h3  class="home-label-item">Ioannis Tzanellis.</h3>
+        <h3  class="home-label-item">Software Alchemy</h3>
+    </div>
 </div>
 <div class="wrapper">
     <a class="inline link-btn hvr-float-shadow" href="mailto:ioannis.tzanellis@aimms.com">

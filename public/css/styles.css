@@ -248,12 +248,18 @@ h2.form-signin-heading{
 }
 
 #home-label{
+    margin-bottom: 6%;
+    text-align: center;
+}
+
+.home-label-item{
     font-family: "Megrim";
     color: rgba(241, 242, 233, 1); 
     font-size: 1.7em;
-    margin-bottom: 8%;
     font-weight: bolder;
     text-shadow: 0 0 5px #3E487D, 0 0 10px #041C5C, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
+    display: inline-block;
+    margin-top: 3%;
 }
 
 .form-horizontal{
