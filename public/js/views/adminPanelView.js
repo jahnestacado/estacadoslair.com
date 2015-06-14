@@ -1,8 +1,9 @@
 require([
+    "jquery",
     "underscore",
     "backboneExtended",
     "text!adminPanelViewTemplate",
-], function ( _, Backbone, viewTemplate) {
+], function ($, _, Backbone, viewTemplate) {
 
     var AdminPanelView = Backbone.View.extend({
         initialize: function () {
@@ -15,7 +16,10 @@ require([
             var view = this;
             Backbone.View.onAccessGranted({
                 onSuccess: function () {
-                    $(view.template()).appendTo(view.$el);
+                    // Always guarantees that we have only one admin-panel attached to body element
+                    if (!$("#admin-panel").length) {
+                        $(view.template()).appendTo(view.$el);
+                    }
                 }
             });
         },
@@ -37,9 +41,27 @@ require([
         },
         navigateToBlogPage: function () {
             require("routes").navigate("/blog", {trigger: true});
-        }, 
-        logoutUser: function(){
-            // TODO
+        },
+        logoutUser: function () {
+            var view = this;
+            $.post("/logout")
+                    .done(function () {
+                        Backbone.bus.trigger("notification", {
+                            message: "Bye bye!", status: "success"
+                        });
+                        view.navigateToHomePage();
+                        view.destroy();
+                    })
+                    .fail(function () {
+                        Backbone.bus.trigger("notification", {
+                            message: "Failed to logout! Please try again.",
+                            status: "error"
+                        });
+                    });
+        },
+        destroy: function () {
+            var view = this;
+            view.$el.find("#admin-panel").remove();
         }
     });
 
