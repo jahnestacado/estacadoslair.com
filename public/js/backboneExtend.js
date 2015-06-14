@@ -1,18 +1,14 @@
-define(["backbone"], function(Backbone) {
+define(["backbone"], function (Backbone) {
     Backbone.bus = $.extend({}, Backbone.Events);
 
     Backbone.View = $.extend(Backbone.View, {
-        onAccessGranted: function(callback) {
+        onAccessGranted: function (callbacks) {
             $.get("/auth/isAuthorized")
-                    .success(function() {
-                        callback();
+                    .success(function () {
+                        callbacks.onSuccess && callbacks.onSuccess();
                     })
-                    .error(function() {
-                        Backbone.bus.trigger("notification", {
-                            message: "Unauthorized action! Please login.",
-                            status: "error"
-                        });
-                        require("routes").navigate("/login", {trigger: true});
+                    .error(function () {
+                        callbacks.onFailure && callbacks.onFailure();
                     });
         }
     });

@@ -11,18 +11,16 @@ define([
     var CreateBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         template: _.template(viewTemplate),
-        initialize: function(options){
-          var view = this;
-          $.extend(view, options);
+        initialize: function (options) {
+            var view = this;
+            $.extend(view, options);
         },
         render: function () {
             var view = this;
-            Backbone.View.onAccessGranted(function () {
-                CURTAIN.open();
+            CURTAIN.open();
 
-                view.$el.html(view.template());
-                view.initCKEditor();
-            });
+            view.$el.html(view.template());
+            view.initCKEditor();
         },
         events: {
             "click #save-post-btn": "savePost"

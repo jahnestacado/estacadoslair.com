@@ -11,8 +11,17 @@ define([
         },
         render: function () {
             var view = this;
-            Backbone.View.onAccessGranted(function () {
-                BlogPostListView.prototype.render.apply(view, [null]);
+            Backbone.View.onAccessGranted({
+                onSuccess: function () {
+                    BlogPostListView.prototype.render.apply(view, [null]);
+                },
+                onFailure: function () {
+                    Backbone.bus.trigger("notification", {
+                        message: "Unauthorized action! Please login.",
+                        status: "error"
+                    });
+                    require("routes").navigate("/login", {trigger: true});
+                }
             });
         },
         renderBlogPost: function () {
