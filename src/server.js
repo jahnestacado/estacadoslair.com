@@ -24,6 +24,7 @@ app.listen(process.env.PORT || 5050);
 
 app.use("/auth", require("./routes/authCheck.js"));
 app.use("/login", require("./routes/login.js"));
+app.use("/logout", require("./routes/logout.js"));
 app.use("/blog", require("./routes/blog.js"));
 
 //This router should be used always in the end
