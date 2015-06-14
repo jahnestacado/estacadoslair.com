@@ -321,12 +321,11 @@ pre.cke_widget_element{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 0;
-    width:45px;
-
+    width:40px;
 }
 
 .admin-btn{
-    width:45px;
-    height:45px;
+    width:40px;
+    height:40px;
     font-size: 22px;
 }
