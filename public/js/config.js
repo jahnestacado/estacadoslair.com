@@ -29,6 +29,7 @@ require.config({
         "homeView": "js/views/homeView",
         "notificationView": "js/views/notificationView",
         "notFoundView": "js/views/pageNotFoundView",
+        "adminPanelView": "js/views/adminPanelView",
         
         //Backbone routes
         "routes": "js/routers/routes",
@@ -49,6 +50,7 @@ require.config({
         "notificationTemplate": "templates/notificationView.tpl",
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
         "createBlogPost": "templates/createBlogPost.tpl",
+        "adminPanelViewTemplate": "templates/adminPanelView.tpl",
         
         //Boot file
         "app": "js/app",

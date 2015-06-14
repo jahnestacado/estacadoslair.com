@@ -312,3 +312,21 @@ h2.form-signin-heading{
 pre.cke_widget_element{
     padding: 0;
 }
+
+#admin-panel{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 0;
+    width:45px;
+
+}
+
+.admin-btn{
+    width:45px;
+    height:45px;
+    font-size: 22px;
+}
