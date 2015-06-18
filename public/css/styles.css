@@ -352,3 +352,13 @@ pre.cke_widget_element{
     height:40px;
     font-size: 22px;
 }
+
+ul.share-buttons{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul.share-buttons li{
+    display: inline;
+}
