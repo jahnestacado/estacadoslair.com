@@ -6,6 +6,29 @@
 @import url("../bower_components/highlightjs/styles/ir_black.css");
 @import url("curtain.css");
 
+@media screen and (max-height: 500px) and (orientation: landscape)  {
+
+    #home-logo{
+        font-size: 11em !important;
+        margin: 0;
+    }
+
+    .home-label-item{
+        font-size: 1.5em !important;
+        margin: 0;
+    }
+
+    #icon-bar{
+        margin: 0;
+    }
+
+    a.link-btn{
+        font-size: 2.8em !important;
+
+    }
+
+}
+
 body{
     font-family: "Merriweather", "Georgia", "serif";
 }
@@ -90,6 +113,7 @@ p.date{
 }
 
 a.link-btn{
+    font-size: 3.5em;
     color:#FAFBEE;
     text-decoration: none;
     box-shadow: none;
@@ -180,7 +204,6 @@ a.link-btn:focus{
 .inline {
     display: inline-block;
     width:1.3em;
-    font-size:36pt;
 }
 
 #icon-bar{
