@@ -37,19 +37,6 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            updateFaviconUrl: {
-                files: {
-                    'public/index.html': "public/index.html"
-                },
-                options: {
-                    replacements: [
-                        {
-                            pattern: "images/favicon.ico",
-                            replacement: "//:estacadoslair.com/images/favicon.ico"
-                        }
-                    ]
-                }
-            }
         }
 
     });
