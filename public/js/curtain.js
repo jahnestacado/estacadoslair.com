@@ -50,14 +50,14 @@ define(["jquery"], function($) {
         });
     }
 
-    $(window).on('resize', function() {
+    $(window).on("resize", function() {
         controls.close();
         var leftCurtainElQ = $("#curtain-left");
         var rightCurtainElQ = $("#curtain-right");
         CURTAIN_HEIGHT = $(window).height();
 
-        leftCurtainElQ.height(CURTAIN_HEIGHT)
-        rightCurtainElQ.height(CURTAIN_HEIGHT)
+        leftCurtainElQ.height(CURTAIN_HEIGHT);
+        rightCurtainElQ.height(CURTAIN_HEIGHT);
     });
 
 
