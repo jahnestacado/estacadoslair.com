@@ -57,7 +57,6 @@ define([
                 codeSnippet_theme: "ir_black"
             });
         },
-        //Duplicate code(see editBlogPostView). Will be DRYed when introduce concept of PageView
         filterContent: function () {
             //Workaround to remove handler icons which was servred over http and caused warnings + was ugly and of no use
             var contentElQ = CKEDITOR.instances["post-body"].document.getBody();
