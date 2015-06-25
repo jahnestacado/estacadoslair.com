@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        "string-replace": {
+        'string-replace': {
             updateHtmlIncludes: {
                 files: {
                     'public/index.html': "public/index.html"
@@ -37,8 +37,20 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-        }
-
+            updateFaviconUrl: {
+                files: {
+                    'public/index.html': "public/index.html"
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: "images/favicon.ico",
+                            replacement: "https://estacadoslair.com/images/favicon.ico"
+                        }
+                    ]
+                }
+            }
+        },
     });
 
     grunt.loadNpmTasks("grunt-contrib-requirejs");
