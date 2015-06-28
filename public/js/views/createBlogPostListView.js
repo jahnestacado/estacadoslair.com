@@ -7,7 +7,8 @@ define([
     var CreateBlogPostListView = BlogPostListView.extend({
         initialize: function () {
             var view = this;
-            view.blogPostView = new CreateBlogPostView({listView: view});
+            view.blogPostView = new CreateBlogPostView();
+            Backbone.bus.on("refreshCreateBlogPostListView", view.refresh, view);
         },
         render: function () {
             var view = this;

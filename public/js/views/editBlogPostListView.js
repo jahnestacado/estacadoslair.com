@@ -12,7 +12,8 @@ define([
         template: _.template(viewTemplate),
         initialize: function () {
             var view = this;
-            view.blogPostView = new EditBlogPostView({listView: view});
+            view.blogPostView = new EditBlogPostView();
+            Backbone.bus.on("refreshEditListView", view.refresh, view);
         },
         render: function (blogId) {
             var view = this;
@@ -37,7 +38,7 @@ define([
 
             var targetElQ = $(event.target);
             var id = targetElQ.data("id");
-            var isDeletionConfirmed = confirm("Do you really want to delete post: '" + targetElQ.parent().text() + "'");
+            var isDeletionConfirmed = confirm("Do you really want to delete post: '" + targetElQ.parent().text() + "'?");
 
             if (isDeletionConfirmed) {
                 var view = this;
@@ -59,7 +60,6 @@ define([
                         });
                     }
                 });
-
             }
         }
     });

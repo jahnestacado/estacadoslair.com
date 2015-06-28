@@ -23,7 +23,7 @@ define([
                     var contents = {
                         title: attributes.title,
                         body: attributes.body
-                    }
+                    };
 
                     view.$el.html(view.template(contents));
                     view.initCKEditor();
@@ -53,7 +53,7 @@ define([
                         message: "Updated post!",
                         status: "success"
                     });
-                    view.listView.refresh(view.blogPostModel.id);
+                    Backbone.bus.trigger("refreshEditBlogPostListView", view.blogPostModel.id);
                 },
                 error: function () {
                     Backbone.bus.trigger("notification", {
@@ -62,6 +62,7 @@ define([
                     });
                 }
             });
+
 
         },
     });

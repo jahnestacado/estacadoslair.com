@@ -41,7 +41,7 @@ define([
                         message: "Created post!",
                         status: "success"
                     });
-                    view.listView.refresh();
+                    Backbone.bus.trigger("refreshCreateBlogPostListView");
                 },
                 error: function () {
                     Backbone.bus.trigger("notification", {
