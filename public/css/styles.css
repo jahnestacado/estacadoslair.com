@@ -256,7 +256,7 @@ h2.form-signin-heading{
 }
 
 .form-control:focus {
-    border-color: #FCE1AC; 
+    border-color: #FCE1AC;
 }
 
 #home-logo{
@@ -277,7 +277,7 @@ h2.form-signin-heading{
 
 .home-label-item{
     font-family: "Megrim";
-    color: rgba(241, 242, 233, 1); 
+    color: rgba(241, 242, 233, 1);
     font-size: 1.7em;
     font-weight: bolder;
     text-shadow: 0 0 5px #3E487D, 0 0 10px #041C5C, 0 0 20px #3E487D, 0 0 30px #3E487D, 0 0 40px #3E487D;
@@ -361,4 +361,17 @@ ul.share-buttons{
 
 ul.share-buttons li{
     display: inline;
+}
+
+.submit-btn-container{
+    position: relative;
+}
+
+.submit-btn-container #save-post-btn,
+.submit-btn-container #update-post-btn{
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translate(-50%, -50%);
+    width:83%;
 }

@@ -11,10 +11,7 @@
             <textarea class="form-control" id="post-body" rows="10" name="body"></textarea>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
-            <button type="submit" id="save-post-btn" class="btn btn-primary">Save</button>
-        </div>
+    <div class= "submit-btn-container">
+        <button type="submit" id="save-post-btn" class="btn btn-primary">Save</button>
     </div>
 </form>
