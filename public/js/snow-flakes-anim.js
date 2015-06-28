@@ -37,7 +37,7 @@ require(["jquery"], function ($) {
                 for (var i = 0, length = circles.length - 1; i <= length; i++) {
                     circles[i].draw();
                 }
-            }
+            };
 
             animationIntervalRef = setInterval(drawCircles, 50);
         }
