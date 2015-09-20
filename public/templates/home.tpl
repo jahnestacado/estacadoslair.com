@@ -13,7 +13,7 @@
 
     <a class="inline link-btn hvr-float-shadow" href="https://github.com/jahnestacado" target="_blank">
         <!--From Icomoon icon set-->
-        <span class="icon icon-github4"></span>
+        <span class="icon icon-github3"></span>
     </a>
 
     <a class="inline link-btn hvr-float-shadow " href="https://www.linkedin.com/in/ioannistzanellis" target="_blank">

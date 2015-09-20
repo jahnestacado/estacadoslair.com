@@ -1,6 +1,6 @@
 <div  class="panel  left-side">
     <a id="back-home" class="link-btn">
-        <span class="icon icon-home"></span>
+        <span class="icon icon-home2"></span>
     </a>
     <div class="panel-heading">
         <h3 class="panel-title active">Available Posts</h3>
