@@ -1,4 +1,4 @@
-<div  class="panel right-side">
+<div  class="panel">
     <h2 class="post-title"><%= title %></h2>
     <div class="panel-body post-body">
         <%= body %>
