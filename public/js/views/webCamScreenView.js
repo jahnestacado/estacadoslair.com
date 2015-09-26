@@ -12,10 +12,25 @@ define([
             var view = this;
             view.animRef = undefined;
             Backbone.bus.on("updateMovementStatus", view.updateMovementStatus, view);
+            view.streamingUrl = "http://192.168.1.101:8081";
         },
         render: function () {
             var view = this;
             view.$el.html(view.template());
+            view.initializeStreamingDiv();
+        },
+        initializeStreamingDiv: function(){
+            var view = this;
+
+            view.imageContainer = new Image();
+            view.imageContainer.src = view.streamingUrl;
+            view.imageContainer.className = "streaming-img";
+
+            $(view.imageContainer).on('load', function() {
+                view.$el.find("#loading-gif").remove();
+            });
+
+            view.$el.find("#streaming-div").append(view.imageContainer);
         },
         updateMovementStatus: function(action){
             var view = this;

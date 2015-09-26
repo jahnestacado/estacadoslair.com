@@ -9,8 +9,8 @@
             <div class="col-md-2 text-center full-height-column">
                 <span id="movement-status-arrow-left" class="icon icon-arrow-left16 movement-direction-arrow"></span>
             </div>
-            <div class="col-md-8 text-center full-height-column">
-                <img src="http://192.168.1.101:8081">
+            <div id="streaming-div" class="col-md-8 text-center full-height-column">
+                <img id="loading-gif" src="/images/squares.gif">
             </div>
             <div class="col-md-2 text-center full-height-column">
                 <span id="movement-status-arrow-right" class="icon icon-arrow-right17 movement-direction-arrow"></span>
