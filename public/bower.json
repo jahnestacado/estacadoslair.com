@@ -22,6 +22,8 @@
     "requirejs": "~2.1.17",
     "text": "~2.0.14",
     "moment": "~2.10.3",
-    "Hover": "~2.0.2"
+    "Hover": "~2.0.2",
+    "socket.io-client": "~1.3.6",
+    "blockui": "*"
   }
 }

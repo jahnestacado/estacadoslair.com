@@ -6,10 +6,11 @@ define([
     "loginView",
     "createBlogPostListView",
     "editBlogPostListView",
+    "webCamView",
     "notFoundView",
     "notificationView",
     "adminPanelView",
-], function (_, Backbone, BlogPostListView, HomeView, LoginView, createBlogPostListView, EditBlogPostListView, NotFoundView) {
+], function (_, Backbone, BlogPostListView, HomeView, LoginView, createBlogPostListView, EditBlogPostListView, WebCamView, NotFoundView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -20,6 +21,7 @@ define([
             "login": "loadLoginPage",
             "edit/:id": "loadEditPost",
             "edit": "loadEditBlogPage",
+            "spidercam": "loadWebCamPage",
             ":notFound": "loadNotFoundPage",
         },
         initialize: function () {
@@ -30,6 +32,7 @@ define([
             router.loginView = new LoginView();
             router.createBlogPostListView = new createBlogPostListView();
             router.editBlogPostListView = new EditBlogPostListView();
+            router.webCamView = new WebCamView();
             router.bind( "all",  _.debounce(router.handleDisplayOfAdminPanel, 500));
         },
         handleDisplayOfAdminPanel: function () {
@@ -77,6 +80,10 @@ define([
         loadEditPost: function (id) {
             var router = this;
             router.editBlogPostListView.render(id);
+        },
+        loadWebCamPage: function (id) {
+            var router = this;
+            router.webCamView.render();
         },
     });
 

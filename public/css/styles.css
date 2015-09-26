@@ -375,3 +375,92 @@ ul.share-buttons li{
     transform: translate(-50%, -50%);
     width:83%;
 }
+
+#arrow-keys {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    font-size: 38pt;
+}
+
+#camera-container {
+    position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width:auto;
+}
+
+#camera-container .full-height-column{
+    float:none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#camera-container .first-row{
+    margin-bottom: 30px;
+}
+
+#camera-container .last-row{
+    margin-top: 30px;
+}
+
+#camera-container .movement-direction-arrow{
+    font-size: 100pt;
+    font-weight: bolder;
+    color: #4971C2;
+    visibility: hidden;
+}
+
+#arrow-keys #left {
+    position: absolute;
+    width:41%;
+    height:47%;
+    margin:auto;
+    left:-17%;
+    bottom:0;
+    top:0;
+}
+
+#arrow-keys #right {
+    position: absolute;
+    width:41%;
+    height:47%;
+    margin: auto;
+    right:-17%;
+    bottom:0;
+    top:0;
+}
+
+#arrow-keys #up {
+    position: absolute;
+    width:41%;
+    height:47%;
+    top:-17%;
+    margin:auto;
+    left:0;
+    right:0;
+}
+
+#arrow-keys #down {
+    position: absolute;
+    width:41%;
+    height:47%;
+    bottom:-17%;
+    margin: auto;
+    left:0;
+    right:0;
+}
+
+.solid-shadow-style{
+    text-shadow:
+	1px 1px 0 #CCC,
+	2px 2px 0 #CCC, /* end of 2 level deep grey shadow */
+	3px 3px 0 #444,
+	4px 4px 0 #444,
+	5px 5px 0 #444,
+	6px 6px 0 #444; /* end of 4 level deep dark shadow */
+    font-weight: bolder;
+}

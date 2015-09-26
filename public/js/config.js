@@ -10,14 +10,16 @@ require.config({
         "backbone": "bower_components/backbone/backbone",
         "text": "bower_components/text/text",
         "moment": "bower_components/moment/moment",
-        
+        "socketIO": "bower_components/socket.io-client/socket.io",
+        "blockui": "bower_components/blockui/jquery.blockUI.js",
+
         //Backbone models
         "blogPost": "js/models/blogPost",
         "userAuth": "js/models/userAuth",
-        
+
         //Backbone collections
         "blogPosts": "js/collections/blogPosts",
-        
+
         //Backbone views
         "blogPostView": "js/views/blogPostView",
         "blogPostListView": "js/views/blogPostListView",
@@ -29,17 +31,20 @@ require.config({
         "homeView": "js/views/homeView",
         "notificationView": "js/views/notificationView",
         "notFoundView": "js/views/pageNotFoundView",
+        "webCamView": "js/views/webCamView",
+        "webCamControlsView": "js/views/webCamControlsView",
+        "webCamScreenView": "js/views/webCamScreenView",
         "adminPanelView": "js/views/adminPanelView",
-        
+
         //Backbone routes
         "routes": "js/routers/routes",
-        
+
         //Misc js deps
         "curtain": "js/curtain",
         "snowFlakes": "js/snow-flakes-anim",
         "fontLoader": "js/fontLoader",
         "backboneExtended": "js/backboneExtend",
-        
+
         //Underscore templates
         "homeTemplate": "templates/home.tpl",
         "listViewTemplate": "templates/listView.tpl",
@@ -51,7 +56,9 @@ require.config({
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
         "createBlogPostTemplate": "templates/createBlogPost.tpl",
         "adminPanelViewTemplate": "templates/adminPanelView.tpl",
-        
+        "webCamControlsViewTemplate": "templates/webCamControlsView.tpl",
+        "webCamScreenViewTemplate": "templates/webCamScreenView.tpl",
+
         //Boot file
         "app": "js/app",
     },
@@ -59,6 +66,10 @@ require.config({
         "underscore": {
             "exports": "_"
         },
+        // "blockui": {
+        //     "deps":["jquery"],
+        //     "exports": "blockUI"
+        // },
         "backbone": {
             "deps": ["underscore"],
             "exports": "Backbone"
