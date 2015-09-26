@@ -49,7 +49,7 @@ require.config({
         "editBlogPostTemplate": "templates/editBlogPost.tpl",
         "notificationTemplate": "templates/notificationView.tpl",
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
-        "createBlogPost": "templates/createBlogPost.tpl",
+        "createBlogPostTemplate": "templates/createBlogPost.tpl",
         "adminPanelViewTemplate": "templates/adminPanelView.tpl",
         
         //Boot file

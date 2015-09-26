@@ -2,7 +2,7 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "text!createBlogPost",
+    "text!createBlogPostTemplate",
     "blogPost",
     "curtain",
     "moment"
@@ -11,10 +11,6 @@ define([
     var CreateBlogPostView = Backbone.View.extend({
         el: "#curtain-right",
         template: _.template(viewTemplate),
-        initialize: function (options) {
-            var view = this;
-            $.extend(view, options);
-        },
         render: function () {
             var view = this;
             CURTAIN.open();
