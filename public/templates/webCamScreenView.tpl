@@ -5,7 +5,7 @@
                 <span id="movement-status-arrow-up" class="icon icon-arrow-up15 movement-direction-arrow"></span>
             </div>
         </div>
-        <div class="row">
+        <div class="row middle-row">
             <div class="col-md-2 text-center full-height-column">
                 <span id="movement-status-arrow-left" class="icon icon-arrow-left16 movement-direction-arrow"></span>
             </div>

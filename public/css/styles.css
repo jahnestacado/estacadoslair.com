@@ -386,12 +386,19 @@ ul.share-buttons li{
 }
 
 #camera-container {
-    position: absolute;
+    /*position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     width:auto;
+     width:auto;*/
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
+
 
 #camera-container .full-height-column{
     float:none;
@@ -401,6 +408,14 @@ ul.share-buttons li{
 
 #camera-container .first-row{
     margin-bottom: 30px;
+}
+
+#camera-container .middle-row{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: (-50%,50%);
+    transform: translate(-50%, -50%);
 }
 
 #camera-container .last-row{
