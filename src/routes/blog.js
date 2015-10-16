@@ -15,7 +15,7 @@ blogRouter.get(path, function(request, response) {
 blogRouter.get(path + "/:id", function(request, response) {
     blogCollection.findOne({_id: mongoskin.helper.toObjectID(request.params.id)}, function(error, results) {
         response.send(results);
-    })
+    });
 });
 
 blogRouter.post(path, auth, function(request, response) {
