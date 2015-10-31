@@ -35,10 +35,10 @@ define([
         handleDisplayOfAdminPanel: function () {
             var router = this;
             /*
-             * Cookies are removed on log-out so here we trigger the activateAdminPanel only when they are present.
+             * sessionId is removed on log-out so here we trigger the activateAdminPanel only when it is present.
              * Otherwise it means that the user is not logged-in
              */
-            if (document.cookie !== "") {
+            if (document.cookie.match(/sessionId/)) {
                 Backbone.bus.trigger("activateAdminPanel");
             }
         },
