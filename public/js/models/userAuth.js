@@ -5,13 +5,15 @@ define(["backbone"], function(Backbone) {
             username: "",
             password: "",
         },
-        initialize: function(options) {
-            var model = this;
+        validate: function(attrs){
+            var error;
 
-            if (options && options.username && options.password) {
-                model.set("username", options.username);
-                model.set("password", options.password);
+            if(_.isEmpty(attrs.username) || _.isEmpty(attrs.password)){
+                var emptyField = attrs.username ? "password" : "username";
+                error = "You need to fill in a " + emptyField + "!";
             }
+
+            return error;
         },
         url: function() {
             return "/login";
@@ -20,4 +22,3 @@ define(["backbone"], function(Backbone) {
 
     return UserAuth;
 });
-

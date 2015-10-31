@@ -5,9 +5,13 @@ define([
     "userAuth",
     "text!loginTemplate",
     "curtain"
-], function($, _, Backbone, UserAuth, viewTemplate, CURTAIN) {
+], function($, _, Backbone, AuthModel, viewTemplate, CURTAIN) {
 
     var LoginView = Backbone.View.extend({
+        initialize: function(){
+            var view = this;
+            view.authModel = new AuthModel();
+        },
         el: "#icon-bar",
         template: _.template(viewTemplate),
         render: function() {
@@ -15,51 +19,49 @@ define([
             var view = this;
 
             view.$el
-                    .html(view.template())
-                    .hide()
-                    .fadeIn(800);
+            .html(view.template())
+            .hide()
+            .fadeIn(800);
         },
         events: {
             "click #login-btn": "requestLogin",
-            "click #login-back-home": "destroy"
+            "click #login-back-home": "navigateToHomePage"
         },
         requestLogin: function(event) {
             var view = this;
             event.stopPropagation();
             event.preventDefault();
 
-            var username = view.$el.find("#inputEmail").val();
-            var password = view.$el.find("#inputPassword").val();
+            view.authModel.set("username", view.$el.find("#inputEmail").val());
+            view.authModel.set("password", view.$el.find("#inputPassword").val());
 
-            if (username !== "" && password !== "") {
-                var userAuth = new UserAuth({username: username, password: password});
-                userAuth.save(userAuth.attributes, {
+            if (view.authModel.isValid()) {
+                view.authModel.save(null, {
                     dataType: 'text',
-                    success: function() {
-                        view.destroy();
-                        require("routes").navigate("/edit", {trigger: true});
-                        Backbone.bus.trigger("notification", {
-                            message: "Welcome " + username + "!", status: "success"
-                        });
-                    },
-                    error: function() {
-                        Backbone.bus.trigger("notification", {
-                            message: "Incorrect username or password!",
-                            status: "error"
-                        });
-                    }
+                    success: view.onAuthSuccess,
+                    error: view.onAuthError
                 });
             } else {
-                var emptyField = username ? "password" : "username";
                 Backbone.bus.trigger("notification", {
-                    message: "You need to fill in a " + emptyField + "!",
+                    message: view.authModel.validationError,
                     status: "error"
                 });
             }
         },
-        destroy: function() {
+        onAuthError: function(){
+            Backbone.bus.trigger("notification", {
+                message: "Incorrect username or password!",
+                status: "error"
+            });
+        },
+        onAuthSuccess: function(attrs){
+            require("routes").navigate("/edit", {trigger: true});
+            Backbone.bus.trigger("notification", {
+                message: "Welcome " + attrs.username + "!", status: "success"
+            });
+        },
+        navigateToHomePage: function() {
             var view = this;
-            view.$el.children().remove();
             require("routes").navigate("/", {trigger: true});
         }
     });
