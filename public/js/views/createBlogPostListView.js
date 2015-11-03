@@ -1,13 +1,13 @@
 define([
     "backbone",
     "blogPostListView",
-    "createBlogPostView",
-], function (Backbone, BlogPostListView, CreateBlogPostView) {
+], function (Backbone, BlogPostListView) {
 
     var CreateBlogPostListView = BlogPostListView.extend({
-        initialize: function () {
+        initialize: function (options) {
             var view = this;
-            view.blogPostView = new CreateBlogPostView();
+            view.blogPostView = options.blogPostView;
+            view.blogPosts = options.blogPosts;
             Backbone.bus.on("refreshCreateBlogPostListView", view.refresh, view);
         },
         render: function () {

@@ -1,15 +1,13 @@
 define([
     "underscore",
     "backbone",
-    "blogPostListView",
     "homeView",
     "loginView",
-    "createBlogPostListView",
-    "editBlogPostListView",
     "notFoundView",
+    "masterDetailViewFactory",
     "notificationView",
     "adminPanelView",
-], function (_, Backbone, BlogPostListView, HomeView, LoginView, createBlogPostListView, EditBlogPostListView, NotFoundView) {
+], function (_, Backbone, HomeView, LoginView, NotFoundView, masterDetailViewFactory) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -25,11 +23,11 @@ define([
         initialize: function () {
             var router = this;
             router.notFoundView = new NotFoundView();
-            router.blogPostListView = new BlogPostListView();
+            router.blogMasterDetailView = masterDetailViewFactory.getView("blog");
+            router.editBlogMasterDetailView = masterDetailViewFactory.getView("edit");
+            router.createBlogMasterDetailView =  masterDetailViewFactory.getView("create");
             router.homeView = new HomeView();
             router.loginView = new LoginView();
-            router.createBlogPostListView = new createBlogPostListView();
-            router.editBlogPostListView = new EditBlogPostListView();
             router.bind( "all",  _.debounce(router.handleDisplayOfAdminPanel, 500));
         },
         handleDisplayOfAdminPanel: function () {
@@ -60,23 +58,23 @@ define([
         },
         loadBlogPage: function () {
             var router = this;
-            router.blogPostListView.render();
+            router.blogMasterDetailView.render();
         },
         loadBlogPost: function (id) {
             var router = this;
-            router.blogPostListView.render(id);
-        },
-        loadCreatePostPage: function () {
-            var router = this;
-            router.createBlogPostListView.render();
+            router.blogMasterDetailView.render(id);
         },
         loadEditBlogPage: function () {
             var router = this;
-            router.editBlogPostListView.render();
+            router.editBlogMasterDetailView.render();
         },
         loadEditPost: function (id) {
             var router = this;
-            router.editBlogPostListView.render(id);
+            router.editBlogMasterDetailView.render(id);
+        },
+        loadCreatePostPage: function () {
+            var router = this;
+            router.createBlogMasterDetailView.render();
         },
     });
 

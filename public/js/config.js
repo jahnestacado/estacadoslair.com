@@ -10,14 +10,14 @@ require.config({
         "backbone": "bower_components/backbone/backbone",
         "text": "bower_components/text/text",
         "moment": "bower_components/moment/moment",
-        
+
         //Backbone models
         "blogPost": "js/models/blogPost",
         "userAuth": "js/models/userAuth",
-        
+
         //Backbone collections
         "blogPosts": "js/collections/blogPosts",
-        
+
         //Backbone views
         "blogPostView": "js/views/blogPostView",
         "blogPostListView": "js/views/blogPostListView",
@@ -30,16 +30,17 @@ require.config({
         "notificationView": "js/views/notificationView",
         "notFoundView": "js/views/pageNotFoundView",
         "adminPanelView": "js/views/adminPanelView",
-        
+        "masterDetailViewFactory": "js/views/masterDetailViewFactory",
+
         //Backbone routes
         "routes": "js/routers/routes",
-        
+
         //Misc js deps
         "curtain": "js/curtain",
         "snowFlakes": "js/snow-flakes-anim",
         "fontLoader": "js/fontLoader",
         "backboneExtended": "js/backboneExtend",
-        
+
         //Underscore templates
         "homeTemplate": "templates/home.tpl",
         "listViewTemplate": "templates/listView.tpl",
@@ -51,7 +52,7 @@ require.config({
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
         "createBlogPostTemplate": "templates/createBlogPost.tpl",
         "adminPanelViewTemplate": "templates/adminPanelView.tpl",
-        
+
         //Boot file
         "app": "js/app",
     },

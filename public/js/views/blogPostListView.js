@@ -1,38 +1,33 @@
 define([
     "jquery",
     "backbone",
-    "blogPosts",
     "text!listViewTemplate",
     "curtain",
-    "blogPostView",
-    "blogPost"
-            /*  "routes" Uses routes module but with inline-require to avoid circular dependency*/
-], function ($, Backbone, BlogPosts, viewTemplate, CURTAIN, BlogPostView, BlogPost) {
+
+], function ($, Backbone, viewTemplate, CURTAIN) {
 
     var BlogPostListView = Backbone.View.extend({
         el: "#curtain-left",
         template: _.template(viewTemplate),
-        initialize: function () {
+        initialize: function (options) {
             var view = this;
-            view.blogPostView = new BlogPostView();
+            view.blogPostView = options.blogPostView;
+            view.blogPosts = options.blogPosts;
         },
         render: function (blogId) {
             var view = this;
-            var blogPosts = new BlogPosts();
 
-            blogPosts.fetch({
+            view.blogPosts.fetch({
                 success: function (blogPosts) {
                     Backbone.bus.trigger("fadeOutHomeView");
                     CURTAIN.open();
                     view.$el.html(view.template({posts: blogPosts.models}));
 
                     if (blogPosts.models.length) {
-
                         if (!blogId) {
                             //If blogId is not specified pick first blog post
                             blogId = blogPosts.models[0].attributes._id;
                         }
-                        
                         view.renderBlogPost(blogId);
                     }
                 },
@@ -48,13 +43,21 @@ define([
             var view = this;
             if (id) {
                 $("#" + id).addClass("active");
-                var blogPost = new BlogPost({"_id": id});
-                view.blogPostView.render(blogPost);
+                var selectedBlogPost = view.getModelFromCollection(id);
+                view.blogPostView.render(selectedBlogPost);
             }
         },
         events: {
             "click #back-home": "loadHomePage",
             "click .list-group a": "selectBlogPost"
+        },
+        getModelFromCollection: function(id){
+            var view = this;
+            var model = view.blogPosts.models.reduce(function(o, m){
+                return m.id === id ? o = m: o;
+            },{});
+
+            return model;
         },
         loadHomePage: function () {
             CURTAIN.close();

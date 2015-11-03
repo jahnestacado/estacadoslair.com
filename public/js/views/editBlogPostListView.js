@@ -3,17 +3,17 @@ define([
     "underscore",
     "backbone",
     "blogPostListView",
-    "blogPost",
     "text!editListViewTemplate",
-    "editBlogPostView"
-], function ($, _, Backbone, BlogPostListView, BlogPost, viewTemplate, EditBlogPostView) {
+], function ($, _, Backbone, BlogPostListView, viewTemplate) {
 
     var EditBlogPostListView = BlogPostListView.extend({
         template: _.template(viewTemplate),
-        initialize: function () {
+        initialize: function (options) {
             var view = this;
-            view.blogPostView = new EditBlogPostView();
+            view.blogPostView = options.blogPostView;
+            view.blogPosts = options.blogPosts;
             Backbone.bus.on("refreshEditBlogPostListView", view.refresh, view);
+            view.blogPosts.on("change:date", view.onModelChanged,view);
         },
         render: function (blogId) {
             var view = this;
@@ -30,8 +30,15 @@ define([
                 }
             });
         },
+        onModelChanged: function(model){
+            var view = this;
+            var blogId = model.attributes.OK.id;
+            if(blogId){
+                view.refresh(blogId);
+            }
+        },
         events: {
-            "click .icon.icon-bin2": "deletePost"
+            "click .icon.icon-cross": "deletePost"
         },
         deletePost: function (event) {
             event.stopPropagation();
@@ -42,9 +49,9 @@ define([
 
             if (isDeletionConfirmed) {
                 var view = this;
-                var blogPost = new BlogPost({_id: id});
+                var targetBlogPost = view.getModelFromCollection(id);
 
-                blogPost.destroy({
+                targetBlogPost.destroy({
                     dataType: "text",
                     success: function () {
                         Backbone.bus.trigger("notification", {

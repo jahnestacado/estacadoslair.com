@@ -9,6 +9,10 @@ define([
 ], function ($, _, Backbone, viewTemplate, BlogPost, CURTAIN, moment) {
 
     var CreateBlogPostView = Backbone.View.extend({
+        initialize: function(){
+            var view = this;
+            view.blogPostModel = new BlogPost();
+        },
         el: "#curtain-right",
         template: _.template(viewTemplate),
         render: function () {
@@ -24,13 +28,15 @@ define([
         savePost: function (event) {
             var view = this;
             event.preventDefault();
-            var blogPostModel = new BlogPost();
 
-            blogPostModel.set("title", view.$el.find("#post-title").val());
             var editorContent = view.filterContent();
-            blogPostModel.set("body", editorContent);
-            blogPostModel.set("date", moment().format("MMM DD, YYYY / hh:mm A"));
-            blogPostModel.save(blogPostModel.attributes, {
+            view.blogPostModel.set({
+                title: view.$el.find("#post-title").val(),
+                body: editorContent,
+                date: moment().format("MMM DD, YYYY / hh:mm A")
+            });
+
+            view.blogPostModel.save(view.blogPostModel.attributes, {
                 dataType: "text",
                 success: function () {
                     Backbone.bus.trigger("notification", {
