@@ -181,6 +181,11 @@ a.link-btn:focus{
     color:red;
 }
 
+.list-group-item .delete-btn{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
 #curtain-left a.list-group-item {
     text-overflow: ellipsis;
     white-space: nowrap;

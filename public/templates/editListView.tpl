@@ -5,7 +5,7 @@
     <div class="list-group">
 
         <% _.each( posts, function( post){ %>
-        <a id=<%= post.get("_id")%>  class="list-group-item" > <%= post.get("title") %> <span class="icon icon-bin2 delete-btn pull-right" data-id=<%= post.get("_id") %>></span> </a>
+        <a id=<%= post.get("_id")%>  class="list-group-item" > <%= post.get("title") %> <span class="icon icon-cross delete-btn pull-right" data-id=<%= post.get("_id") %>></span> </a>
         <% }); %>
 
     </div>
