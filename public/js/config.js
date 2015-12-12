@@ -10,6 +10,7 @@ require.config({
         "backbone": "bower_components/backbone/backbone",
         "text": "bower_components/text/text",
         "moment": "bower_components/moment/moment",
+        "curtainjs": "bower_components/curtainjs/js/jquery.curtain",
 
         //Backbone models
         "blogPost": "js/models/blogPost",
