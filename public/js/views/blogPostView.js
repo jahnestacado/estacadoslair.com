@@ -6,11 +6,11 @@ define([
 ], function($, _, Backbone, viewTemplate) {
 
     var BlogPostView = Backbone.View.extend({
-        el: "#curtain-right",
+        el: ".curtain-B",
         template: _.template(viewTemplate),
         render: function(blogPostModel) {
             var view = this;
-            $("#curtain-right").scrollTop(0);
+            $(".curtain-B").scrollTop(0);
 
             if (blogPostModel) {
                 blogPostModel.fetch({

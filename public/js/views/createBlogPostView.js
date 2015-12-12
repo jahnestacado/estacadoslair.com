@@ -13,7 +13,7 @@ define([
             var view = this;
             view.blogPostModel = new BlogPost();
         },
-        el: "#curtain-right",
+        el: ".curtain-B",
         template: _.template(viewTemplate),
         render: function () {
             var view = this;

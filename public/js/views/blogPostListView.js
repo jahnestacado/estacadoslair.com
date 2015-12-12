@@ -7,7 +7,7 @@ define([
 ], function ($, Backbone, viewTemplate, CURTAIN) {
 
     var BlogPostListView = Backbone.View.extend({
-        el: "#curtain-left",
+        el: ".curtain-A",
         template: _.template(viewTemplate),
         initialize: function (options) {
             var view = this;

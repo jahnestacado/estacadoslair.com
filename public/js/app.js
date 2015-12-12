@@ -9,8 +9,8 @@ require([
         $(document).ready(function () {
             Backbone.history.start({pushState: true});
             $(window).on("resize", function () {
-                // When curtain is open on window resize navigate to home page and close it
-                if ($("#curtain-left, #curtain-right").is(":visible")) {
+                // When curtain is open on window resize navigate to home page
+                if ($(".curtain-A-closed, .curtain-B-closed").length) {
                     ROUTER.navigate("/", {trigger: true});
                 }
             });
