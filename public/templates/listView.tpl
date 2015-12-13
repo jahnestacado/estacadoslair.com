@@ -5,11 +5,11 @@
     <div class="panel-heading">
         <h3 class="panel-title active">Available Posts</h3>
     </div>
-    <div class="list-group">
+    <ul class="list-group">
 
         <% _.each( posts, function( post){ %>
-        <a id=<%= post.get("_id")%>  class="list-group-item" > <%= post.get("title") %> </a>
+        <li><a id=<%= post.get("_id")%>  class="list-group-item" > <%= post.get("title") %> </a></li>
         <% }); %>
 
-    </div>
+    </ul>
 </div>
