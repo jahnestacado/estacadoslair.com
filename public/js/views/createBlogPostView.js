@@ -17,8 +17,6 @@ define([
         template: _.template(viewTemplate),
         render: function () {
             var view = this;
-            CURTAIN.open();
-
             view.$el.html(view.template());
             view.initCKEditor();
         },
@@ -36,28 +34,15 @@ define([
                 date: moment().format("MMM DD, YYYY / hh:mm A")
             });
 
-            view.blogPostModel.save(view.blogPostModel.attributes, {
-                dataType: "text",
-                success: function () {
-                    Backbone.bus.trigger("notification", {
-                        message: "Created post!",
-                        status: "success"
-                    });
-                    Backbone.bus.trigger("refreshCreateBlogPostListView");
-                },
-                error: function () {
-                    Backbone.bus.trigger("notification", {
-                        message: "Couldn't create post!",
-                        status: "error"
-                    });
-                }
-            });
+            Backbone.bus.trigger("createBlogPost", view.blogPostModel);
         },
         initCKEditor: function () {
-            CKEDITOR.replace("post-body", {
-                extraPlugins: "codesnippet",
-                codeSnippet_theme: "ir_black"
-            });
+            CKEDITOR
+                .replace("post-body", {
+                    extraPlugins: "codesnippet",
+                    codeSnippet_theme: "ir_black"
+                })
+            ;
         },
         filterContent: function () {
             //Workaround to remove handler icons which was servred over http and caused warnings + was ugly and of no use

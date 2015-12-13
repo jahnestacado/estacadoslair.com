@@ -1,14 +1,15 @@
 define([
     "backbone",
     "blogPostListView",
-], function (Backbone, BlogPostListView) {
+    "createBlogPostView"
+], function (Backbone, BlogPostListView, CreateBlogPostView ) {
 
     var CreateBlogPostListView = BlogPostListView.extend({
-        initialize: function (options) {
+        initialize: function (blogPosts) {
             var view = this;
-            view.blogPostView = options.blogPostView;
-            view.blogPosts = options.blogPosts;
-            Backbone.bus.on("refreshCreateBlogPostListView", view.refresh, view);
+            view.blogPostView = new CreateBlogPostView();
+            view.blogPosts = blogPosts;
+            Backbone.bus.on("createBlogPost", view.createNewBlogPost, view);
         },
         render: function () {
             var view = this;
@@ -30,6 +31,21 @@ define([
             view.$el.find(".list-group a").css({'pointer-events': "none"});
             view.blogPostView.render();
         },
+        createNewBlogPost: function(model){
+            var view = this;
+            console.log("before",view.blogPosts);
+            model.save(model.attributes,{
+                dataType: "text",
+                success: function (model, response) {
+                    Backbone.bus.trigger("notification", {message: "Created post!",status: "success"});
+                    view.blogPosts.add(JSON.parse(response));
+                    view.render();
+                },
+                error: function () {
+                    Backbone.bus.trigger("notification", {message: "Couldn't create post!",status: "error"});
+                }
+            });
+        }
     });
 
     return CreateBlogPostListView;
