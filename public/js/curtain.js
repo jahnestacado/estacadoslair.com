@@ -7,8 +7,8 @@ define(["curtainjs","jquery"], function (c, $) {
             widthRatioCurtainB : 0.83,
         },
         portrait : {
-            heightRatioCurtainA : 0.2,
-            heightRatioCurtainB : 0.8,
+            heightRatioCurtainA : 0.25,
+            heightRatioCurtainB : 0.75,
         }
     });
 
