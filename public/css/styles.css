@@ -45,9 +45,9 @@
         font-size: 20px;
     }
 
+    li.active a.list-group-item:hover,
     li.active a.list-group-item:focus{
         opacity:0.8;
-        background-color: #B7B9CE!important;
     }
 
     .curtain-A-opened{
@@ -159,13 +159,12 @@ a.list-group-item:first-letter{
     border-bottom: 1px solid #f5f5f5;
 }
 
-a.list-group-item:hover{
+li a.list-group-item:hover{
     box-shadow: none;
-    opacity:0.5;
-    color: black;
+    background-color: #E8E8C2;
 }
 
-a.list-group-item:focus {
+li a.list-group-item:focus {
     box-shadow: none;
 }
 
