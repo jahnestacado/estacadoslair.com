@@ -33,7 +33,6 @@ define([
         },
         createNewBlogPost: function(model){
             var view = this;
-            console.log("before",view.blogPosts);
             model.save(model.attributes,{
                 dataType: "text",
                 success: function (model, response) {

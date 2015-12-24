@@ -28,14 +28,14 @@ define([
                         blogId = blogPosts.models[0].attributes._id;
                     }
                     view.renderBlogPost(blogId);
-                }
 
-                view.$el.find(".list-group li").swipe( {
-                    swipe:function(event, direction) {
-                        view.swipeBlogListItem(event, direction);
-                    },
-                    threshold:0
-                });
+                    view.$el.find(".list-group li").swipe( {
+                        swipe:function(event, direction) {
+                            view.swipeBlogListItem(event, direction);
+                        },
+                        threshold:0
+                    });
+                }
             };
 
             if(!view.blogPosts.length){
