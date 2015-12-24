@@ -3,7 +3,7 @@ require.config({
     deps: ["app"],
     paths: {
         //3rd Party libs
-        "jquery": "bower_components/jquery/dist/jquery",
+        "jquery":"bower_components/jquery/dist/jquery",
         "boostrap": "bower_components/bootstrap/dist/js/bootstrap",
         "highlightjs": "bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
         "underscore": "bower_components/underscore/underscore",
@@ -11,6 +11,7 @@ require.config({
         "text": "bower_components/text/text",
         "moment": "bower_components/moment/moment",
         "curtainjs": "bower_components/curtainjs/js/jquery.curtain",
+        "touchswipe": "bower_components/jquery-touchswipe/jquery.touchSwipe",
 
         //Backbone models
         "blogPost": "js/models/blogPost",
@@ -58,6 +59,10 @@ require.config({
         "app": "js/app",
     },
     shim: {
+        "touchswipe":{
+            "deps": ["jquery"],
+            "exports": "$"
+        },
         "underscore": {
             "exports": "_"
         },

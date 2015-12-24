@@ -1,10 +1,10 @@
 require([
     "jquery",
     "backboneExtended",
+    "touchswipe",
     "fontLoader",
     "snowFlakes",
 ], function ($, Backbone) {
-
     require(["routes"], function (ROUTER) {
         $(document).ready(function () {
             Backbone.history.start({pushState: true});
@@ -16,5 +16,4 @@ require([
             });
         });
     });
-
 });
