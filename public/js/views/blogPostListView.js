@@ -79,11 +79,7 @@ define([
         renderBlogPost: function (id) {
             var view = this;
             if (id) {
-                $("#" + id).parent()
-                        .addClass("active")
-                        .fadeOut(0)
-                        .fadeIn(50);
-
+                $("#" + id).parent().addClass("active");
                 var selectedBlogPost = view.getModelFromCollection(id);
                 view.blogPostView.render(selectedBlogPost);
             }
