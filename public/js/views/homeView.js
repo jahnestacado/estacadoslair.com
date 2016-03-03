@@ -29,7 +29,7 @@ define([
         },
         fadeInHome: function() {
             var view = this;
-            view.$el.children().fadeOut(0).fadeIn(1200)
+            view.$el.children().fadeOut(0).fadeIn(800);
         },
         logoChangeOnHover: function() {
             var view = this;
