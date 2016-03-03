@@ -81,6 +81,7 @@ define([
             if (id) {
                 $("#" + id).parent().addClass("active");
                 var selectedBlogPost = view.getModelFromCollection(id);
+                $("meta[property='og\\:title']").attr("content", selectedBlogPost.attributes.title);
                 view.blogPostView.render(selectedBlogPost);
             }
         },

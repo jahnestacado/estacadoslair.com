@@ -17,7 +17,7 @@ define([
         template: _.template(template),
         render: function() {
             CURTAIN.close();
-
+            $("meta[property='og\\:title']").attr("content", "Ioannis Tzanellis. Software Alchemy");
             var view = this;
             view.$el.html(view.template());
             view.fadeInHome();
