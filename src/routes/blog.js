@@ -1,42 +1,47 @@
 var express = require("express");
 var blogRouter = express.Router();
-var mongoskin = require("mongoskin");
-var dbConnection = require("./../db/config.js").dbConnection;
 var auth = require("./../middleware/auth.js");
-var blogCollection = dbConnection.collection("blog");
 var path = "/articles";
+var dbUtils = require("./../db/blog-collection-utils.js");
+var createError = require("http-errors");
 
-blogRouter.get(path, function(request, response) {
-    blogCollection.find().toArray(function(error, results) {
+blogRouter.get(path, function(request, response, next) {
+    dbUtils.findAll(function(results){
         response.status(200).json(results);
+    }, function(error){
+        next(createError(404));
     });
 });
 
-blogRouter.get(path + "/:id", function(request, response) {
-    blogCollection.findOne({_id: mongoskin.helper.toObjectID(request.params.id)}, function(error, results) {
+blogRouter.get(path + "/:id", function(request, response, next) {
+    dbUtils.findOne(request.params.id, function(results){
         response.status(200).json(results);
+    }, function(error){
+        next(createError(404));
     });
 });
 
-blogRouter.post(path, auth, function(request, response) {
-    blogCollection.insert(request.body, function(error, results) {
-        if (results) {
-            response.status(200).json(results);
-        }
+blogRouter.post(path, auth, function(request, response, next) {
+    dbUtils.insert(request.body, function(results){
+        response.status(201).json(results);
+    }, function(error){
+        next(error);
     });
 });
 
-blogRouter.delete(path + "/:id", auth, function(request, response) {
-    blogCollection.remove({_id: mongoskin.helper.toObjectID(request.params.id)}, function(error, results) {
+blogRouter.delete(path + "/:id", auth, function(request, response, next) {
+    dbUtils.remove(request.params.id, function(results){
         response.status(200).json(results);
+    }, function(error){
+        next(error);
     });
 });
 
-blogRouter.put(path + "/:id", auth, function(request, response) {
-    var id = mongoskin.helper.toObjectID(request.params.id);
-    delete request.body._id;
-    blogCollection.update({_id: id}, request.body, function(error, results) {
+blogRouter.put(path + "/:id", auth, function(request, response, next) {
+    dbUtils.update(request.body, function(results){
         response.status(200).json(results);
+    }, function(error){
+        next(error);
     });
 });
 
