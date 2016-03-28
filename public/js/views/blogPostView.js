@@ -13,11 +13,7 @@ define([
             $(".curtain-B").scrollTop(0);
 
             if (blogPostModel) {
-                blogPostModel.fetch({
-                    success: function() {
-                        view.$el.html(view.template(blogPostModel.attributes));
-                    },
-                });
+                view.$el.html(view.template(blogPostModel.attributes));
             }
         },
     });
