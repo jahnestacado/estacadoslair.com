@@ -29,4 +29,4 @@ app.use("/blog", require("./routes/blog.js"));
 app.use("/upload", require("./routes/fileUpload.js"));
 
 //This router should be used always in the end
-app.use(/^(login | blog)*/, require("./routes/hashbangRedirect.js"));
+app.use("*", require("./routes/hashbangRedirect.js"));
