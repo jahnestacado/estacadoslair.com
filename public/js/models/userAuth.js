@@ -2,8 +2,8 @@ define(["backbone"], function(Backbone) {
 
     var UserAuth = Backbone.Model.extend({
         defaults: {
-            username: "",
-            password: "",
+            username: "not-set",
+            password: "not-set",
         },
         validate: function(attrs){
             var error;
