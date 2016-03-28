@@ -12,11 +12,11 @@ define([
     var AppRouter = Backbone.Router.extend({
         routes: {
             "": "loadHomePage",
-            "blog/:id": "loadBlogPost",
+            "blog/:id/:slug": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
             "login": "loadLoginPage",
-            "edit/:id": "loadEditPost",
+            "edit/:id/:slug": "loadEditPost",
             "edit": "loadEditBlogPage",
             ":notFound": "loadNotFoundPage",
         },

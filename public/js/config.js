@@ -12,6 +12,7 @@ require.config({
         "moment": "bower_components/moment/moment",
         "curtainjs": "bower_components/curtainjs/js/jquery.curtain",
         "touchswipe": "bower_components/jquery-touchswipe/jquery.touchSwipe",
+        "speakingurl": "bower_components/speakingurl/lib/speakingurl",
 
         //Backbone models
         "blogPost": "js/models/blogPost",

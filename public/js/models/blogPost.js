@@ -1,10 +1,11 @@
-define(["backbone"], function (Backbone) {
+define(["backbone", "speakingurl"], function (Backbone, getSlug) {
 
     var BlogPost = Backbone.Model.extend({
         defaults: {
-            title: "Undefined",
-            date: "Undefined",
-            body: "Undefined",
+            title: "not-set",
+            date: "not-set",
+            body: "not-set",
+            slug: "not-set"
         },
         idAttribute: "_id",
         initialize: function (options) {
@@ -13,22 +14,25 @@ define(["backbone"], function (Backbone) {
             if (options && options._id) {
                 model.set("_id", options._id);
             }
+            model.generateSlug();
+            model.on("change:title", model.generateSlug, model);
         },
         url: function () {
-            var id = this.get("_id");
-            var url;
+            var model = this;
+            var id = model.get("_id");
+            var url = "/blog/articles";
 
-            if (id) {
-                url = "/blog/articles/" + this.get("_id");
-            } else {
-                url = "/blog/articles";
+            if (id){
+                url += "/" + model.get("_id") + "/" + model.get("slug");
             }
 
             return url;
+        },
+        generateSlug: function(){
+            var model = this;
+            model.set("slug", getSlug(model.get("title")));
         }
     });
 
     return BlogPost;
 });
-
-

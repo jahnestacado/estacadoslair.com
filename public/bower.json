@@ -24,6 +24,7 @@
     "moment": "~2.10.3",
     "Hover": "~2.0.2",
     "curtainjs": "~1.0.2",
-    "jquery-touchswipe": "~1.6.15"
+    "jquery-touchswipe": "~1.6.15",
+    "speakingurl": "~9.0.0"
   }
 }

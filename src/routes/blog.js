@@ -13,7 +13,7 @@ blogRouter.get(path, function(request, response, next) {
     });
 });
 
-blogRouter.get(path + "/:id", function(request, response, next) {
+blogRouter.get(path + "/:id/:slug", function(request, response, next) {
     dbUtils.findOne(request.params.id, function(results){
         response.status(200).json(results);
     }, function(error){
@@ -29,7 +29,7 @@ blogRouter.post(path, auth, function(request, response, next) {
     });
 });
 
-blogRouter.delete(path + "/:id", auth, function(request, response, next) {
+blogRouter.delete(path + "/:id/:slug", auth, function(request, response, next) {
     dbUtils.remove(request.params.id, function(results){
         response.status(200).json(results);
     }, function(error){
@@ -37,7 +37,7 @@ blogRouter.delete(path + "/:id", auth, function(request, response, next) {
     });
 });
 
-blogRouter.put(path + "/:id", auth, function(request, response, next) {
+blogRouter.put(path + "/:id/:slug", auth, function(request, response, next) {
     dbUtils.update(request.body, function(results){
         response.status(200).json(results);
     }, function(error){

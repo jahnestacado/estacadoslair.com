@@ -25,7 +25,9 @@ define([
                 if (blogPosts.models.length) {
                     if (!blogId) {
                         //If blogId is not specified pick first blog post
-                        blogId = blogPosts.models[0].attributes._id;
+                        blogId = blogPosts.models[0].get("_id");
+                        slug = blogPosts.models[0].get("slug");
+                        require("routes").navigate("#" + view.getPathDomain() + "/" + blogId + "/" + slug);
                     }
                     view.renderBlogPost(blogId);
 
@@ -81,7 +83,6 @@ define([
             if (id) {
                 $("#" + id).parent().addClass("active");
                 var selectedBlogPost = view.getModelFromCollection(id);
-                $("meta[property='og\\:title']").attr("content", selectedBlogPost.attributes.title);
                 view.blogPostView.render(selectedBlogPost);
             }
         },
@@ -105,7 +106,8 @@ define([
         selectBlogPost: function (listElQ) {
             var view = this;
             var id = listElQ.find("a").attr("id");
-            require("routes").navigate("#" + view.getPathDomain() + "/" + id, {trigger: true});
+            var model = view.getModelFromCollection(id);
+            require("routes").navigate("#" + view.getPathDomain() + "/" + id + "/" + model.get("slug"), {trigger: true});
         },
         getPathDomain: function () {
             var pathDomain = document.URL.split("/")[3];

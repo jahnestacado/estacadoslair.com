@@ -10,14 +10,12 @@ define([
         el: "#icon-bar",
         initialize: function() {
             var view = this;
-
             // Attach fadeOutHomeView function on the bus in order to be accessible from other views
             Backbone.bus.on("fadeOutHomeView", view.fadeOutHome, view);
         },
         template: _.template(template),
         render: function() {
             CURTAIN.close();
-            $("meta[property='og\\:title']").attr("content", "Ioannis Tzanellis. Software Alchemy");
             var view = this;
             view.$el.html(view.template());
             view.fadeInHome();
