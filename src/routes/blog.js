@@ -14,7 +14,7 @@ blogRouter.get(path, function(request, response, next) {
 });
 
 blogRouter.get(path + "/:id/:slug", function(request, response, next) {
-    dbUtils.findOne(request.params.id, function(results){
+    dbUtils.findOne({id: request.params.id, slug: request.params.slug}, function(results){
         response.status(200).json(results);
     }, function(error){
         next(createError(404));
