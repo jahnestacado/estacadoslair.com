@@ -16,19 +16,14 @@ define([
         },
         render: function (blogId) {
             var view = this;
-
             var updateUI = function(blogPosts){
                 Backbone.bus.trigger("fadeOutHomeView");
                 CURTAIN.open();
                 view.$el.html(view.template({posts: blogPosts.models}));
 
                 if (blogPosts.models.length) {
-                    if (!blogId) {
-                        //If blogId is not specified pick first blog post
-                        blogId = blogPosts.models[0].get("_id");
-                        slug = blogPosts.models[0].get("slug");
-                        require("routes").navigate("#" + view.getPathDomain() + "/" + blogId + "/" + slug);
-                    }
+                    // If blogId is not specified pick first blog post
+                    blogId = blogId || blogPosts.models[0].get("_id");
                     view.renderBlogPost(blogId);
 
                     view.$el.find(".list-group li").swipe( {
@@ -80,10 +75,13 @@ define([
         },
         renderBlogPost: function (id) {
             var view = this;
-            if (id) {
+            var selectedBlogPost = view.getModelFromCollection(id);
+            if (selectedBlogPost) {
                 $("#" + id).parent().addClass("active");
-                var selectedBlogPost = view.getModelFromCollection(id);
+                require("routes").navigate("#" + view.getPathDomain() + "/" + id + "/" + selectedBlogPost.get("slug"));
                 view.blogPostView.render(selectedBlogPost);
+            } else{
+                require("routes").navigate("#not-found", {trigger: true});
             }
         },
         events: {

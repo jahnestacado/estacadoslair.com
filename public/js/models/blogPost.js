@@ -14,7 +14,7 @@ define(["backbone", "speakingurl"], function (Backbone, getSlug) {
             if (options && options._id) {
                 model.set("_id", options._id);
             }
-            model.generateSlug();
+            model.get("slug") || model.generateSlug();
             model.on("change:title", model.generateSlug, model);
         },
         url: function () {

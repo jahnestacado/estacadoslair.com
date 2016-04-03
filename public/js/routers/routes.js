@@ -13,6 +13,7 @@ define([
         routes: {
             "": "loadHomePage",
             "blog/:id/:slug": "loadBlogPost",
+            "blog/:id": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
             "login": "loadLoginPage",
