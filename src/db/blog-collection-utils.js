@@ -9,8 +9,14 @@ var Utils = {
             error ? onError(error) : onDone(results);
         });
     },
-    findOne: function(id, onDone, onError){
-        blogCollection.findOne({_id: mongoskin.helper.toObjectID(id)}, function(error, results) {
+    findOne: function(queryObject, onDone, onError){
+        var query = Object.keys(queryObject).reduce(function(obj, key){
+            var value = (key === "id") ? mongoskin.helper.toObjectID(queryObject[key]) : queryObject[key];
+            key = (key === "id") ? "_id" : key;
+            obj[key] = value;
+            return obj;
+        }, {});
+        blogCollection.findOne(query, function(error, results) {
             error ? onError(error) : onDone(results);
         });
     },
