@@ -7,13 +7,13 @@ var HTML = fs.readFileSync(path.join(cwd, "public/index.html")).toString();
 var DynamicGraphTags = require("./../templates/dynamic-graph-tags.js");
 var addGraphTags = require("./../middleware/graphTags.js");
 
-graphTagRouter.get("/", addGraphTags, function(request, response){
-    var requestHtml = HTML;
+graphTagRouter.get("/", addGraphTags, function(request, response, next){
+    var requestedHtml = HTML;
     if(request.graphTags){
-        requestHtml = HTML.replace("<head>", "<head>" + request.graphTags);
+        requestedHtml = HTML.replace("<head>", "<head>" + request.graphTags);
         delete request.graphTags;
     }
-     response.send(requestHtml);
+    response.send(requestedHtml);
 });
 
 module.exports = graphTagRouter;
