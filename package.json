@@ -16,6 +16,7 @@
     "mongoskin": "^1.4.12",
     "multer": "^1.0.6",
     "q": "^1.4.1",
+    "sanitize-html": "^1.11.4",
     "speakingurl": "^9.0.0",
     "underscore": "^1.8.3"
   },
