@@ -18,7 +18,7 @@ define([
             "login": "loadLoginPage",
             "edit/:id/:slug": "loadEditPost",
             "edit": "loadEditBlogPage",
-            ":notFound": "loadNotFoundPage",
+            "*notFound": "loadNotFoundPage",
         },
         initialize: function () {
             var router = this;
@@ -44,7 +44,7 @@ define([
             var router = this;
             router.notFoundView.render();
             Backbone.bus.trigger("notification", {
-                message: "You are far away from Home son!",
+                message: "Could not find requested page!",
                 status: "error"
             });
         },
