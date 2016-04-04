@@ -6,7 +6,7 @@ hashbangRedirect.get("*", function (request, response, next) {
     var originalUrl = request.originalUrl;
     var hashbangedUrl = originalUrl.replace("/", "/#");
     if (originalUrl[0] !== "#") {
-        request.session.referer = originalUrl;
+        global.referer = originalUrl;
         response.redirect("http://" + request.get("host") + hashbangedUrl);
     } else{
         next(createError(404));

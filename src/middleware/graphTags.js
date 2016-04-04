@@ -6,8 +6,8 @@ var sanitizeHtml = require("sanitize-html");
 var DESCRIPTION_LENGTH = 200;
 
 module.exports =  function addGraphTags(request, response, next){
-    var refererUrl = request.session.referer;
-    delete request.session.referer;
+    var refererUrl = global.referer;
+    delete global.referer;
 
     var deferred = Q.defer();
     var promise =  deferred.promise;
