@@ -54,10 +54,10 @@ define([
                 status: "error"
             });
         },
-        onAuthSuccess: function(attrs){
+        onAuthSuccess: function(response){
             require("routes").navigate("/edit", {trigger: true});
             Backbone.bus.trigger("notification", {
-                message: "Welcome " + attrs.username + "!", status: "success"
+                message: "Welcome " + response.attributes.username + "!", status: "success"
             });
         },
         navigateToHomePage: function() {
