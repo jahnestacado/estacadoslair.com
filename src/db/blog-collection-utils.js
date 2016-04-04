@@ -1,4 +1,3 @@
-var bus = require("hermes-bus");
 var mongoskin = require("mongoskin");
 var dbConnection = require("./../db/config.js").dbConnection;
 var blogCollection = dbConnection.collection("blog");
