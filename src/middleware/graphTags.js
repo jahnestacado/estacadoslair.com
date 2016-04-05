@@ -3,11 +3,8 @@ var Q = require("q");
 var DynamicGraphTags = require("./../templates/dynamic-graph-tags.js");
 var createError = require("http-errors");
 var sanitizeHtml = require("sanitize-html");
-var path = require("path");
-var cwd = process.cwd();
-var fs = require("fs");
-var HTML = fs.readFileSync(path.join(cwd, "public/index.html")).toString();
-var DESCRIPTION_LENGTH = 200;
+var bus = require("hermes-bus");
+var DESCRIPTION_LENGTH = 300;
 var SCRAPER_AGENTS = ["facebookexternalhit", "LinkedInBot"];
 
 module.exports =  function addGraphTags(request, response, next){
@@ -16,7 +13,7 @@ module.exports =  function addGraphTags(request, response, next){
     var isScraperAgent = SCRAPER_AGENTS.some(function(validAgent){
         return agent.indexOf(validAgent) > -1;
     });
-    
+
     var deferred = Q.defer();
     var promise =  deferred.promise;
     if(isScraperAgent && /^(\/blog\/)/.test(refererUrl) && refererUrl.split("/").length === 4){
@@ -32,8 +29,9 @@ module.exports =  function addGraphTags(request, response, next){
         }, deferred.reject)
 
         promise.then(function(graphTags){
-            const htmlWithGraphTags = HTML.replace("<head>", "<head>" + graphTags);
-            response.status(200).send(htmlWithGraphTags);
+            bus.triggerSetGraphTags(graphTags).then(function(){
+                next();
+            });
         }, function(error){
             response.sendStatus(error.status || 500);
         });
