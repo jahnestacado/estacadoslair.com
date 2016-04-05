@@ -14,7 +14,6 @@ app.use(cookieParser("secret"));
 app.use(session());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use("/", require("./routes/app.js"));
 app.use(express.static(__dirname + "/../public"));
 
 //Start HTTPS server
