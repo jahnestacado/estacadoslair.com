@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         'string-replace': {
             updateHtmlIncludes: {
                 files: {
-                    'public/index.html': "public/index.html"
+                    'public/webapp.html': "public/webapp.html"
                 },
                 options: {
                     replacements: [
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
             },
             updateFaviconUrl: {
                 files: {
-                    'public/index.html': "public/index.html"
+                    'public/webapp.html': "public/webapp.html"
                 },
                 options: {
                     replacements: [
