@@ -46,6 +46,10 @@ module.exports = function (grunt) {
                         {
                             pattern: "images/favicon.ico",
                             replacement: "https://estacadoslair.com/images/favicon.ico"
+                        },
+                        {
+                            pattern: "images/estacadoslair-thumbnail.png",
+                            replacement: "https://estacadoslair.com/images/estacadoslair-thumbnail.png"
                         }
                     ]
                 }
