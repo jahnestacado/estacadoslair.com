@@ -20,7 +20,7 @@ module.exports =  function addGraphTags(request, response, next){
         var id = refererUrl.match(/\/blog\/(.*)\/.*/)[1];
         dbUtils.findOne({id: id}, function(results){
             if(results){
-                results.url = "https://" + request.get("host") + refererUrl + "/";
+                results.url = "https://" + request.get("host") + refererUrl;
                 results.description = getPostDescription(results.body);
                 deferred.resolve(DynamicGraphTags(results));
             } else{
@@ -29,8 +29,9 @@ module.exports =  function addGraphTags(request, response, next){
         }, deferred.reject)
 
         promise.then(function(graphTags){
-            bus.triggerSetGraphTags(graphTags).then(function(){
-                next();
+            bus.triggerSendGraphTags(function(html){
+                var requestedHtml = html.replace("<head>", "<head>" + graphTags);
+                response.send(requestedHtml);
             });
         }, function(error){
             response.sendStatus(error.status || 500);
