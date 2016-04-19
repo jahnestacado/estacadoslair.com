@@ -33,7 +33,6 @@ define([
 
         },
         showDisqus: function(blogPostModel){
-            var disqus_developer = 1;
             if(typeof DISQUS !== "undefined"){
                 DISQUS.reset({
                     reload: true,
