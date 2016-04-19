@@ -10,7 +10,10 @@
             <li><a  target="_blank" title="Publish on WordPress" onclick="window.open('https://wordpress.com/press-this.php?u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;"><img class="hvr-float" src="/images/wordpress.png"></a></li>
             <li><a  target="_blank" title="Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&body=' +  encodeURIComponent(document.URL)); return false;"><img class="hvr-float" src="/images/email.png"></a></li>
         </ul>
+
         <p class="date"><%= date %></p>
+
+        <div id="disqus_thread"></div>
     </div>
 
 </div>
