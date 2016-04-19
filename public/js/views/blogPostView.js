@@ -52,6 +52,39 @@ define([
                 };
             }
         },
+        events: {
+            "click ul.share-buttons": "share"
+        },
+        share: function(event){
+            event.stopPropagation();
+            var elQ = $(event.target);
+            var title = encodeURIComponent($(".post-title").text());
+            var postUrl = encodeURIComponent(document.URL);
+
+            var url;
+            switch(true){
+                case(elQ.hasClass("twitter")):
+                        url = "https://twitter.com/intent/tweet?text=" + title + ":%20"  + postUrl;
+                    break;
+                case(elQ.hasClass("linkedin")):
+                        url = "https://www.linkedin.com/shareArticle?mini=true&url=" + postUrl + "&title=" + title;
+                    break;
+                case(elQ.hasClass("google+")):
+                        url = "https://plus.google.com/share?url=" + postUrl;
+                    break;
+                case(elQ.hasClass("pocket")):
+                        url = "https://getpocket.com/save?url=" + postUrl + "&title=" + title;
+                    break;
+                case(elQ.hasClass("wordpress")):
+                        url = "https://wordpress.com/press-this.php?u=" + postUrl + "&t=" + title;
+                    break;
+                case(elQ.hasClass("mail")):
+                        url = "mailto:?Subject="+ title + "&body=" + postUrl;
+                    break;
+            }
+
+            window.open(url, "_blank").focus();
+        }
     });
 
     return BlogPostView;
