@@ -1,7 +1,7 @@
 ---
 estacadoslair:
   build: "."
-  command: "forever start src/server.js"
+  command: "forever src/server.js"
   links:
     - mongodb
   ports:
@@ -9,6 +9,7 @@ estacadoslair:
   volumes:
     - ".:/www/estacadoslair"
     - "~/.ssl:/.ssl"
+    - "~/storage:/storage"
 mongodb:
   image: "mongo:2.6"
   ports:

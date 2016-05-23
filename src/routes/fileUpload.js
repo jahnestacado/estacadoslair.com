@@ -3,7 +3,8 @@ var uploadFileRouter = express.Router();
 var fs = require("fs");
 var path = require("path");
 var multer = require("multer");
-var upload = multer({ dest: "./public/images/uploads"});
+var storagePath = process.env.STORAGE_DIR || "./public/images/uploads"
+var upload = multer({ dest: storagePath});
 var auth = require("./../middleware/auth.js");
 
 uploadFileRouter.post("/", upload.array("uploaded-files", 20), function(request, response) {
