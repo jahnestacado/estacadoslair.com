@@ -12,7 +12,6 @@
     "express-session": "^1.10.4",
     "hermes-bus": "^2.2.4",
     "http-errors": "^1.4.0",
-    "https": "^1.0.0",
     "mongodb": "^1.4.31",
     "mongoskin": "^1.4.12",
     "multer": "^1.0.6",
