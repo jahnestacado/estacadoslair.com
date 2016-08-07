@@ -78,11 +78,23 @@ define([
             var selectedBlogPost = view.getModelFromCollection(id);
             if (selectedBlogPost) {
                 $("#" + id).parent().addClass("active");
+                view.updateGraphTags(selectedBlogPost);
                 require("routes").navigate("#" + view.getPathDomain() + "/" + id + "/" + selectedBlogPost.get("slug"));
                 view.blogPostView.render(selectedBlogPost);
             } else{
                 require("routes").navigate("#not-found", {trigger: true});
             }
+        },
+        updateGraphTags: function(selectedBlogPost){
+            var view = this;
+            var tags = {
+                title: selectedBlogPost.get("title"),
+                description: $(selectedBlogPost.get("body")).text().substring(0, 300).replace(/\s/g," "),
+                url: "https://estacadoslair.com/" + view.getPathDomain() + "/" + selectedBlogPost.get("_id") + "/" + selectedBlogPost.get("slug"),
+            };
+            Object.keys(tags).forEach(function(key){
+                $("meta[property='og\\:"+ key +"']").attr("content", tags[key]);
+            });
         },
         events: {
             "click #back-home": "loadHomePage",
