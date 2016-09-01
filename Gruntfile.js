@@ -27,12 +27,12 @@ module.exports = function (grunt) {
                 options: {
                     replacements: [
                         {
-                            pattern: "js/config.js",
-                            replacement: "js/main.js"
+                            pattern: "/js/config.js",
+                            replacement: "/js/main.js"
                         },
                         {
-                            pattern: "css/styles.css",
-                            replacement: "css/styles.min.css"
+                            pattern: "/css/styles.css",
+                            replacement: "/css/styles.min.css"
                         }
                     ]
                 }
@@ -44,11 +44,11 @@ module.exports = function (grunt) {
                 options: {
                     replacements: [
                         {
-                            pattern: "images/favicon.ico",
+                            pattern: "/images/favicon.ico",
                             replacement: "https://estacadoslair.com/images/favicon.ico"
                         },
                         {
-                            pattern: "images/estacadoslair-thumbnail.png",
+                            pattern: "/images/estacadoslair-thumbnail.png",
                             replacement: "https://estacadoslair.com/images/estacadoslair-thumbnail.png"
                         }
                     ]

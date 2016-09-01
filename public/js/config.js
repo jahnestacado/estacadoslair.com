@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "../",
+    baseUrl: "/",
     deps: ["app"],
     paths: {
         //3rd Party libs
