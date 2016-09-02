@@ -24,6 +24,14 @@
     a.link-btn{
         font-size: 2.8em !important;
     }
+
+    .curtain-B .panel {
+        padding: 0  4em 0 4em !important;
+    }
+
+    p.date{
+        font-size: 12px !important;
+    }
 }
 
 @media screen and (orientation:portrait) {
@@ -128,10 +136,19 @@
     .panel .post-title{
         display:none;
     }
+
+    .curtain-B .panel {
+        padding: 0  3em 0 3em !important;
+    }
+
+    p.date{
+        font-size: 12px !important;
+        margin-top: 2em;
+    }
 }
 
 body{
-    font-family: "Merriweather", "Georgia", "serif";
+    font-family: "PT Sans", Helvetica, Arial, sans-serif;
     overflow: hidden;
 }
 
@@ -141,34 +158,28 @@ body{
     min-height:100%;
     width:100%;
     border-radius: 0;
-    background-color: #f6f6f6;
 }
 
-.post-body{
-    margin:2em;
-    line-height: 1.7;
-    font-size: 1.4rem;
+.curtain-B .panel {
+    padding: 0 8em 0 8em;
+    color: #515151;
+}
+
+.post-body {
+    padding:0;
+    line-height: 30px;
+    font-size: 16px;
 }
 
 code.hljs{
-    font-size: 1.2rem;
-}
-
-.post-body p:first-child:first-letter{
-    float: left;
-    width: 0.7em;
-    font-size: 455%;
-    line-height: 80%;
-    text-transform: capitalize;
-    margin: 0 10px -10px 0;
-    color: #606666;
+    font-size: 1.5rem;
 }
 
 .post-title{
-    margin:1.2em 0 0.5em 1.6em;
-    font-family: Lora, OpenSans, sans-serif;
+    margin: 1.2em 0 0.5em 0;
     font-weight:700;
-    color: #606666;
+    color: black;
+    font-size: 40px;
 }
 
 .panel.left-side{
@@ -179,7 +190,6 @@ code.hljs{
 
 .panel-title{
     margin-top:1em;
-    font-family: OpenSans, sans-serif;
     font-weight: bold;
 }
 
@@ -219,11 +229,9 @@ li.active a.list-group-item{
 }
 
 p.date{
-    position:absolute;
-    font-family: sans-serif;
-    font-size: 12px;
-    bottom: 5px;
-    right: 25px;
+    font-size: 17px;
+    color: #9a9a9a;
+    margin-bottom: 2em;
 }
 
 a.link-btn{

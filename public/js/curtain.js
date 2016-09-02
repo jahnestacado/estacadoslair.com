@@ -3,8 +3,8 @@ define(["curtainjs","jquery"], function (c, $) {
         swapModeOnOrientationChange: true,
         animationDuration: 500,
         landscape:{
-            widthRatioCurtainA : 0.17,
-            widthRatioCurtainB : 0.83,
+            widthRatioCurtainA : 0.2,
+            widthRatioCurtainB : 0.8,
         },
         portrait : {
             heightRatioCurtainA : 0.25,

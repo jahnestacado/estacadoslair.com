@@ -1,5 +1,6 @@
 <div  class="panel">
     <h2 class="post-title"><%= title %></h2>
+    <p class="date"><%= date %></p>
     <div class="panel-body post-body">
         <%= body %>
         <ul class="share-buttons">
@@ -11,7 +12,6 @@
             <li><img title="Email" class="mail hvr-float" src="/images/email.png"></li>
         </ul>
 
-        <p class="date"><%= date %></p>
 
         <div id="disqus_thread"></div>
     </div>
