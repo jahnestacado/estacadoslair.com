@@ -26,12 +26,14 @@ define([
                     blogId = blogId || blogPosts.models[0].get("_id");
                     view.renderBlogPost(blogId);
 
-                    view.$el.find(".list-group li").swipe( {
-                        swipe:function(event, direction) {
-                            view.swipeBlogListItem(event, direction);
-                        },
-                        threshold:0
-                    });
+                    if(view.isOrientationPortrait()){
+                        view.$el.find(".list-group li").swipe({
+                            swipe:function(event, direction) {
+                                view.swipeBlogListItem(event, direction);
+                            },
+                            threshold:0
+                        });
+                    }
                 }
             };
 
@@ -40,6 +42,9 @@ define([
             } else{
                 updateUI(view.blogPosts);
             }
+        },
+        isOrientationPortrait : function(){
+            return $(window).innerWidth() < $(window).innerHeight();
         },
         fetchBlogPosts: function(onDone){
             var view = this;
