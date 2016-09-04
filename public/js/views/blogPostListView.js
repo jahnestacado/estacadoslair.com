@@ -53,7 +53,7 @@ define([
                     onDone(blogPosts);
                 },
                 error: function () {
-                    Backbone.bus.trigger("notification", {message: "Failed to fetch blogPost collection!",status: "error"});
+                    Backbone.bus.trigger("notification", {message: "Failed to fetch blogPost collection!", status: "error"});
                 }
             });
         },

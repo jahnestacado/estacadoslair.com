@@ -21,16 +21,23 @@ define([
             view.initDisqus = _.once(loadDisqusScript);
         },
         template: _.template(viewTemplate),
-        render: function(blogPostModel) {
+        render: function(blogPostModel, onSuccess) {
             var view = this;
-            view.initDisqus();
             $(".curtain-B").scrollTop(0);
 
-            if (blogPostModel) {
-                view.$el.html(view.template(blogPostModel.attributes));
-                view.showDisqus(blogPostModel);
+            if(!onSuccess){
+                onSuccess = function(model){
+                    view.initDisqus();
+                    view.$el.html(view.template(model.attributes));
+                    view.showDisqus(model);
+                };
             }
 
+            if (blogPostModel && !blogPostModel.get("body")) {
+                blogPostModel.fetch({success: onSuccess});
+            } else {
+                onSuccess(blogPostModel);
+            }
         },
         showDisqus: function(blogPostModel){
             if(typeof DISQUS !== "undefined"){

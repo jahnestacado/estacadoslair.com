@@ -2,25 +2,30 @@ define([
     "jquery",
     "underscore",
     "backbone",
+    "blogPostView",
     "createBlogPostView",
     "text!editBlogPostTemplate",
     "curtain",
     "moment"
-], function ($, _, Backbone, CreateBlogPostView, viewTemplate, CURTAIN, moment) {
+], function ($, _, Backbone, BlogPostView, CreateBlogPostView, viewTemplate, CURTAIN, moment) {
 
     var EditBlogPostView = CreateBlogPostView.extend({
         template: _.template(viewTemplate),
         render: function (blogPostModel) {
             var view = this;
-
-            view.blogPostModel = blogPostModel;
-            var attributes = blogPostModel.attributes;
-            var contents = {
-                title: attributes.title,
-                body: attributes.body
+            
+            var onSuccess = function onSuccess(model){
+                view.blogPostModel = model;
+                var attributes = model.attributes;
+                var contents = {
+                    title: attributes.title,
+                    body: attributes.body
+                };
+                view.$el.html(view.template(contents));
+                view.initCKEditor();
             };
-            view.$el.html(view.template(contents));
-            view.initCKEditor();
+
+            BlogPostView.prototype.render.apply(view, [blogPostModel, onSuccess]);
         },
         events: {
             "click #update-post-btn": "savePost"

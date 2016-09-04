@@ -6,8 +6,12 @@ var dbUtils = require("./../db/blog-collection-utils.js");
 var createError = require("http-errors");
 
 blogRouter.get(path, function(request, response, next) {
-    dbUtils.findAll(function(results){
-        response.status(200).json(results);
+    dbUtils.findAll(function(articles){
+        var articlesInfo = articles.map(function(article){
+            delete article.body;
+            return article;
+        });
+        response.status(200).json(articlesInfo);
     }, function(error){
         next(createError(404));
     });

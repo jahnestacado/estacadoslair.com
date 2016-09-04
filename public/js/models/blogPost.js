@@ -2,10 +2,10 @@ define(["backbone", "speakingurl"], function (Backbone, getSlug) {
 
     var BlogPost = Backbone.Model.extend({
         defaults: {
-            title: "not-set",
-            date: "not-set",
-            body: "not-set",
-            slug: "not-set"
+            title: null,
+            date: null,
+            body: null,
+            slug: null
         },
         idAttribute: "_id",
         initialize: function (options) {
