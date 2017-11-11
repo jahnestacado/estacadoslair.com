@@ -1,18 +1,13 @@
-FROM node:0.12-slim
+FROM arm64v8/node:slim
+
 MAINTAINER Jahn Estacado
 
-RUN npm install -g forever --no-progress
+RUN npm install -g pm2
 
-ENV INSTALL_PATH /www/estacadoslair
-ENV MONGO_URI mongodb:27017
-ENV SSL_DIR /.ssl
-ENV STORAGE_DIR /storage
-
-RUN mkdir -p $INSTALL_PATH
-WORKDIR $INSTALL_PATH
 COPY . .
 
+RUN npm install --no-progress
 
-CMD ["forever", "src/server.js"]
+ENTRYPOINT ["pm2-docker", "start", "src/server.js"]
 
-EXPOSE 5050
+EXPOSE 7070
