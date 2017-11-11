@@ -1,24 +1,55 @@
 var mongoskin = require("mongoskin");
+var mongoClient = mongoskin.MongoClient;
 var mongoURI = process.env.MONGO_URI || "localhost:27017";
-var dbConnection = mongoskin.db("mongodb://" + mongoURI + "/mywebsite");
 var _ = require("underscore");
-var COLLECTIONS = ["blog", "users"]
+var COLLECTIONS = ["blog", "users"];
+var bus = require("hermes-bus");
 
-dbConnection.collections(function(error, collections) {
-    var collectionNames = collections.map(function(collection) {
-        return collection.collectionName;
-    });
-
-    COLLECTIONS.forEach(function(collection) {
-        if (!_.contains(collectionNames, collection)) {
-            dbConnection.createCollection(collection, function(error) {
-                if (error) {
-                    throw error;
-                }
-                console.log("Collection: " + collection + " successfully initialized!!!")
+var initializeCollections = function(db, onDone, onError) {
+    db.collections(function(error, collections) {
+        if (error) {
+            onError(error);
+        } else {
+            var collectionNames = collections.map(function(collection) {
+                return collection.collectionName;
             });
+
+            COLLECTIONS.forEach(function(collection) {
+                if (!_.contains(collectionNames, collection)) {
+                    db.createCollection(collection, function(error) {
+                        if (error) {
+                            onError(error);
+                        } else {
+                            console.log(
+                                "Collection: " +
+                                    collection +
+                                    " successfully initialized!!!"
+                            );
+                        }
+                    });
+                }
+            });
+            onDone();
         }
     });
-})
+};
 
-exports.dbConnection = dbConnection;
+var connect = function(onError) {
+    var db;
+    db = mongoClient.connect("mongodb://" + mongoURI + "/mywebsite");
+    initializeCollections(
+        db,
+        function() {
+            bus.db.triggerDatabaseReady(db);
+        },
+        onError
+    );
+};
+
+var connectWithRetry = function() {
+    connect(function() {
+        setTimeout(connectWithRetry, 10000);
+    });
+};
+
+connectWithRetry(10000);
