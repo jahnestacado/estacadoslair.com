@@ -47,7 +47,8 @@ var connect = function(onError) {
 };
 
 var connectWithRetry = function() {
-    connect(function() {
+    connect(function(error) {
+        console.error(error);
         setTimeout(connectWithRetry, 10000);
     });
 };
