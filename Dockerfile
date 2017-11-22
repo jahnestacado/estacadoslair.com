@@ -6,7 +6,7 @@ RUN npm install -g pm2
 
 COPY . .
 
-RUN npm install --no-progress && rm -rf .git
+RUN rm -rf .git
 
 ENTRYPOINT ["pm2-docker", "start", "src/server.js"]
 
