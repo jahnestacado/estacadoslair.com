@@ -2,18 +2,18 @@ FROM arm64v8/nginx:stable
 
 MAINTAINER Jahn Estacado
 
-RUN apt-get update && apt-get install -y envsubst
+RUN mkdir /etc/nginx/sites-enabled
+COPY docker/nginx/nginx.conf /etc/nginx/
+COPY docker/nginx/estacadoslair.com /etc/nginx/sites-available/
+COPY docker/nginx/main.sh .
 
-COPY nginx.conf /etc/nginx/
-COPY estacadoslair.com /etc/nginx/site-available
-RUN envsubst < /etc/nginx/site-available > /etc/nginx/site-available
-RUN ln -s /etc/nginx/site-available /etc/nginx/site-enabled
+RUN ln -s /etc/nginx/sites-available/estacadoslair.com /etc/nginx/sites-enabled/
 
-COPY ../../public public
+COPY public public
 
 VOLUME ["/etc/letsencrypt", "/etc/ssl"]
 
-ENTRYPOINT ["service", "nginx", "start"]
+ENTRYPOINT ["bash", "main.sh"]
 
 EXPOSE 5000
 EXPOSE 5001

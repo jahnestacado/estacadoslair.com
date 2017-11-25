@@ -19,12 +19,12 @@ server {
     add_header Strict-Transport-Security max-age=15768000;
 
     location ~* \.(js|css|woff2?|tpl|jpe?g|JPG|png|ico) {
-        root public;
+        root /public;
         try_files $uri $uri/;
     }   
 
     location / {
-        proxy_pass http://${ESTACADOSLAIR_SERVICE_URI};
+        proxy_pass http://ESTACADOSLAIR_SERVICE_URI;
         proxy_set_header Host $host;
     }   
 }
