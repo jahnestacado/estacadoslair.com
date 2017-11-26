@@ -199,6 +199,7 @@ a.list-group-item{
     font-family: OpenSans, sans-serif;
     font-weight: bold;
     font-size: 8pt;
+    width: 100%;
 }
 
 a.list-group-item:first-letter{
@@ -207,6 +208,7 @@ a.list-group-item:first-letter{
 
 .list-group li{
     border-bottom: 1px solid #f5f5f5;
+    display: flex;
 }
 
 li a.list-group-item:hover{

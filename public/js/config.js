@@ -13,6 +13,7 @@ require.config({
         "curtainjs": "bower_components/curtainjs/js/jquery.curtain",
         "touchswipe": "bower_components/jquery-touchswipe/jquery.touchSwipe",
         "speakingurl": "bower_components/speakingurl/lib/speakingurl",
+        "ckeditor": "bower_components/ckeditor/ckeditor",
 
         //Backbone models
         "blogPost": "js/models/blogPost",
@@ -71,5 +72,8 @@ require.config({
             "deps": ["underscore"],
             "exports": "Backbone"
         },
+        "ckeditor": {
+            "exports": "CKEDITOR"
+        }
     }
 });
