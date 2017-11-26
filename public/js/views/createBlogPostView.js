@@ -5,8 +5,9 @@ define([
     "text!createBlogPostTemplate",
     "blogPost",
     "curtain",
-    "moment"
-], function ($, _, Backbone, viewTemplate, BlogPost, CURTAIN, moment) {
+    "moment",
+    "ckeditor"
+], function ($, _, Backbone, viewTemplate, BlogPost, CURTAIN, moment, CKEDITOR) {
 
     var CreateBlogPostView = Backbone.View.extend({
         initialize: function(){
