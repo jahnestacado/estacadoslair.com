@@ -33,10 +33,6 @@ module.exports = function (grunt) {
                         {
                             pattern: "/css/styles.css",
                             replacement: "/css/styles.min.css"
-                        },
-                        {
-                            pattern: '<script src="/bower_components/ckeditor/ckeditor.js"></script>',
-                            replacement: '<script> var CKEDITOR_BASEPATH = "/bower_components/ckeditor/";</script>'
                         }
                     ]
                 }
