@@ -1,6 +1,14 @@
 var express = require("express");
-var dbConnection = require("./../db/config.js").dbConnection;
 var loginRouter = express.Router();
+var bcrypt = require("bcrypt");
+var bus = require("hermes-bus");
+var dbConnection;
+
+bus.subscribe("db", {
+    onDatabaseReady: function(db) {
+        dbConnection = db;
+    },
+});
 
 function generateSessionId() {
     return new Date().getTime().toString();
@@ -16,13 +24,13 @@ loginRouter.post('/', function(request, response) {
     dbConnection.collection("users").findOne({username: request.body.username}, function(error, result) {
         var status = 400; //Bad request
 
-        // Intentional loose comparison for numbers as a String
-        if (result && result.password == request.body.password) {
-            initUserSession(request, response);
-            status = 200; //OK
-        }
-
-        response.sendStatus(status);
+        bcrypt.compare(request.body.password, result.password, function(error, isAuthorized){
+            if(!error) {
+                initUserSession(request, response);
+                status = 200;
+            } 
+            response.sendStatus(status);
+        });
     });
 });
 
