@@ -12,6 +12,7 @@
     "express-session": "^1.10.4",
     "hermes-bus": "^2.2.4",
     "http-errors": "^1.4.0",
+    "jsonwebtoken": "^8.1.0",
     "mongodb": "2.2.33",
     "mongoskin": "2.1.0",
     "multer": "^1.0.6",

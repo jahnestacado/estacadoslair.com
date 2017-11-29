@@ -1,9 +1,9 @@
-module.exports = function isUserAuthorized(request, response, next) {
-    var isAuthenticated = request.cookies.sessionId && (request.session[request.cookies.username] === request.cookies.sessionId);
+var jwt = require("./../utils/jwt.js");
 
-    if (isAuthenticated) {
+module.exports = function isUserAuthorized(request, response, next) {
+    jwt.verify(request.cookies.sessionId, function() {
         next();
-    } else {
+    }, function(error) {
         response.sendStatus(401); //Unauthorized
-    }
+    });
 };
