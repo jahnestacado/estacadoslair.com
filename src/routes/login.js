@@ -16,9 +16,9 @@ function generateSessionId() {
 }
 
 function initUserSession(request, response, onDone, onError) {
-    var username = request.body.username;
-    jwt.sign(username, function(token) {
-        response.cookie("sessionId", request.session[username]);
+    var key = request.body.username + request.body.password;
+    jwt.sign(key, function(token) {
+        response.cookie("sessionId", token);
         response.cookie("username", request.body.username);
         onDone();
     }, onError);
