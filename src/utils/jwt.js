@@ -5,7 +5,7 @@ var ALG = "HS256";
 var JWT = {
     sign: function(key, onDone, onError){
         jwt.sign({
-            exp: 43800 * 60 * 1000, // 1 month
+            exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 31), // 1 month
             data: key,
         },
         JWT_SECRET,
