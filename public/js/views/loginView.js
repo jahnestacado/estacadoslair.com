@@ -32,8 +32,8 @@ define([
             event.stopPropagation();
             event.preventDefault();
 
-            view.userCredentialsModel.set("username", view.$el.find("#inputEmail").val());
-            view.userCredentialsModel.set("password", view.$el.find("#inputPassword").val());
+            view.userCredentialsModel.set("username", view.$el.find("#username").val());
+            view.userCredentialsModel.set("password", view.$el.find("#password").val());
 
             if (view.userCredentialsModel.isValid()) {
                 view.userCredentialsModel.save(null, {
