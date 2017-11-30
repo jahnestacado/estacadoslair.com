@@ -16,7 +16,7 @@ function generateSessionId() {
 }
 
 function initUserSession(request, response, onDone, onError) {
-    var key = request.body.username + request.body.password;
+    var key = request.body.username + "_token";
     jwt.sign(key, function(token) {
         response.cookie("sessionId", token);
         response.cookie("username", request.body.username);
@@ -27,7 +27,6 @@ function initUserSession(request, response, onDone, onError) {
 loginRouter.post("/", function(request, response) {
     dbConnection.collection("users").findOne({username: request.body.username}, function(error, result) {
         var status = 400; //Bad request
-
         bcrypt.compare(request.body.password, result.password, function(error, isAuthorized){
             if(!error) {
                 initUserSession(request, response, function() {
