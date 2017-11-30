@@ -2,7 +2,7 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "credentials",
+    "updateCredentialsModel",
     "text!updateCredentialsTemplate",
     "curtain"
 ], function($, _, Backbone, CredentialsModel, viewTemplate, CURTAIN) {

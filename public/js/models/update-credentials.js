@@ -1,6 +1,6 @@
-define(["backbone", "userAuth"], function(Backbone, UserAuth) {
+define(["backbone", "userCredentialsModel"], function(Backbone, UserCredentialsModel) {
 
-    var CredentialModel = UserAuth.extend({
+    var UpdateCredentiasModel = UserCredentialsModel.extend({
         defaults: {
             newPassword: "not-set",
             newPasswordConfirmation: "not-set",
@@ -19,5 +19,5 @@ define(["backbone", "userAuth"], function(Backbone, UserAuth) {
         },
     });
 
-    return CredentialModel;
+    return UpdateCredentiasModel;
 });

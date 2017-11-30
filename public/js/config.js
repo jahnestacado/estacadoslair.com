@@ -17,8 +17,8 @@ require.config({
 
         //Backbone models
         "blogPost": "js/models/blogPost",
-        "userAuth": "js/models/userAuth",
-        "credentials": "js/models/credentials",
+        "userCredentialsModel": "js/models/user-credentials",
+        "updateCredentialsModel": "js/models/update-credentials",
 
         //Backbone collections
         "blogPosts": "js/collections/blogPosts",

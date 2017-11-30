@@ -2,15 +2,15 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "userAuth",
+    "userCredentialsModel",
     "text!loginTemplate",
     "curtain"
-], function($, _, Backbone, AuthModel, viewTemplate, CURTAIN) {
+], function($, _, Backbone, UserCredentialsModel, viewTemplate, CURTAIN) {
 
     var LoginView = Backbone.View.extend({
         initialize: function(){
             var view = this;
-            view.authModel = new AuthModel();
+            view.userCredentialsModel = new UserCredentialsModel();
         },
         el: "#icon-bar",
         template: _.template(viewTemplate),
@@ -32,18 +32,18 @@ define([
             event.stopPropagation();
             event.preventDefault();
 
-            view.authModel.set("username", view.$el.find("#inputEmail").val());
-            view.authModel.set("password", view.$el.find("#inputPassword").val());
+            view.userCredentialsModel.set("username", view.$el.find("#inputEmail").val());
+            view.userCredentialsModel.set("password", view.$el.find("#inputPassword").val());
 
-            if (view.authModel.isValid()) {
-                view.authModel.save(null, {
+            if (view.userCredentialsModel.isValid()) {
+                view.userCredentialsModel.save(null, {
                     dataType: 'text',
                     success: view.onAuthSuccess,
                     error: view.onAuthError
                 });
             } else {
                 Backbone.bus.trigger("notification", {
-                    message: view.authModel.validationError,
+                    message: view.userCredentialsModel.validationError,
                     status: "error"
                 });
             }

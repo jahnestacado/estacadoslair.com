@@ -1,6 +1,6 @@
 define(["backbone"], function(Backbone) {
 
-    var UserAuth = Backbone.Model.extend({
+    var UserCredentialsModel = Backbone.Model.extend({
         defaults: {
             username: "not-set",
             password: "not-set",
@@ -16,10 +16,9 @@ define(["backbone"], function(Backbone) {
             return error;
         },
         url: function() {
-            console.trace("dsd");
             return "/login";
         },
     });
 
-    return UserAuth;
+    return UserCredentialsModel;
 });
