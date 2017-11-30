@@ -5,9 +5,10 @@ define([
     "loginView",
     "notFoundView",
     "masterDetailViewFactory",
+    "updateCredentialsView",
     "notificationView",
     "adminPanelView",
-], function (_, Backbone, HomeView, LoginView, NotFoundView, masterDetailViewFactory) {
+], function (_, Backbone, HomeView, LoginView, NotFoundView, masterDetailViewFactory, UpdateCredentialsView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -16,6 +17,7 @@ define([
             "blog/:id": "loadBlogPost",
             "blog": "loadBlogPage",
             "create": "loadCreatePostPage",
+            "update-credentials": "updateCredentialsPage",
             "login": "loadLoginPage",
             "edit/:id/:slug": "loadEditPost",
             "edit": "loadEditBlogPage",
@@ -29,6 +31,7 @@ define([
             router.createBlogMasterDetailView =  masterDetailViewFactory.getView("create");
             router.homeView = new HomeView();
             router.loginView = new LoginView();
+            router.updateCredentialsView = new UpdateCredentialsView();
             router.bind( "all",  _.debounce(router.handleDisplayOfAdminPanel, 500));
         },
         handleDisplayOfAdminPanel: function () {
@@ -60,6 +63,10 @@ define([
         loadBlogPage: function () {
             var router = this;
             router.blogMasterDetailView.render();
+        },
+        updateCredentialsPage: function () {
+            var router = this;
+            router.updateCredentialsView.render();
         },
         loadBlogPost: function (id) {
             var router = this;

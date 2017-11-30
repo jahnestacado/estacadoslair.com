@@ -16,6 +16,7 @@ define(["backbone"], function(Backbone) {
             return error;
         },
         url: function() {
+            console.trace("dsd");
             return "/login";
         },
     });

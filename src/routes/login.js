@@ -24,7 +24,7 @@ function initUserSession(request, response, onDone, onError) {
     }, onError);
 }
 
-loginRouter.post('/', function(request, response) {
+loginRouter.post("/", function(request, response) {
     dbConnection.collection("users").findOne({username: request.body.username}, function(error, result) {
         var status = 400; //Bad request
 

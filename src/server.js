@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, "/../public")));
 app.listen(process.env.PORT || 7070);
 app.use("/auth", require("./routes/authCheck.js"));
 app.use("/login", require("./routes/login.js"));
-app.use("/logout", require("./routes/logout.js"));
 app.use("/blog", require("./routes/blog.js"));
 app.use("/upload", require("./routes/fileUpload.js"));
+app.use("/update-credentials", require("./routes/update-credentials.js"));
 
 //This router should be used always in the end
  app.use("*", function(request, response){

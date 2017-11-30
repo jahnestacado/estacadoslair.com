@@ -4,11 +4,12 @@ require([
     "backboneExtended",
     "text!adminPanelViewTemplate",
 ], function ($, _, Backbone, viewTemplate) {
-
+    
     var AdminPanelView = Backbone.View.extend({
         initialize: function () {
             var view = this;
             Backbone.bus.on("activateAdminPanel", view.render, view);
+            Backbone.bus.on("logout", view.logoutUser, view);
         },
         el: "body",
         template: _.template(viewTemplate),
@@ -44,26 +45,24 @@ require([
         },
         logoutUser: function () {
             var view = this;
-            $.post("/logout")
-                    .done(function () {
-                        Backbone.bus.trigger("notification", {
-                            message: "Bye bye!", status: "success"
-                        });
-                        view.navigateToHomePage();
-                        view.destroy();
-                    })
-                    .fail(function () {
-                        Backbone.bus.trigger("notification", {
-                            message: "Failed to logout! Please try again.",
-                            status: "error"
-                        });
-                    });
+            document
+                .cookie
+                .split(";")
+                .forEach(function(c) {
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                })
+            ;
+            Backbone.bus.trigger("notification", {
+                message: "Bye bye!", status: "success"
+            });
+            view.navigateToHomePage();
+            view.destroy();
         },
         destroy: function () {
             var view = this;
             view.$el.find("#admin-panel").remove();
         }
     });
-
+    
     new AdminPanelView();
 });
