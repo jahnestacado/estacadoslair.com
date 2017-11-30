@@ -26,9 +26,9 @@ define([
             view.$el.find("#username").val(document.cookie.match(/(username=(.*?);)/)[2]);
         },
         events: {
-            "click #update-credentials-btn": "act"
+            "click #update-credentials-btn": "submit"
         },
-        act: function(event) {
+        submit: function(event) {
             var view = this;
             event.stopPropagation();
             event.preventDefault();
