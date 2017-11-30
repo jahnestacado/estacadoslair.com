@@ -1,7 +1,7 @@
-define(["backbone", "blogPost"], function(Backbone, BlogPost) {
+define(["backbone", "blogPostModel"], function(Backbone, BlogPostModel) {
 
     var BlogPosts = Backbone.Collection.extend({
-        model: BlogPost,
+        model: BlogPostModel,
         url: "/blog/articles"
     });
 

@@ -16,7 +16,7 @@ require.config({
         "ckeditor": "bower_components/ckeditor/ckeditor",
 
         //Backbone models
-        "blogPost": "js/models/blogPost",
+        "blogPostModel": "js/models/blogPost",
         "userCredentialsModel": "js/models/user-credentials",
         "updateCredentialsModel": "js/models/update-credentials",
 
