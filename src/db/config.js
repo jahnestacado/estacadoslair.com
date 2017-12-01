@@ -33,10 +33,6 @@ var initializeCollections = function(db, onDone, onError) {
                 return collection.collectionName;
             });
             
-            console.log("Connected", existingCollections);
-            initializeAdminUser(db, function(){
-                console.log("Created user " + SUPER_ADMIN_DEFAULT_CREDENTIALS.username);
-            },onError);
             COLLECTIONS.forEach(function(collectionName) {
                 if (!_.contains(existingCollections, collectionName)) {
                     db.createCollection(collectionName, function(error) {
@@ -48,9 +44,11 @@ var initializeCollections = function(db, onDone, onError) {
                                     collectionName +
                                     " successfully initialized!!!"
                             );
-                            initializeAdminUser(db, function(){
-                                console.log("Created user " + SUPER_ADMIN_DEFAULT_CREDENTIALS.username);
-                            },onError);
+                            if(collectionName === "users") {
+                                initializeAdminUser(db, function(){
+                                    console.log("Created user " + SUPER_ADMIN_DEFAULT_CREDENTIALS.username);
+                                }, onError);
+                            }
                         }
                     });
                 }
