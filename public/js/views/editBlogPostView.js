@@ -16,13 +16,15 @@ define([
             
             var onSuccess = function onSuccess(model){
                 view.blogPostModel = model;
-                var attributes = model.attributes;
-                var contents = {
-                    title: attributes.title,
-                    body: attributes.body
-                };
-                view.$el.html(view.template(contents));
-                view.initCKEditor();
+                var attributes = model && model.attributes;
+                if(attributes) {
+                    var contents = {
+                        title: attributes.title,
+                        body: attributes.body
+                    };
+                    view.$el.html(view.template(contents));
+                    view.initCKEditor();
+                }
             };
 
             BlogPostView.prototype.render.apply(view, [blogPostModel, onSuccess]);
