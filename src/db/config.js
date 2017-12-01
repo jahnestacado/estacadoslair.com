@@ -7,17 +7,16 @@ var bus = require("hermes-bus");
 var bcrypt = require("bcrypt");
 
 var SUPER_ADMIN_DEFAULT_CREDENTIALS = {
-    username: "super-admin",
+    username: "admin",
     password: bcrypt.hashSync("admin", 15)
 };
 
-
 var initializeAdminUser = function(db, onDone, onError){
     var usersCollection = db.collection("users");
-    usersCollection.findOne({username: SUPER_ADMIN_DEFAULT_CREDENTIALS.username}, function(error, results) {
+    usersCollection.find().toArray(function(error, results) {
         if(error) {
             onError(error);
-        } else if(results === null) {
+        } else if(results.length === 0) {
             usersCollection.insert(SUPER_ADMIN_DEFAULT_CREDENTIALS, function(error, results) {
                 error ? onError(error) : onDone();
             });
@@ -33,8 +32,11 @@ var initializeCollections = function(db, onDone, onError) {
             var existingCollections = collections.map(function(collection) {
                 return collection.collectionName;
             });
-
+            
             console.log("Connected", existingCollections);
+            initializeAdminUser(db, function(){
+                console.log("Created user " + SUPER_ADMIN_DEFAULT_CREDENTIALS.username);
+            },onError);
             COLLECTIONS.forEach(function(collectionName) {
                 if (!_.contains(existingCollections, collectionName)) {
                     db.createCollection(collectionName, function(error) {
