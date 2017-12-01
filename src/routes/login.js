@@ -27,7 +27,8 @@ function initUserSession(request, response, onDone, onError) {
 loginRouter.post("/", function(request, response) {
     dbConnection.collection("users").findOne({username: request.body.username}, function(error, result) {
         var status = 400; //Bad request
-        bcrypt.compare(request.body.password, result.password, function(error, isAuthorized){
+        var password = result && result.password || "";
+        bcrypt.compare(request.body.password, password, function(error, isAuthorized){
             if(!error) {
                 initUserSession(request, response, function() {
                     status = 200;
