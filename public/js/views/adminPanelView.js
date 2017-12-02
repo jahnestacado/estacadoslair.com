@@ -28,7 +28,8 @@ require([
             "click #admin-panel-create-btn": "navigateToCreatePage",
             "click #admin-panel-edit-btn": "navigateToEditPage",
             "click #admin-panel-blog-btn": "navigateToBlogPage",
-            "click #admin-panel-logout-btn": "logoutUser",
+            "click #admin-panel-update-credentials-btn": "navigateToUpdateCredentialsPage",
+            "click #admin-panel-logout-btn": "logoutUser"
         },
         navigateToHomePage: function() {
             require("routes").navigate("/", { trigger: true });
@@ -41,6 +42,9 @@ require([
         },
         navigateToBlogPage: function() {
             require("routes").navigate("/blog", { trigger: true });
+        },
+        navigateToUpdateCredentialsPage: function() {
+            require("routes").navigate("/update-credentials", { trigger: true });
         },
         logoutUser: function() {
             var view = this;
