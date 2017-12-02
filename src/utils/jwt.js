@@ -3,10 +3,10 @@ var JWT_SECRET = process.env.JWT_SECRET || "secret";
 var ALG = "HS256";
 
 var JWT = {
-    sign: function(key, onDone, onError){
+    sign: function(username, onDone, onError){
         jwt.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 31), // 1 month
-            data: key,
+            username: username,
         },
         JWT_SECRET,
         {algorithm: ALG},
@@ -25,6 +25,9 @@ var JWT = {
     },
     getHeader: function(){
         return Buffer.from('{"alg":"'+ ALG +'","typ":"JWT"}').toString("base64");
+    },
+    getClaim:  function(headlessToken, claimName){
+        return headlessToken.split(".")[0][claimName];
     }
 };
 

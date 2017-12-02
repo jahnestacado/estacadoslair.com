@@ -6,7 +6,7 @@ define([
     "text!loginTemplate",
     "curtain"
 ], function($, _, Backbone, UserCredentialsModel, viewTemplate, CURTAIN) {
-
+    
     var LoginView = Backbone.View.extend({
         initialize: function(){
             var view = this;
@@ -17,7 +17,7 @@ define([
         render: function() {
             CURTAIN.close();
             var view = this;
-
+            
             view.$el
             .html(view.template())
             .hide()
@@ -31,10 +31,10 @@ define([
             var view = this;
             event.stopPropagation();
             event.preventDefault();
-
+            
             view.userCredentialsModel.set("username", view.$el.find("#username").val());
             view.userCredentialsModel.set("password", view.$el.find("#password").val());
-
+            
             if (view.userCredentialsModel.isValid()) {
                 view.userCredentialsModel.save(null, {
                     dataType: 'text',
@@ -55,9 +55,14 @@ define([
             });
         },
         onAuthSuccess: function(response){
+            var jwt = response.get("jwt");
+            window.localStorage.setItem("jwt", jwt);
+            Backbone.$.ajaxSetup({
+                headers: {jwt : jwt}
+            });
             require("routes").navigate("/edit", {trigger: true});
             Backbone.bus.trigger("notification", {
-                message: "Welcome " + response.attributes.username + "!", status: "success"
+                message: "Welcome " + response.get("username") + "!", status: "success"
             });
         },
         navigateToHomePage: function() {
@@ -65,7 +70,7 @@ define([
             require("routes").navigate("/", {trigger: true});
         }
     });
-
+    
     return LoginView;
-
+    
 });

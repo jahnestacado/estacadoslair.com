@@ -3,6 +3,7 @@ var updatePasswordRouter = express.Router();
 var bcrypt = require("bcrypt");
 var bus = require("hermes-bus");
 var auth = require("./../middleware/auth.js");
+var jwt = require("./../utils/jwt.js");
 var dbConnection;
 
 bus.subscribe("db", {
@@ -12,7 +13,6 @@ bus.subscribe("db", {
 });
 
 var updateCredentials = function(username, newUsername, newPassword, onDone, onError) {
-    console.log(username, newUsername, newPassword);
     bcrypt.hash(newPassword, 15, function(error, hash) {
         if(error){
             onError(error);
@@ -29,7 +29,7 @@ updatePasswordRouter.post("/", auth, function(request, response) {
     var password = body.password;
     var newPassword = body.newPassword;
     var newPasswordConfirmation = body.newPasswordConfirmation;
-    var existingUsername = request.cookies.username;
+    var existingUsername = jwt.getClaim(request.get("jwt"), "username");
     dbConnection.collection("users").findOne({username: username}, function(error, result) {
         bcrypt.compare(password, result.password, function(error, isAuthorized){
             if(isAuthorized && newPassword === newPasswordConfirmation){

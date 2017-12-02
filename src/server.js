@@ -1,15 +1,11 @@
 var express = require("express");
 var https = require("https");
 var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
-var session = require("express-session");
 var compress = require("compression");
 var path = require("path");
 var app = express();
 
 app.use(compress());
-app.use(cookieParser("secret"));
-app.use(session());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use("/", require("./routes/app.js"));

@@ -9,7 +9,7 @@ define([
     "notificationView",
     "adminPanelView",
 ], function (_, Backbone, HomeView, LoginView, NotFoundView, masterDetailViewFactory, UpdateCredentialsView) {
-
+    
     var AppRouter = Backbone.Router.extend({
         routes: {
             "": "loadHomePage",
@@ -37,10 +37,10 @@ define([
         handleDisplayOfAdminPanel: function () {
             var router = this;
             /*
-             * sessionId is removed on log-out so here we trigger the activateAdminPanel only when it is present.
-             * Otherwise it means that the user is not logged-in
-             */
-            if (document.cookie.match(/sessionId/)) {
+            * sessionId is removed on log-out so here we trigger the activateAdminPanel only when it is present.
+            * Otherwise it means that the user is not logged-in
+            */
+            if (window.localStorage.getItem("jwt")) {
                 Backbone.bus.trigger("activateAdminPanel");
             }
         },
@@ -85,6 +85,6 @@ define([
             router.createBlogMasterDetailView.render();
         },
     });
-
+    
     return new AppRouter();
 });

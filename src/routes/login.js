@@ -16,12 +16,8 @@ function generateSessionId() {
 }
 
 function initUserSession(request, response, onDone, onError) {
-    var key = request.body.username + "_token";
-    jwt.sign(key, function(token) {
-        response.cookie("sessionId", token);
-        response.cookie("username", request.body.username);
-        onDone();
-    }, onError);
+    var username = request.body.username;
+    jwt.sign(username, onDone, onError);
 }
 
 loginRouter.post("/", function(request, response) {
@@ -30,9 +26,9 @@ loginRouter.post("/", function(request, response) {
         var password = result && result.password || "";
         bcrypt.compare(request.body.password, password, function(error, isAuthorized){
             if(!error) {
-                initUserSession(request, response, function() {
+                initUserSession(request, response, function(token) {
                     status = 200;
-                    response.sendStatus(status);
+                    response.status(status).send(token);
                 }, function() {
                     response.sendStatus(status);
                 });

@@ -23,7 +23,11 @@ define([
             .hide()
             .fadeIn(800);
             
-            view.$el.find("#username").val(document.cookie.match(/(username=(.*?);)/)[2]);
+            var jwt = window.localStorage.getItem("jwt");
+            if(jwt){
+                var username = JSON.parse(atob(jwt.split(".")[0])).username;
+                view.$el.find("#username").val(username);
+            }
         },
         events: {
             "click #update-credentials-btn": "submit"
@@ -40,6 +44,7 @@ define([
 
             if (view.credentialsModel.isValid()) {
                 view.credentialsModel.save(null, {
+                    headers: { jwt : window.localStorage.getItem("jwt")},
                     dataType: 'text',
                     success: view.onUpdateCredentialsSuccess,
                     error: view.onUpdateCredentialsError
