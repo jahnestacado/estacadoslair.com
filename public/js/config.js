@@ -16,8 +16,9 @@ require.config({
         "ckeditor": "bower_components/ckeditor/ckeditor",
 
         //Backbone models
-        "blogPost": "js/models/blogPost",
-        "userAuth": "js/models/userAuth",
+        "blogPostModel": "js/models/blogPost",
+        "userCredentialsModel": "js/models/user-credentials",
+        "updateCredentialsModel": "js/models/update-credentials",
 
         //Backbone collections
         "blogPosts": "js/collections/blogPosts",
@@ -30,6 +31,7 @@ require.config({
         "createBlogPostListView": "js/views/createBlogPostListView",
         "editBlogPostView": "js/views/editBlogPostView",
         "loginView": "js/views/loginView",
+        "updateCredentialsView": "js/views/updateCredentialsView",
         "homeView": "js/views/homeView",
         "notificationView": "js/views/notificationView",
         "notFoundView": "js/views/pageNotFoundView",
@@ -49,6 +51,7 @@ require.config({
         "homeTemplate": "templates/home.tpl",
         "listViewTemplate": "templates/listView.tpl",
         "loginTemplate": "templates/login.tpl",
+        "updateCredentialsTemplate": "templates/updateCredentials.tpl",
         "editListViewTemplate": "templates/editListView.tpl",
         "blogPostTemplate": "templates/blogPost.tpl",
         "editBlogPostTemplate": "templates/editBlogPost.tpl",

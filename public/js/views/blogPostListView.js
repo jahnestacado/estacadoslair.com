@@ -20,24 +20,23 @@ define([
                 Backbone.bus.trigger("fadeOutHomeView");
                 CURTAIN.open();
                 view.$el.html(view.template({posts: blogPosts.models}));
-
-                if (blogPosts.models.length) {
-                    // If blogId is not specified pick first blog post
-                    blogId = blogId || blogPosts.models[0].get("_id");
-                    view.renderBlogPost(blogId);
-
-                    if(view.isOrientationPortrait()){
-                        view.$el.find(".list-group li").swipe({
-                            swipe:function(event, direction) {
-                                view.swipeBlogListItem(event, direction);
-                            },
-                            threshold:0
-                        });
-                    }
+                // If blogId is not specified pick first blog post
+                blogId = blogId || blogPosts.models.length && blogPosts.models[0].get("_id") || null;
+                view.renderBlogPost(blogId);
+                
+                if(view.isOrientationPortrait()){
+                    view.$el.find(".list-group li").swipe({
+                        swipe:function(event, direction) {
+                            view.swipeBlogListItem(event, direction);
+                        },
+                        threshold:0
+                    });
                 }
             };
-
-            if(!view.blogPosts.length){
+            var models = view.blogPosts.models
+            var numOfBlogPosts = models.length;
+            var shouldFetchData = !numOfBlogPosts;
+            if(shouldFetchData){
                 view.fetchBlogPosts(updateUI);
             } else{
                 updateUI(view.blogPosts);
@@ -61,13 +60,13 @@ define([
             var view = this;
             event.stopImmediatePropagation();
             var listElQ = $(event.target).parent();
-
+            
             if(listElQ.hasClass("active")){
                 listElQ.removeClass("active");
                 var activeItemIndex = listElQ.index();
                 var listItemElQs = listElQ.siblings();
                 var numOfItems = listItemElQs.length;
-
+                
                 if(direction === "right" && activeItemIndex + 1 === numOfItems){
                     view.selectBlogPost(listItemElQs.first());
                 } else if(direction === "left" && activeItemIndex === 0){
@@ -86,7 +85,9 @@ define([
                 view.updateGraphTags(selectedBlogPost);
                 require("routes").navigate("#" + view.getPathDomain() + "/" + id + "/" + selectedBlogPost.get("slug"));
                 view.blogPostView.render(selectedBlogPost);
-            } else{
+            } else if(id === null){
+                view.blogPostView.render(id);
+            } else {
                 require("routes").navigate("#not-found", {trigger: true});
             }
         },
@@ -133,6 +134,6 @@ define([
             view.render(id);
         },
     });
-
+    
     return BlogPostListView;
 });

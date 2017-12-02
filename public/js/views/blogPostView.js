@@ -23,20 +23,23 @@ define([
         template: _.template(viewTemplate),
         render: function(blogPostModel, onSuccess) {
             var view = this;
-            $(".curtain-B").scrollTop(0);
-
-            if(!onSuccess){
-                onSuccess = function(model){
-                    view.initDisqus();
-                    view.$el.html(view.template(model.attributes));
-                    view.showDisqus(model);
-                };
-            }
-
-            if (blogPostModel && !blogPostModel.get("body")) {
-                blogPostModel.fetch({success: onSuccess});
+            if(blogPostModel) {
+                $(".curtain-B").scrollTop(0);
+                if(!onSuccess){
+                    onSuccess = function(model){
+                        view.initDisqus();
+                        view.$el.html(view.template(model.attributes));
+                        view.showDisqus(model);
+                    };
+                }
+                
+                if (!blogPostModel.get("body")) {
+                    blogPostModel.fetch({success: onSuccess});
+                } else {
+                    onSuccess(blogPostModel);
+                }
             } else {
-                onSuccess(blogPostModel);
+                view.$el.html("<div></div>");
             }
         },
         showDisqus: function(blogPostModel){

@@ -3,16 +3,16 @@ define([
     "underscore",
     "backbone",
     "text!createBlogPostTemplate",
-    "blogPost",
+    "blogPostModel",
     "curtain",
     "moment",
     "ckeditor"
-], function ($, _, Backbone, viewTemplate, BlogPost, CURTAIN, moment, CKEDITOR) {
+], function ($, _, Backbone, viewTemplate, BlogPostModel, CURTAIN, moment, CKEDITOR) {
 
     var CreateBlogPostView = Backbone.View.extend({
         initialize: function(){
             var view = this;
-            view.blogPostModel = new BlogPost();
+            view.blogPostModel = new BlogPostModel();
         },
         el: ".curtain-B",
         template: _.template(viewTemplate),

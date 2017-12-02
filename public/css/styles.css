@@ -119,7 +119,7 @@
     .panel .list-group li{
         display: none;
     }
-
+    
     #back-home{
         position: absolute!important;
         font-size: 17pt!important;
@@ -295,12 +295,6 @@ a.link-btn:focus{
     float: right !important;
 }
 
-.form-signin{
-    width:300px;
-    height:300px;
-    margin:0 auto;
-}
-
 .delete-btn:hover{
     color:red;
 }
@@ -354,6 +348,19 @@ a.link-btn:focus{
     opacity:0.8;
     box-shadow:1px 1px 50px 1px #FCE1AC;
     width: 250px;
+    margin:0 auto;
+}
+
+.form-update-credentials{
+    position: relative;
+    border-radius: 30px;
+    background-color: #01002A;
+    text-align: center;
+    opacity:0.8;
+    box-shadow:1px 1px 50px 1px #FCE1AC;
+    width: 250px;
+    margin:0 auto;
+    height: 270px;
 }
 
 .btn-block{
@@ -366,6 +373,7 @@ a.link-btn:focus{
     border-color: #FAFBEE;
 }
 
+.form-update-credentials .form-control,
 .form-signin .form-control{
     background-color: #01002A;
     border: 1px solid #FAFBEE;
@@ -375,7 +383,7 @@ a.link-btn:focus{
     border-right-style: none;
     margin-top: 10px;
 }
-
+h2.form-update-credentials-heading,
 h2.form-signin-heading{
     color:#FAFBEE;
     font-size: 31px;

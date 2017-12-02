@@ -33,6 +33,7 @@ define([
         updatePost: function(model){
             var view = this;
             model.save(model.attributes, {
+                headers: { jwt : window.localStorage.getItem("jwt")},
                 dataType: "text",
                 success: function () {
                     Backbone.bus.trigger("notification", {message: "Updated post!",status: "success"});
@@ -54,6 +55,7 @@ define([
                 var targetModel = view.getModelFromCollection(id);
 
                 targetModel.destroy({
+                    headers: { jwt : window.localStorage.getItem("jwt")},
                     dataType: "text",
                     success: function () {
                         Backbone.bus.trigger("notification", {message: "Deleted post!",status: "success"});

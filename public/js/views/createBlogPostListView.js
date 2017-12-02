@@ -34,6 +34,7 @@ define([
         createNewBlogPost: function(model){
             var view = this;
             model.save(model.attributes,{
+                headers: { jwt : window.localStorage.getItem("jwt")},
                 dataType: "text",
                 success: function (model, response) {
                     Backbone.bus.trigger("notification", {message: "Created post!",status: "success"});

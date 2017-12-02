@@ -14,6 +14,10 @@
     <button id="admin-panel-blog-btn" class="admin-btn">
         <span class="icon icon-blogger"></span>
     </button>
+    
+    <button id="admin-panel-update-credentials-btn" class="admin-btn">
+        <span class="icon icon-user2"></span>
+    </button>
 
     <button id="admin-panel-logout-btn" class="admin-btn">
         <span class="icon icon-exit"></span>

@@ -2,22 +2,22 @@ define([
     "jquery",
     "underscore",
     "backbone",
-    "userAuth",
+    "userCredentialsModel",
     "text!loginTemplate",
     "curtain"
-], function($, _, Backbone, AuthModel, viewTemplate, CURTAIN) {
-
+], function($, _, Backbone, UserCredentialsModel, viewTemplate, CURTAIN) {
+    
     var LoginView = Backbone.View.extend({
         initialize: function(){
             var view = this;
-            view.authModel = new AuthModel();
+            view.userCredentialsModel = new UserCredentialsModel();
         },
         el: "#icon-bar",
         template: _.template(viewTemplate),
         render: function() {
             CURTAIN.close();
             var view = this;
-
+            
             view.$el
             .html(view.template())
             .hide()
@@ -31,19 +31,19 @@ define([
             var view = this;
             event.stopPropagation();
             event.preventDefault();
-
-            view.authModel.set("username", view.$el.find("#inputEmail").val());
-            view.authModel.set("password", view.$el.find("#inputPassword").val());
-
-            if (view.authModel.isValid()) {
-                view.authModel.save(null, {
+            
+            view.userCredentialsModel.set("username", view.$el.find("#username").val());
+            view.userCredentialsModel.set("password", view.$el.find("#password").val());
+            
+            if (view.userCredentialsModel.isValid()) {
+                view.userCredentialsModel.save(null, {
                     dataType: 'text',
                     success: view.onAuthSuccess,
                     error: view.onAuthError
                 });
             } else {
                 Backbone.bus.trigger("notification", {
-                    message: view.authModel.validationError,
+                    message: view.userCredentialsModel.validationError,
                     status: "error"
                 });
             }
@@ -55,9 +55,14 @@ define([
             });
         },
         onAuthSuccess: function(response){
+            var jwt = response.get("jwt");
+            window.localStorage.setItem("jwt", jwt);
+            Backbone.$.ajaxSetup({
+                headers: {jwt : jwt}
+            });
             require("routes").navigate("/edit", {trigger: true});
             Backbone.bus.trigger("notification", {
-                message: "Welcome " + response.attributes.username + "!", status: "success"
+                message: "Welcome " + response.get("username") + "!", status: "success"
             });
         },
         navigateToHomePage: function() {
@@ -65,7 +70,7 @@ define([
             require("routes").navigate("/", {trigger: true});
         }
     });
-
+    
     return LoginView;
-
+    
 });
