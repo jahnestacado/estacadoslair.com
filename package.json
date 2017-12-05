@@ -30,17 +30,14 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd public && bower install && cd .. ; grunt deploy",
+    "postinstall": "cd public && bower install",
+	"build": "grunt deploy",
     "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jahnestacado/investigating.git"
+    "url": "https://github.com/jahnestacado/estacadoslair.com.git"
   },
   "author": "Ioannis Tzanellis <ioannis.kiwe@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jahnestacado/investigating/issues"
-  },
-  "homepage": "https://github.com/jahnestacado/investigating"
+  "license": "ISC"
 }
