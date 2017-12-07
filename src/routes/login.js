@@ -25,14 +25,18 @@ loginRouter.post("/", function(request, response) {
         var status = 400; //Bad request
         var password = result && result.password || "";
         bcrypt.compare(request.body.password, password, function(error, isAuthorized){
-            if(!error) {
+            if(error) {
+                response.sendStatus(status)
+            }  else if(isAuthorized) {
                 initUserSession(request, response, function(token) {
                     status = 200;
                     response.status(status).send(token);
                 }, function() {
                     response.sendStatus(status);
                 });
-            } 
+            } else {
+                response.sendStatus(401)
+            }
         });
     });
 });
