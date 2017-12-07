@@ -31,8 +31,9 @@
     "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd public && bower install",
-	"build": "grunt deploy",
-    "dev": "nodemon src/server.js"
+    "build": "grunt deploy",
+    "dev": "nodemon src/server.js",
+    "docker_build_app": "docker build -f docker/estacadoslair/Dockerfile  -t jahnestacado/website ."
   },
   "repository": {
     "type": "git",
