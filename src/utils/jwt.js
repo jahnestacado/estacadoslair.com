@@ -1,4 +1,5 @@
 var jwt = require("jsonwebtoken");
+var base64Utils = require("./base64.js");
 var JWT_SECRET = process.env.JWT_SECRET || "secret";
 var ALG = "HS256";
 
@@ -27,7 +28,7 @@ var JWT = {
         return Buffer.from('{"alg":"'+ ALG +'","typ":"JWT"}').toString("base64");
     },
     getClaim:  function(headlessToken, claimName){
-        return headlessToken.split(".")[0][claimName];
+        return JSON.parse(base64Utils.atob(headlessToken.split(".")[0]))[claimName];
     }
 };
 

@@ -13,6 +13,7 @@ bus.subscribe("db", {
 });
 
 var updateCredentials = function(username, newUsername, newPassword, onDone, onError) {
+    console.log("Update", username, newUsername, newPassword);
     bcrypt.hash(newPassword, 15, function(error, hash) {
         if(error){
             onError(error);
@@ -30,7 +31,9 @@ updatePasswordRouter.post("/", auth, function(request, response) {
     var newPassword = body.newPassword;
     var newPasswordConfirmation = body.newPasswordConfirmation;
     var existingUsername = jwt.getClaim(request.get("jwt"), "username");
+    console.log("existingUsername", existingUsername);
     dbConnection.collection("users").findOne({username: username}, function(error, result) {
+        console.log("Found", result);
         bcrypt.compare(password, result.password, function(error, isAuthorized){
             if(isAuthorized && newPassword === newPasswordConfirmation){
                 updateCredentials(existingUsername, username, newPassword, function() {
