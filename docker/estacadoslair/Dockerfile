@@ -2,7 +2,12 @@ FROM arm64v8/node:slim
 
 MAINTAINER Jahn Estacado
 
-RUN apt-get update && apt-get install -y build-essential && apt-get install -y python && npm install -g pm2
+RUN apt-get clean && apt-get update
+RUN apt-get install -y --force-yes build-essential
+RUN apt-get install -y --force-yes python
+RUN npm install -g pm2
+
+
 
 COPY . .
 
