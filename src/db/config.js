@@ -2,10 +2,9 @@ var mongoskin = require("mongoskin");
 var mongoClient = mongoskin.MongoClient;
 var mongoURI = process.env.MONGO_URI || "localhost:27017";
 var _ = require("underscore");
-var COLLECTIONS = ["blog", "users"];
+var COLLECTIONS = ["blog", "users", "uploads"];
 var bus = require("hermes-bus");
 var bcrypt = require("bcrypt");
-
 var SUPER_ADMIN_DEFAULT_CREDENTIALS = {
     username: "admin",
     password: bcrypt.hashSync("admin", 15)

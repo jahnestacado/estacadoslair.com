@@ -4,12 +4,17 @@ var bodyParser = require("body-parser");
 var compress = require("compression");
 var path = require("path");
 var app = express();
+var uploadsCollectionUtils = require("./db/uploads-collection-utils.js");
+var handleError = require("./middleware/error-handler.js");
+
+uploadsCollectionUtils.syncUploadDir();
 
 app.use(compress());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use("/", require("./routes/app.js"));
 app.use(express.static(path.join(__dirname, "/../public")));
+
 
 //Start HTTP server which redirects everything to HTTPS through httpsRedirect middleware
 app.listen(process.env.PORT || 7070);
@@ -23,3 +28,6 @@ app.use("/update-credentials", require("./routes/update-credentials.js"));
  app.use("*", function(request, response){
      response.sendFile("webapp.html", {root:path.join( __dirname, "/../public")})
  });
+ 
+ app.use(handleError);
+

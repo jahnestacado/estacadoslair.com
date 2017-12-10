@@ -19,6 +19,7 @@ require.config({
         "blogPostModel": "js/models/blogPost",
         "userCredentialsModel": "js/models/user-credentials",
         "updateCredentialsModel": "js/models/update-credentials",
+        "fileListModel": "js/models/file-list",
 
         //Backbone collections
         "blogPosts": "js/collections/blogPosts",
@@ -36,6 +37,7 @@ require.config({
         "notificationView": "js/views/notificationView",
         "notFoundView": "js/views/pageNotFoundView",
         "adminPanelView": "js/views/adminPanelView",
+        "fileUploadView": "js/views/fileUploadView",
         "masterDetailViewFactory": "js/views/masterDetailViewFactory",
 
         //Backbone routes
@@ -59,6 +61,7 @@ require.config({
         "notFoundTemplate": "templates/pageNotFoundView.tpl",
         "createBlogPostTemplate": "templates/createBlogPost.tpl",
         "adminPanelViewTemplate": "templates/adminPanelView.tpl",
+        "fileUploadViewTemplate": "templates/fileUploadView.tpl",
 
         //Boot file
         "app": "js/app",

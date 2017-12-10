@@ -3,15 +3,14 @@ define([
     "underscore",
     "backbone",
     "text!fileUploadViewTemplate",
-    "fileList"
-], function($, _, Backbone, template, FileList) {
-
+    "fileListModel"
+], function($, _, Backbone, template, FileListModel) {
+    
     var FileUploadView = Backbone.View.extend({
         el: $("<div class='upload-view'></div>"),
         initialize: function(options){
             var view = this;
-            console.log(options, view)
-             view.parentElQ = options.parentElQ;
+            view.parentElQ = options.parentElQ;
         },
         template: _.template(template),
         render: function() {
@@ -25,12 +24,13 @@ define([
         },
         uploadFile: function(event){
             event.preventDefault();
+            event.stopPropagation();
             event.stopImmediatePropagation();
-
+            
             var view = this;
             var fileList = view.$el.find('#upload-form #input-file').prop("files");
-            var files = new FileList(fileList);
-
+            var files = new FileListModel(fileList);
+            
             files.save(null,{
                 success: function(){
                     view.$el.find("#input-file").val("");
@@ -40,17 +40,16 @@ define([
                     });
                 },
                 error: function(jqXHR, status, errorMessage){
-                    var errors = JSON.parse(jqXHR.responseText);
-                    errors.forEach(function(error){
-                        Backbone.bus.trigger("notification", {
-                            message: error,
-                            status: "error"
-                        });
+                    var error = JSON.parse(jqXHR.responseText);
+                    var msg = [errorMessage, error.code, error.path, error.storageErrors.join(",")].join(" ");
+                    Backbone.bus.trigger("notification", {
+                        message: msg,
+                        status: "error"
                     });
                 }
             });
         },
     });
-
+    
     return FileUploadView;
 });

@@ -6,13 +6,15 @@ define([
     "blogPostModel",
     "curtain",
     "moment",
-    "ckeditor"
-], function ($, _, Backbone, viewTemplate, BlogPostModel, CURTAIN, moment, CKEDITOR) {
+    "ckeditor",
+    "fileUploadView"
+], function ($, _, Backbone, viewTemplate, BlogPostModel, CURTAIN, moment, CKEDITOR, FileUploadView) {
 
     var CreateBlogPostView = Backbone.View.extend({
         initialize: function(){
             var view = this;
             view.blogPostModel = new BlogPostModel();
+            view.fileUploadView = new FileUploadView({parentElQ: view.$el});
         },
         el: ".curtain-B",
         template: _.template(viewTemplate),
@@ -20,6 +22,7 @@ define([
             var view = this;
             view.$el.html(view.template());
             view.initCKEditor();
+            view.fileUploadView.render();
         },
         events: {
             "click #save-post-btn": "savePost"
