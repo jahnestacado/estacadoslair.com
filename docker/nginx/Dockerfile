@@ -11,7 +11,9 @@ RUN ln -s /etc/nginx/sites-available/estacadoslair.com /etc/nginx/sites-enabled/
 
 COPY public public
 
-VOLUME ["/etc/letsencrypt", "/etc/ssl"]
+RUN mkdir public/images/uploads
+
+VOLUME ["/etc/letsencrypt", "/etc/ssl", "public/images/uploads"]
 
 ENTRYPOINT ["bash", "main.sh"]
 

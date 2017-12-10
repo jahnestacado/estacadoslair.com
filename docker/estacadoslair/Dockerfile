@@ -7,9 +7,11 @@ RUN apt-get install -y --force-yes build-essential
 RUN apt-get install -y --force-yes python
 RUN npm install -g pm2
 
-
-
 COPY . .
+
+RUN mkdir public/images/uploads
+
+VOLUME ["public/images/uploads"]
 
 RUN npm install && npm run build
 
