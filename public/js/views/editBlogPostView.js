@@ -6,7 +6,8 @@ define([
     "createBlogPostView",
     "text!editBlogPostTemplate",
     "curtain",
-    "moment"
+    "moment",
+    "bootstrap"
 ], function ($, _, Backbone, BlogPostView, CreateBlogPostView, viewTemplate, CURTAIN, moment) {
 
     var EditBlogPostView = CreateBlogPostView.extend({

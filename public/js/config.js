@@ -4,7 +4,7 @@ require.config({
     paths: {
         //3rd Party libs
         "jquery":"bower_components/jquery/dist/jquery",
-        "boostrap": "bower_components/bootstrap/dist/js/bootstrap",
+        "bootstrap": "bower_components/bootstrap/dist/js/bootstrap",
         "highlightjs": "bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
         "underscore": "bower_components/underscore/underscore",
         "backbone": "bower_components/backbone/backbone",

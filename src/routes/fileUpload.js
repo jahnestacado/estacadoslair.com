@@ -30,4 +30,14 @@ uploadFileRouter.post("/", upload.array("uploaded-files", 20), function(request,
     });
 });
 
+uploadFileRouter.get("/", function(request, response) {
+    fs.readdir(uploadsPath, function(error, list){
+        if(error){
+            response.status(500).json(error);
+        } else {
+            response.status(200).json(list);
+        }
+    });
+});
+
 module.exports = uploadFileRouter;

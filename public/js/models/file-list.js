@@ -2,12 +2,13 @@ define(["backbone"], function(Backbone) {
 
     var FileModel = Backbone.Model.extend({
         initialize: function(fileList){
-            var model = this;
-            model.data = new FormData();
-            Object.keys(fileList).forEach(function(fileKey){
-                model.data.append("uploaded-files", fileList[fileKey]);
-            });
-
+            if(fileList) {
+                var model = this;
+                model.data = new FormData();
+                Object.keys(fileList).forEach(function(fileKey){
+                    model.data.append("uploaded-files", fileList[fileKey]);
+                });
+            }
         },
         url: "/upload",
         save: function(extraData, options){

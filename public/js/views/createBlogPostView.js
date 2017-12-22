@@ -14,12 +14,12 @@ define([
         initialize: function(){
             var view = this;
             view.blogPostModel = new BlogPostModel();
-            view.fileUploadView = new FileUploadView({parentElQ: view.$el});
         },
         el: ".curtain-B",
         template: _.template(viewTemplate),
         render: function () {
             var view = this;
+            view.fileUploadView = new FileUploadView({parentElQ: view.$el});
             view.$el.html(view.template());
             view.initCKEditor();
             view.fileUploadView.render();
