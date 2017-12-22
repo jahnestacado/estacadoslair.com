@@ -4,10 +4,10 @@ var bodyParser = require("body-parser");
 var compress = require("compression");
 var path = require("path");
 var app = express();
-var uploadsCollectionUtils = require("./db/uploads-collection-utils.js");
+var fileStorageCollectionUtils = require("./db/file-storage-collection-utils.js");
 var handleError = require("./middleware/error-handler.js");
 
-uploadsCollectionUtils.syncUploadDir();
+fileStorageCollectionUtils.syncFileStorageDir();
 
 app.use(compress());
 app.use(bodyParser.urlencoded());
@@ -21,7 +21,7 @@ app.listen(process.env.PORT || 7070);
 app.use("/auth", require("./routes/authCheck.js"));
 app.use("/login", require("./routes/login.js"));
 app.use("/blog", require("./routes/blog.js"));
-app.use("/upload", require("./routes/fileUpload.js"));
+app.use("/file-storage", require("./routes/fileStorage.js"));
 app.use("/update-credentials", require("./routes/update-credentials.js"));
 
 //This router should be used always in the end

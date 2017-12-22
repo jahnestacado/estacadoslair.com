@@ -2,9 +2,9 @@ var bus = require("hermes-bus");
 var fs = require("fs");
 var mongoskin = require("mongoskin");
 var path = require("path");
-var uploadsPath = process.env.STORAGE_DIR || "./public/images/uploads";
-var lockFilePath = path.join(uploadsPath, ".lockfile");
-var uploadsCollection;
+var fileStoragePath = process.env.STORAGE_DIR || "./public/images/uploads";
+var lockFilePath = path.join(fileStoragePath, ".lockfile");
+var fileStorageCollection;
 
 var Utils = {
     insertFiles: function(filenames, onDone) {
@@ -12,7 +12,7 @@ var Utils = {
         var fileEntries = [];
         filenames.forEach(function(filename) {
             promises.push(new Promise(function(resolve) {
-                fs.readFile(path.join(uploadsPath, filename), function(error, data) {
+                fs.readFile(path.join(fileStoragePath, filename), function(error, data) {
                     var fileEntry = {
                         name: filename,
                         data: mongoskin.Binary(data)
@@ -23,17 +23,17 @@ var Utils = {
         });
         
         Promise.all(promises).then(function(fileEntries) {
-            uploadsCollection.insertMany(fileEntries, function(error){
+            fileStorageCollection.insertMany(fileEntries, function(error){
                 error ? onDone(error) : onDone();
             });
         });
     },
-    syncUploadDir: function() {
+    syncFileStorageDir: function() {
         bus.subscribe("db", {
             onDatabaseReady: function(db) {
-                if(!Utils.isUploadsPathLocked()) {
-                    uploadsCollection = db.collection("uploads");
-                    uploadsCollection.find().toArray(function(error, fileEntries) {
+                if(!Utils.isfileStoragePathLocked()) {
+                    fileStorageCollection = db.collection("file-storage");
+                    fileStorageCollection.find().toArray(function(error, fileEntries) {
                         if(error) {
                             console.error(error);
                         } else {
@@ -44,7 +44,7 @@ var Utils = {
                                 } else {
                                     fileEntries.forEach(function(entry) {
                                         promises.push(new Promise(function(resolve) {
-                                            var filePath = path.join(uploadsPath, entry.name);
+                                            var filePath = path.join(fileStoragePath, entry.name);
                                             fs.access(filePath, function(error){
                                                 if(error){
                                                     // File doesn't exist hence we create it
@@ -72,7 +72,7 @@ var Utils = {
             }
         });
     },
-    isUploadsPathLocked: function() {
+    isfileStoragePathLocked: function() {
         var isLocked = true;
         try {
             fs.accessSync(lockFilePath);

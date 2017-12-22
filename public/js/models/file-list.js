@@ -10,7 +10,7 @@ define(["backbone"], function(Backbone) {
                 });
             }
         },
-        url: "/upload",
+        url: "/file-storage",
         save: function(extraData, options){
             var model = this;
 

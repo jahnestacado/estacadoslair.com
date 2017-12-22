@@ -1,15 +1,15 @@
 var express = require("express");
-var uploadFileRouter = express.Router();
+var fileStorageRouter = express.Router();
 var fs = require("fs");
 var path = require("path");
 var multer = require("multer");
-var uploadsPath = process.env.UPLOADS_DIR || "./public/images/uploads";
-var upload = multer({ dest: uploadsPath});
+var fileStoragePath = process.env.UPLOADS_DIR || "./public/images/uploads";
+var upload = multer({ dest: fileStoragePath});
 var auth = require("./../middleware/auth.js");
-var uploadCollectionUtils = require("./../db/uploads-collection-utils.js");
+var fileStorageCollectionUtils = require("./../db/file-storage-collection-utils.js");
 
 var storage = multer.diskStorage({
-    destination: uploadsPath,
+    destination: fileStoragePath,
     filename: function(request, file, next) {
         var extension = file.originalname.match(/.*\.(.*)$/)[1];
         next(null, file.originalname.replace("." + extension, "-"+ Date.now() +"." + extension));
@@ -17,11 +17,11 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage});
 
-uploadFileRouter.post("/", upload.array("uploaded-files", 20), function(request, response) {
+fileStorageRouter.post("/", upload.array("uploaded-files", 20), function(request, response) {
     var filenames = request.files.map(function(file){
         return file.filename;
     });
-    uploadCollectionUtils.insertFiles(filenames, function(error){
+    fileStorageCollectionUtils.insertFiles(filenames, function(error){
         if(error) {
             response.status(204).json(error);
         } else {
@@ -30,8 +30,8 @@ uploadFileRouter.post("/", upload.array("uploaded-files", 20), function(request,
     });
 });
 
-uploadFileRouter.get("/", function(request, response) {
-    fs.readdir(uploadsPath, function(error, list){
+fileStorageRouter.get("/", function(request, response) {
+    fs.readdir(fileStoragePath, function(error, list){
         if(error){
             response.status(500).json(error);
         } else {
@@ -40,4 +40,4 @@ uploadFileRouter.get("/", function(request, response) {
     });
 });
 
-module.exports = uploadFileRouter;
+module.exports = fileStorageRouter;
