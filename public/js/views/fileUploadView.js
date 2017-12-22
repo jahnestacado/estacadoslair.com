@@ -27,51 +27,58 @@ define(
                 });
             },
             events: {
-                "click #upload": "uploadFile",
+                "click #upload": "uploadFiles",
                 "click .file-list li": "updateThumbnail",
                 "click .file-list li .copy-btn": "copyFilepath",
                 "click .file-list li .delete-btn": "deleteFile",
             },
-            uploadFile: function(event) {
+            uploadFiles: function(event) {
                 event.preventDefault();
                 event.stopPropagation();
-
+                
                 var view = this;
                 var fileList = view.$el
-                    .find("#upload-form #input-file")
-                    .prop("files");
+                .find("#upload-form #input-file")
+                .prop("files");
                 var files = new FileListModel(fileList);
-
-                files.save(null, {
-                    success: function() {
-                        view.$el.find("#input-file").val("");
-                        Backbone.bus.trigger("notification", {
-                            message: "Uploaded files!",
-                            status: "success",
-                        });
-                    },
-                    error: function(jqXHR, status, errorMessage) {
-                        var error = JSON.parse(jqXHR.responseText);
-                        var msg = [
-                            errorMessage,
-                            error.code,
-                            error.path,
-                            error.storageErrors.join(","),
-                        ].join(" ");
-                        Backbone.bus.trigger("notification", {
-                            message: msg,
-                            status: "error",
-                        });
-                    },
-                });
+                
+                if(files.attributes.length) {
+                    files.save(null, {
+                        success: function() {
+                            view.$el.find("#input-file").val("");
+                            Backbone.bus.trigger("notification", {
+                                message: "Uploaded files!",
+                                status: "success",
+                            });
+                        },
+                        error: function(jqXHR, status, errorMessage) {
+                            var error = JSON.parse(jqXHR.responseText);
+                            var msg = [
+                                errorMessage,
+                                error.code,
+                                error.path,
+                                error.storageErrors.join(","),
+                            ].join(" ");
+                            Backbone.bus.trigger("notification", {
+                                message: msg,
+                                status: "error",
+                            });
+                        },
+                    });
+                } else{
+                    Backbone.bus.trigger("notification", {
+                        message: "No upload files selected!",
+                        status: "error",
+                    });
+                }
             },
             updateThumbnail: function(event) {
                 var view = this;
                 var fileItemElQ = $(event.target);
                 var filename = fileItemElQ.text();
                 view.$el
-                    .find(".thumbnail")
-                    .attr("src", "/images/uploads/" + filename);
+                .find(".thumbnail")
+                .attr("src", "/images/uploads/" + filename);
             },
             copyFilepath: function(event) {
                 event.stopPropagation();
@@ -83,7 +90,7 @@ define(
                 view.$el.append(tempElQ);
                 tempElQ.val(filepath).select();
                 tempElQ.remove();
-
+                
                 try {
                     var successful = document.execCommand("copy");
                     var msg = successful ? "successful" : "unsuccessful";
@@ -97,7 +104,7 @@ define(
             },
             deleteFile: function() {},
         });
-
+        
         return FileUploadView;
     }
 );
