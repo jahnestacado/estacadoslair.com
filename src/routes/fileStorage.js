@@ -40,4 +40,15 @@ fileStorageRouter.get("/", function(request, response) {
     });
 });
 
+fileStorageRouter.delete("/:filename", function(request, response) {
+    var filename = request.params.filename;
+    fileStorageCollectionUtils.removeFile(filename, function(error){
+        if(error) {
+            response.status(500).json(error);
+        } else {
+            response.status(200).json(filename);
+        }
+    });
+});
+
 module.exports = fileStorageRouter;

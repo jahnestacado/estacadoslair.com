@@ -28,6 +28,14 @@ var Utils = {
             });
         });
     },
+    removeFile: function(filename, onDone) {
+        fs.unlink(path.join(fileStoragePath, filename), function(error) {
+            var fileEntry = {name: filename};
+            fileStorageCollection.remove(fileEntry, function(error){
+                error ? onDone(error) : onDone();
+            });
+        });
+    },
     syncFileStorageDir: function() {
         bus.subscribe("db", {
             onDatabaseReady: function(db) {
