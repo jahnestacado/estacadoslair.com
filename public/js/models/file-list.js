@@ -1,8 +1,8 @@
-define(["backbone"], function(Backbone) {
+define(["backbone", "underscore"], function(Backbone, _) {
 
     var FileModel = Backbone.Model.extend({
         initialize: function(fileList){
-            if(fileList) {
+            if(fileList && _.isObject(fileList)) {
                 var model = this;
                 model.data = new FormData();
                 Object.keys(fileList).forEach(function(fileKey){
@@ -16,7 +16,7 @@ define(["backbone"], function(Backbone) {
 
             $.ajax({
                 url: model.url,
-                type: 'POST',
+                type: "POST",
                 data: model.data,
                 cache: false,
                 dataType: "text",
@@ -29,7 +29,7 @@ define(["backbone"], function(Backbone) {
                     options.error && options.error(jqXHR, status, errorMessage);
                 }
             });
-        }
+        },
     });
 
     return FileModel;
