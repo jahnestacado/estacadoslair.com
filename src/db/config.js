@@ -40,8 +40,8 @@ var initializeCollections = function(db, onDone, onError) {
                         } else {
                             console.log(
                                 "Collection: " +
-                                    collectionName +
-                                    " successfully initialized!!!"
+                                collectionName +
+                                " successfully initialized!!!"
                             );
                             if(collectionName === "users") {
                                 initializeAdminUser(db, function(){
@@ -58,16 +58,23 @@ var initializeCollections = function(db, onDone, onError) {
 };
 
 var connect = function(onError) {
-    var db;
-    db = mongoClient.connect("mongodb://" + mongoURI + "/mywebsite");
-    initializeCollections(
-        db,
-        function() {
-            bus.db.triggerDatabaseReady(db);
-        },
-        onError
-    );
+    var db = mongoClient.connect("mongodb://" + mongoURI + "/mywebsite");
+    db.on("close", onError);
+    // Since ths horrible mongoskin API doesn't provide proper error handling
+    // the stats function is used to check if there is an open connection
+    db.stats(function(isClosed){
+        if(!isClosed) {
+            initializeCollections(
+                db,
+                function() {
+                    bus.db.triggerDatabaseReady(db);
+                },
+                onError
+            );
+        }
+    });
 };
+
 
 var connectWithRetry = function() {
     connect(function(error) {
@@ -76,4 +83,4 @@ var connectWithRetry = function() {
     });
 };
 
-connectWithRetry(10000);
+connectWithRetry();
