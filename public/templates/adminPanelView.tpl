@@ -19,6 +19,11 @@
         <span class="icon icon-user2"></span>
     </button>
 
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="admin-btn" data-toggle="modal" data-target="#myModal">
+        <span class="icon icon-images"></span>
+    </button>
+
     <button id="admin-panel-logout-btn" class="admin-btn">
         <span class="icon icon-exit"></span>
     </button>

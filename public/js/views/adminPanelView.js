@@ -3,7 +3,8 @@ require([
     "underscore",
     "backboneExtended",
     "text!adminPanelViewTemplate",
-], function($, _, Backbone, viewTemplate) {
+    "fileUploadView"
+], function($, _, Backbone, viewTemplate, FileUploadView) {
     var AdminPanelView = Backbone.View.extend({
         initialize: function() {
             var view = this;
@@ -19,6 +20,8 @@ require([
                     // Always guarantees that we have only one admin-panel attached to body element
                     if (!$("#admin-panel").length) {
                         $(view.template()).appendTo(view.$el);
+                        view.fileUploadView = new FileUploadView({parentElQ: view.$el});
+                        view.fileUploadView.render();
                     }
                 },
             });

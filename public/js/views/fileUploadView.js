@@ -24,7 +24,12 @@ define(
                         view.parentElQ.append(view.$el);
                         onDone && onDone()
                     },
-                    error: function() {},
+                    error: function(error) {
+                        Backbone.bus.trigger("notification", {
+                            message: error.msg,
+                            status: "error",
+                        });
+                    },
                 });
             },
             refresh: function() {
