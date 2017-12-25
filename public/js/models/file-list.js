@@ -13,11 +13,11 @@ define(["backbone", "underscore"], function(Backbone, _) {
         url: "/file-storage",
         save: function(extraData, options){
             var model = this;
-
             $.ajax({
                 url: model.url,
                 type: "POST",
                 data: model.data,
+                headers: { jwt: window.localStorage.getItem("jwt") },
                 cache: false,
                 dataType: "text",
                 processData: false, // Don't process the files

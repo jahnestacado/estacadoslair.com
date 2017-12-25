@@ -7,6 +7,7 @@ var fileStoragePath = process.env.UPLOADS_DIR || "./public/images/uploads";
 var upload = multer({ dest: fileStoragePath});
 var auth = require("./../middleware/auth.js");
 var fileStorageCollectionUtils = require("./../db/file-storage-collection-utils.js");
+var auth = require("./../middleware/auth.js");
 
 var storage = multer.diskStorage({
     destination: fileStoragePath,
@@ -17,7 +18,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage});
 
-fileStorageRouter.post("/", upload.array("uploaded-files", 20), function(request, response) {
+fileStorageRouter.post("/", auth, upload.array("uploaded-files", 20), function(request, response) {
     var filenames = request.files.map(function(file){
         return file.filename;
     });
@@ -40,7 +41,7 @@ fileStorageRouter.get("/", function(request, response) {
     });
 });
 
-fileStorageRouter.delete("/:filename", function(request, response) {
+fileStorageRouter.delete("/:filename", auth, function(request, response) {
     var filename = request.params.filename;
     fileStorageCollectionUtils.removeFile(filename, function(error){
         if(error) {
