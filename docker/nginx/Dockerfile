@@ -1,10 +1,6 @@
 FROM arm64v8/nginx:stable
 
 MAINTAINER Jahn Estacado
-
-RUN apt-get clean && apt-get update
-RUN apt-get install -y --force-yes build-essential
-RUN apt-get install -y --force-yes python
 RUN mkdir /etc/nginx/sites-enabled
 
 COPY docker/nginx/nginx.conf /etc/nginx/
@@ -15,7 +11,7 @@ RUN ln -s /etc/nginx/sites-available/estacadoslair.com /etc/nginx/sites-enabled/
 
 COPY . .
 
-RUN npm install && npm run build
+RUN npm install --only=dev && npm run build
 RUN rm -rf node_modules
 
 RUN mkdir public/images/uploads
