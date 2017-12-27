@@ -13,7 +13,7 @@ RUN mkdir public/images/uploads
 
 VOLUME ["public/images/uploads"]
 
-RUN npm install && npm run build
+RUN npm install --production
 
 ENTRYPOINT ["pm2-docker", "start", "src/server.js"]
 
