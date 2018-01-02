@@ -1,5 +1,4 @@
 var mongoskin = require("mongoskin");
-var mongoClient = mongoskin.MongoClient;
 var mongoURI = process.env.MONGO_URI || "localhost:27017";
 var _ = require("underscore");
 var COLLECTIONS = ["blog", "users", "file-storage"];
@@ -61,7 +60,12 @@ var initializeCollections = function(db, onDone, onError) {
 
 var connect = function(onError) {
     log.info("Trying to connect to mongo database: {0}", "mongodb://" + mongoURI + "/mywebsite");
-    var db = mongoClient.connect("mongodb://" + mongoURI + "/mywebsite");
+    var db = mongoskin.db("mongodb://" + mongoURI + "/mywebsite", {
+        "socketOptions" : {
+            "keepAlive" : 300000,
+            "connectTimeoutMS" : 30000
+        }
+    });
     db.on("close", onError);
     // Since ths horrible mongoskin API doesn't provide proper error handling
     // the stats function is used to check if there is an open connection
