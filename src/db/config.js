@@ -61,10 +61,10 @@ var initializeCollections = function(db, onDone, onError) {
 var connect = function(onError) {
     log.info("Trying to connect to mongo database: {0}", "mongodb://" + mongoURI + "/mywebsite");
     var db = mongoskin.db("mongodb://" + mongoURI + "/mywebsite", {
-        "socketOptions" : {
-            "keepAlive" : 300000,
-            "connectTimeoutMS" : 30000
-        }
+        reconnectTries: Number.MAX_VALUE,
+        reconnectInterval: 2000,
+        keepAlive: 1,
+        connectTimeoutMS : 30000
     });
     db.on("close", onError);
     // Since ths horrible mongoskin API doesn't provide proper error handling
