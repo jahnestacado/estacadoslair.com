@@ -35,7 +35,7 @@
     "build": "grunt deploy",
     "dev": "nodemon src/server.js",
     "docker_build_app": "docker build -f docker/estacadoslair/Dockerfile  -t jahnestacado/website .",
-    "docker_build_nginx": "docker build -f docker/nginx/Dockerfile  -t jahnestacado/estacadoslair-nginx ."
+    "docker_build_nginx": "grunt deploy && docker build -f docker/nginx/Dockerfile  -t jahnestacado/estacadoslair-nginx ."
   },
   "repository": {
     "type": "git",

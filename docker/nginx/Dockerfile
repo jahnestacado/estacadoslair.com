@@ -11,7 +11,6 @@ RUN ln -s /etc/nginx/sites-available/estacadoslair.com /etc/nginx/sites-enabled/
 
 COPY . .
 
-RUN npm install --only=dev && npm run build
 RUN rm -rf node_modules
 
 RUN mkdir public/images/uploads
