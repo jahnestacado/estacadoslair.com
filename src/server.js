@@ -6,14 +6,17 @@ var path = require("path");
 var app = express();
 var fileStorageCollectionUtils = require("./db/file-storage-collection-utils.js");
 var handleError = require("./middleware/error-handler.js");
+var attachHostInfo = require("./middleware/host-info.js");
+var appRoute = require("./routes/app.js");
 var log = require("logia")("SERVER");
 
 fileStorageCollectionUtils.syncFileStorageDir();
 
+app.use(attachHostInfo);
 app.use(compress());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use("/", require("./routes/app.js"));
+app.use("/", appRoute);
 app.use(express.static(path.join(__dirname, "/../public")));
 
 log.info("Try to listen on port {0}", process.env.PORT || 7070);
