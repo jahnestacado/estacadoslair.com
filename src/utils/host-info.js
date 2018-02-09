@@ -2,6 +2,7 @@ var log = require("logia")("UTILS::HOST-INFO");
 var os = require("os");
 var containerId = "";
 var dockerHost = os.hostname();
+var fs = require("fs");
 if(process.env.DOCKER_HOSTNAME_PATH) {
     containerId = dockerHost;
     dockerHost = fs.readFileSync(process.env.DOCKER_HOSTNAME_PATH);
