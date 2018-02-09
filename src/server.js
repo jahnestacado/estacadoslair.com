@@ -6,13 +6,13 @@ var path = require("path");
 var app = express();
 var fileStorageCollectionUtils = require("./db/file-storage-collection-utils.js");
 var handleError = require("./middleware/error-handler.js");
-var attachHostInfo = require("./middleware/host-info.js");
+var attachResponseHeaders = require("./middleware/response-headers.js");
 var appRoute = require("./routes/app.js");
 var log = require("logia")("SERVER");
 
 fileStorageCollectionUtils.syncFileStorageDir();
 
-app.use(attachHostInfo);
+app.use(attachResponseHeaders);
 app.use(compress());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());

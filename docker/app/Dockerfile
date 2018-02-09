@@ -11,7 +11,7 @@ COPY . .
 
 RUN mkdir public/images/uploads
 
-VOLUME ["public/images/uploads"]
+VOLUME ["public/images/uploads", "docker-host"]
 
 RUN npm install --production
 
