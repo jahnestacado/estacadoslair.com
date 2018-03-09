@@ -8,8 +8,8 @@ server {
     listen              5001 ssl http2;
     server_name         localhost;
 
-    ssl_certificate /etc/letsencrypt/live/estacadoslair.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/estacadoslair.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/head-detached.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/head-detached.com/privkey.pem;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
     ssl_dhparam /etc/ssl/certs/dhparam.pem;
@@ -24,7 +24,7 @@ server {
     }   
 
     location / {
-        proxy_pass http://ESTACADOSLAIR_SERVICE_URI;
+        proxy_pass http://APP_SERVER_URI;
         proxy_set_header Host $host;
     }   
 }
