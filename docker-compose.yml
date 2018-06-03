@@ -1,18 +1,44 @@
----
-estacadoslair:
-  build: "."
-  command: "forever src/server.js"
-  links:
-    - mongodb
-  ports:
-    - "5050:5050"
-  volumes:
-    - ".:/www/estacadoslair"
-    - "~/.ssl:/.ssl"
-    - "~/storage:/storage"
-mongodb:
-  image: "mongo:2.6"
-  ports:
-    - "27017:27017"
-  volumes:
-    - "/var/lib/mongodb/:/data/db"
+version: "3"
+services:
+  app:
+    image: "jahnestacado/head-detached.app"
+    ports:
+      - "7070:7070"
+    environment:
+      - MONGO_URI=192.168.178.24:27017
+      - DOCKER_HOSTNAME_PATH=/docker-host/hostname
+      - JWT_SECRET="jkewfhejkfhwe9fh9we"
+    volumes:
+      - /home/jahn/shared/uploads/:/public/images/uploads
+      - /etc:/docker-host
+    deploy:
+      replicas: 3
+  mongo:
+    image: "jahnestacado/arm64v8-mongodb"
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/jahn/shared/mongodb:/data/db
+    deploy:
+      replicas: 1
+  nginx:
+    image: "jahnestacado/estacadoslair-nginx"
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - APP_SERVER_URI=192.168.178.24:7070
+    volumes:
+      - /home/jahn/shared/letsencrypt/:/etc/letsencrypt
+      - /home/jahn/shared/ssl/:/etc/ssl
+      - /home/jahn/shared/uploads:/public/images/uploads
+    deploy:
+      replicas: 2
+  vizualizer:
+    image: "jahnestacado/arm64v8-mongodb"
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 1
