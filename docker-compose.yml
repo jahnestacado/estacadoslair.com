@@ -1,9 +1,9 @@
-version: "3"
+version: "3.1"
 services:
   app:
     image: "jahnestacado/head-detached.app"
     ports:
-      - "7070:7070"
+      - "127.0.0.1:7070:7070"
     environment:
       - MONGO_URI=192.168.178.24:27017
       - DOCKER_HOSTNAME_PATH=/docker-host/hostname
@@ -16,16 +16,16 @@ services:
   mongo:
     image: "jahnestacado/arm64v8-mongodb"
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
     volumes:
       - /home/jahn/shared/mongodb:/data/db
     deploy:
       replicas: 1
   nginx:
-    image: "jahnestacado/estacadoslair-nginx"
+    image: "jahnestacado/head-detached.nginx"
     ports:
-      - "5000:5000"
-      - "5001:5001"
+      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:5001:5001"
     environment:
       - APP_SERVER_URI=192.168.178.24:7070
     volumes:
@@ -35,10 +35,12 @@ services:
     deploy:
       replicas: 2
   vizualizer:
-    image: "jahnestacado/arm64v8-mongodb"
+    image: "jahnestacado/vizualizer-aarch64"
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
+      placement:
+        constraints: [node.role == manager]
       replicas: 1
