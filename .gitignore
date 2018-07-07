@@ -13,3 +13,6 @@ public/images/uploads
 
 #logia config
 config
+
+#env var for docker stack
+.env

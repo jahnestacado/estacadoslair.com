@@ -2,12 +2,10 @@ version: "3.1"
 services:
   app:
     image: "jahnestacado/head-detached.app"
-    ports:
-      - "127.0.0.1:7070:7070"
     environment:
-      - MONGO_URI=192.168.178.24:27017
+      - MONGO_URI=mongo:27017
       - DOCKER_HOSTNAME_PATH=/docker-host/hostname
-      - JWT_SECRET="jkewfhejkfhwe9fh9we"
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - /home/jahn/shared/uploads/:/public/images/uploads
       - /etc:/docker-host
@@ -15,8 +13,6 @@ services:
       replicas: 3
   mongo:
     image: "jahnestacado/arm64v8-mongodb"
-    ports:
-      - "127.0.0.1:27017:27017"
     volumes:
       - /home/jahn/shared/mongodb:/data/db
     deploy:
@@ -24,10 +20,10 @@ services:
   nginx:
     image: "jahnestacado/head-detached.nginx"
     ports:
-      - "127.0.0.1:5000:5000"
-      - "127.0.0.1:5001:5001"
+      - "5000:5000"
+      - "5001:5001"
     environment:
-      - APP_SERVER_URI=192.168.178.24:7070
+      - APP_SERVER_URI=app:7070
     volumes:
       - /home/jahn/shared/letsencrypt/:/etc/letsencrypt
       - /home/jahn/shared/ssl/:/etc/ssl
@@ -37,7 +33,7 @@ services:
   vizualizer:
     image: "jahnestacado/vizualizer-aarch64"
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
