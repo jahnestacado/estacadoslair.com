@@ -13,7 +13,9 @@ RUN mkdir public/images/uploads
 
 VOLUME ["public/images/uploads", "docker-host"]
 
-RUN npm install --production
+RUN npm install
+RUN grunt string-replace
+RUN npm prune
 
 ENTRYPOINT ["pm2-docker", "start", "src/server.js"]
 
