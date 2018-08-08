@@ -3,17 +3,17 @@ require.config({
     deps: ["app"],
     paths: {
         //3rd Party libs
-        "jquery":"bower_components/jquery/dist/jquery",
-        "bootstrap": "bower_components/bootstrap/dist/js/bootstrap",
-        "highlightjs": "bower_components/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
-        "underscore": "bower_components/underscore/underscore",
-        "backbone": "bower_components/backbone/backbone",
-        "text": "bower_components/text/text",
-        "moment": "bower_components/moment/moment",
-        "curtainjs": "bower_components/curtainjs/js/jquery.curtain",
-        "touchswipe": "bower_components/jquery-touchswipe/jquery.touchSwipe",
-        "speakingurl": "bower_components/speakingurl/lib/speakingurl",
-        "ckeditor": "bower_components/ckeditor/ckeditor",
+        "jquery":"./../node_modules/jquery/dist/jquery",
+        "bootstrap": "./../node_modules/bootstrap/dist/js/bootstrap",
+        "highlightjs": "./../node_modules/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack",
+        "underscore": "./../node_modules/underscore/underscore",
+        "backbone": "./../node_modules/backbone/backbone",
+        "text": "./../node_modules/requirejs-text/text",
+        "moment": "./../node_modules/moment/moment",
+        "curtainjs": "./../node_modules/curtainjs/js/jquery.curtain",
+        "touchswipe": "./../node_modules/jquery-touchswipe/jquery.touchSwipe",
+        "speakingurl": "./../node_modules/speakingurl/lib/speakingurl",
+        "ckeditor": "./../node_modules/ckeditor/ckeditor",
 
         //Backbone models
         "blogPostModel": "js/models/blogPost",
