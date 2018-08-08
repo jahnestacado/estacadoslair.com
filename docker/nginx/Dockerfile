@@ -11,8 +11,6 @@ RUN ln -s /etc/nginx/sites-available/head-detached.com /etc/nginx/sites-enabled/
 
 COPY . .
 
-RUN rm -rf node_modules
-
 RUN mkdir public/images/uploads
 
 VOLUME ["/etc/letsencrypt", "/etc/ssl", "public/images/uploads"]
