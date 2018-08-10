@@ -8,6 +8,7 @@ define(["backbone", "jquery"], function(Backbone, $) {
                 url: "/auth/isAuthorized",
                 headers: { jwt: window.localStorage.getItem("jwt") },
                 success: function() {
+                    $(window).off("resize");
                     callbacks.onSuccess && callbacks.onSuccess();
                 },
                 error: function() {
