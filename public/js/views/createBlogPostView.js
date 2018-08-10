@@ -27,15 +27,23 @@ define([
         savePost: function (event) {
             var view = this;
             event.preventDefault();
+            var title = view.$el.find("#post-title").val();
+            if(title){
+                var editorContent = view.filterContent();
+                view.blogPostModel.set({
+                    title: view.$el.find("#post-title").val(),
+                    body: editorContent,
+                    date: moment().format("MMM DD, YYYY / hh:mm A")
+                });
+                Backbone.bus.trigger("createBlogPost", view.blogPostModel);
+            } else {
+                    Backbone.bus.trigger("notification", {
+                            message: "You must specify a title!",
+                            status: "error",
+                        });
+            }
 
-            var editorContent = view.filterContent();
-            view.blogPostModel.set({
-                title: view.$el.find("#post-title").val(),
-                body: editorContent,
-                date: moment().format("MMM DD, YYYY / hh:mm A")
-            });
 
-            Backbone.bus.trigger("createBlogPost", view.blogPostModel);
         },
         initCKEditor: function () {
             CKEDITOR
