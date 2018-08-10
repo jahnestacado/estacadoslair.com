@@ -10,7 +10,7 @@ services:
       - /home/jahn/shared/uploads/:/public/images/uploads
       - /etc:/docker-host
     deploy:
-      replicas: 3
+      replicas: 2
   mongo:
     image: "jahnestacado/arm64v8-mongodb"
     volumes:
@@ -29,7 +29,7 @@ services:
       - /home/jahn/shared/ssl/:/etc/ssl
       - /home/jahn/shared/uploads:/public/images/uploads
     deploy:
-      replicas: 2
+      replicas: 3
   vizualizer:
     image: "jahnestacado/vizualizer-aarch64"
     ports:
